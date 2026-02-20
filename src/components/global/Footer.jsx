@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { Linkedin, Instagram, ArrowUpRight } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import noumanImg from '../../assets/GB PICS/Nouman.png'
+import arfanImg  from '../../assets/Arfan.png'
 
 export default function Footer() {
     const [hoveredDev, setHoveredDev] = useState(null)
@@ -28,7 +30,12 @@ export default function Footer() {
         { name: 'Contact Us', path: '/contact' },
     ]
 
-    const developers = Array(6).fill('MOHAMMED NOUMAN')
+    const developers = [
+        { name: 'Mohammed Nouman', role: 'Web Master',          initials: 'MN', color: '#22d3ee', image: noumanImg,                                                          imageStyle: { scale: '1.75', objectPosition: 'center 15%' } },
+        { name: 'Mohammed Arfan',  role: 'Tech Head',            initials: 'MA', color: '#818cf8', image: arfanImg,                                                            imageStyle: { scale: '1.75', objectPosition: 'center 15%' } },
+        { name: 'Abdullah Quadri', role: 'Associate Tech Head', initials: 'AQ', color: '#34d399', image: '/assets/team/execom/- MOHAMMED ABDULLAH QUADRI.jpeg',             imageStyle: { scale: '1.0',  objectPosition: 'center 10%' } },
+        { name: 'Ozier Nawaz',     role: 'Core — Tech',          initials: 'ON', color: '#f472b6', image: null,                                                              imageStyle: {} },
+    ]
 
     return (
         <footer className="relative z-footer bg-black text-white">
@@ -134,27 +141,111 @@ export default function Footer() {
 
                 {/* Developers Section */}
                 <div className="mt-12 pt-8 border-t border-gray-800">
-                    <h3 className="text-xl cursor-pointer font-bold text-center mb-6">DEVELOPERS</h3>
-                    <div className="flex justify-center gap-4 flex-wrap">
-                        {developers.map((name, index) => (
+                    <h3 className="text-sm font-bold text-center tracking-[0.3em] text-gray-500 uppercase mb-10">CRAFTED BY</h3>
+
+                    <style>{`
+                        @keyframes dev-ring-pulse {
+                            0%   { transform: translate(-50%, -50%) scale(1);    opacity: 0.55; }
+                            50%  { transform: translate(-50%, -50%) scale(1.28); opacity: 0; }
+                            100% { transform: translate(-50%, -50%) scale(1);    opacity: 0.55; }
+                        }
+                        .dev-ring {
+                            animation: dev-ring-pulse 4s ease-in-out infinite;
+                            position: absolute;
+                            border-radius: 50%;
+                            pointer-events: none;
+                        }
+                        .dev-card:hover .dev-ring { animation-play-state: paused; opacity: 0.8; }
+                        .dev-avatar {
+                            transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease;
+                            position: relative;
+                            z-index: 1;
+                        }
+                        .dev-card:hover .dev-avatar {
+                            transform: scale(1.08) translateY(-3px);
+                        }
+                        .dev-tooltip {
+                            opacity: 0;
+                            transform: translateY(6px);
+                            transition: opacity 0.25s ease, transform 0.25s ease;
+                            pointer-events: none;
+                        }
+                        .dev-card:hover .dev-tooltip {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    `}</style>
+
+                    <div className="flex justify-center items-center gap-16 md:gap-24 flex-wrap">
+                        {developers.map((dev, index) => (
                             <div
                                 key={index}
-                                className="relative"
+                                className="dev-card flex flex-col items-center cursor-pointer"
                                 onMouseEnter={() => setHoveredDev(index)}
                                 onMouseLeave={() => setHoveredDev(null)}
                             >
-                                <div className="w-12 h-12 rounded-full bg-gray-800 border-2 border-gray-700 hover:border-cyan-400 transition-colors duration-300 cursor-pointer" />
-                                {hoveredDev === index && (
-                                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap">
-                                        {name}
+                                {/* Tooltip above */}
+                                <div className="dev-tooltip mb-3 text-center">
+                                    <div
+                                        className="px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap"
+                                        style={{
+                                            background: `linear-gradient(135deg, ${dev.color}22, ${dev.color}11)`,
+                                            border: `1px solid ${dev.color}55`,
+                                            color: dev.color,
+                                            backdropFilter: 'blur(8px)'
+                                        }}
+                                    >
+                                        {dev.name}
                                     </div>
-                                )}
+                                    <p className="text-gray-500 text-[10px] mt-1 tracking-wider">{dev.role}</p>
+                                </div>
+
+                                {/* Ring + Avatar wrapper — overflow hidden keeps ring clipped */}
+                                <div
+                                    className="relative flex items-center justify-center"
+                                    style={{ width: '80px', height: '80px' }}
+                                >
+                                    {/* Pulsing ring — clipped to this wrapper */}
+                                    <div
+                                        className="dev-ring"
+                                        style={{
+                                            width: '100%', height: '100%',
+                                            top: '50%', left: '50%',
+                                            border: `1.5px solid ${dev.color}`,
+                                        }}
+                                    />
+
+                                    {/* Avatar circle */}
+                                    <div
+                                        className="dev-avatar w-16 h-16 rounded-full overflow-hidden flex items-center justify-center text-lg font-black select-none"
+                                        style={{
+                                            background: `linear-gradient(135deg, ${dev.color}33, ${dev.color}11)`,
+                                            border: `2px solid ${dev.color}88`,
+                                            boxShadow: `0 0 20px ${dev.color}44, 0 0 6px ${dev.color}22 inset`,
+                                            color: dev.color,
+                                        }}
+                                    >
+                                        {dev.image ? (
+                                            <img
+                                                src={dev.image}
+                                                alt={dev.name}
+                                                className="w-full h-full object-cover"
+                                                style={{
+                                                    scale: dev.imageStyle?.scale ?? '1',
+                                                    objectPosition: dev.imageStyle?.objectPosition ?? 'center center',
+                                                }}
+                                            />
+                                        ) : (
+                                            dev.initials
+                                        )}
+                                    </div>
+                                </div>
                             </div>
                         ))}
                     </div>
 
                     {/* Animated Text Section */}
-                    <div className="mt-8 text-center">
+                    <div className="mt-10 text-center">
                         <div className="inline-flex items-center gap-3 mx-auto text-3xl md:text-4xl font-bold">
                             <span
                                 className={`text-cyan-400 transition-opacity duration-500 inline-block min-w-[200px] md:min-w-[280px] text-center ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
