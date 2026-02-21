@@ -170,7 +170,7 @@ export default function Footer() {
             <div className="border-t border-gray-800">
                 <div className="max-w-7xl mx-auto px-6 py-4">
                     <p className="text-center text-gray-400 text-sm cursor-pointer">
-                        © Made by <b className='text-white hover:text-cyan-400 transition-colors duration-300'>IEEE CIS - MJCET</b>. All rights reserved
+                        © {new Date().getFullYear()} Made by <Link to="/" className='text-white hover:text-cyan-400 transition-colors duration-300 font-bold'>IEEE CIS - MJCET</Link>. All rights reserved
                     </p>
                 </div>
             </div>
