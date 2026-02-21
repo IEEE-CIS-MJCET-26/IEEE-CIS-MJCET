@@ -8,6 +8,8 @@ import Events from './components/pages/Events'
 import Contact from './components/pages/Contact'
 import Footer from './components/global/Footer'
 import NotFound from './components/NotFound'
+import Cursor from './components/Cursor'
+
 
 function App() {
   const [loaded, setLoaded] = useState(false)
@@ -15,6 +17,7 @@ function App() {
   return (
     <>
       {!loaded && <Loader onComplete={() => setLoaded(true)} />}
+      {!loaded && <Cursor onComplete={() => setLoaded(true)} />}
       {loaded && (
         <Router>
           <Navbar />
@@ -26,6 +29,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
+          <Cursor />
         </Router>
       )}
     </>

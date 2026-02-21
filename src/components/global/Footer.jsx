@@ -3,6 +3,7 @@ import { Linkedin, Instagram, ArrowUpRight } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import noumanImg from '../../assets/GB PICS/Nouman.png'
 import arfanImg  from '../../assets/Arfan.png'
+import chairImg from '../../assets/GB PICS/Abdul Hafeez.png'
 
 export default function Footer() {
     const [hoveredDev, setHoveredDev] = useState(null)
@@ -35,6 +36,7 @@ export default function Footer() {
         { name: 'Mohammed Arfan',  role: 'Tech Head',            initials: 'MA', color: '#818cf8', image: arfanImg,                                                            imageStyle: { scale: '1.75', objectPosition: 'center 15%' } },
         { name: 'Abdullah Quadri', role: 'Associate Tech Head', initials: 'AQ', color: '#34d399', image: '/assets/team/execom/- MOHAMMED ABDULLAH QUADRI.jpeg',             imageStyle: { scale: '1.0',  objectPosition: 'center 10%' } },
         { name: 'Ozier Nawaz',     role: 'Core — Tech',          initials: 'ON', color: '#f472b6', image: null,                                                              imageStyle: {} },
+        { name: 'Abdul Hafeez', role: 'Chairman',        initials: 'AH', color: '#2481fb', image: chairImg,                                                           imageStyle: { scale: '1.5', objectPosition: 'center 0%' } },
     ]
 
     return (

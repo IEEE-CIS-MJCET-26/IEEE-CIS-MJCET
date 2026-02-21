@@ -169,58 +169,79 @@ const FAQs = () => {
 
 const AccordionItem = ({ question, answer, isOpen, onToggle }) => {
     return (
-        <div
-            className={`relative rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer ${isOpen ? 'bg-cyan-50 border-2 border-cyan-400' : 'bg-white border-2 border-neutral-200 hover:border-cyan-300'
-                }`}
+        <motion.div
+            layout="position"
+            transition={{
+                layout: {
+                    duration: 0.35,
+                    ease: [0.4, 0.0, 0.2, 1],
+                },
+            }}
             onClick={onToggle}
+            className={`
+                relative
+                border-2
+                rounded-[48px]   /* your locked radius */
+                cursor-pointer
+                ${isOpen
+                    ? 'bg-cyan-50 border-cyan-400'
+                    : 'bg-white border-neutral-200 hover:border-cyan-300'
+                }
+            `}
         >
-            {/* Left Accent Bar */}
-            <div
-                className={`absolute left-0 top-0 bottom-0 w-1.5 transition-all duration-300 ${isOpen ? 'bg-cyan-400' : 'bg-transparent'
-                    }`}
-            />
-
-            {/* Question Header */}
-            <div className="flex items-center justify-between p-5 md:p-6 pl-6 md:pl-8">
-                <h3 className={`text-base md:text-lg lg:text-xl font-bold pr-4 transition-colors duration-300 ${isOpen ? 'text-cyan-600' : 'text-neutral-800'
-                    }`}>
-                    {question}
-                </h3>
-
-                {/* Icon */}
-                <motion.div
-                    animate={{ rotate: isOpen ? 90 : 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="flex-shrink-0"
-                >
-                    {isOpen ? (
-                        <Minus size={24} className="text-cyan-400" strokeWidth={3} />
-                    ) : (
-                        <Plus size={24} className="text-neutral-400" strokeWidth={3} />
-                    )}
-                </motion.div>
-            </div>
-
-            {/* Answer Content */}
-            <AnimatePresence initial={false}>
-                {isOpen && (
-                    <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden"
+            {/* CONTENT WRAPPER (fixed padding) */}
+            <div className="px-6 md:px-8 py-3">
+                
+                {/* HEADER (defines closed height) */}
+                <div className="flex items-center justify-between min-h-[48px] items-start">
+                    <h3
+                        className={`
+                            text-base md:text-lg lg:text-xl
+                            font-bold
+                            transition-colors duration-300
+                            ${isOpen ? 'text-cyan-600' : 'text-neutral-800'}
+                        `}
                     >
-                        <div className="px-6 md:px-8 pb-5 md:pb-6">
+                        {question}
+                    </h3>
+
+                    <motion.div
+                        animate={{ rotate: isOpen ? 90 : 0 }}
+                        transition={{ duration: 0.25, ease: 'easeInOut' }}
+                        className={`
+                            flex items-center justify-center
+                            h-10 w-10
+                            rounded-full
+                            border
+                            flex-shrink-0
+                            ${isOpen
+                                ? 'border-cyan-400 text-cyan-400'
+                                : 'border-neutral-300 text-neutral-400'
+                            }
+                        `}
+                    >
+                        {isOpen ? (
+                            <Minus size={18} strokeWidth={3} className="rotate-90" />                        ) : (
+                            <Plus size={18} strokeWidth={3} />
+                        )}
+                    </motion.div>
+                </div>
+
+                {/* ANSWER (always mounted, height affects parent) */}
+                <motion.div layout className="overflow-hidden">
+                    {isOpen && (
+                        <div className="mt-3 pb-6">
                             <p className="text-sm md:text-base text-neutral-600 leading-relaxed">
                                 {answer}
                             </p>
                         </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </div>
+                    )}
+                </motion.div>
+
+            </div>
+        </motion.div>
     );
 };
+
 
 export default FAQs;

@@ -1,0 +1,15 @@
+body.custom-cursor {
+    cursor: none;
+}
+
+/* restore expected cursors */
+body.custom-cursor input,
+body.custom-cursor textarea,
+body.custom-cursor [contenteditable="true"] {
+    cursor: text;
+}
+
+body.custom-cursor button,
+body.custom-cursor a {
+    cursor: pointer;
+}
