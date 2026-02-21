@@ -6,14 +6,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AnimatedBackground from '../AnimatedBackground';
 
 // GB members 2024-25
-import aliuddin from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Aliuddin hussain.jpeg";
-import ibrahim from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Ibrahim Aejaz Treasurer.JPG";
-import imaduddin from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Imaduddin Mohammed - Joint Secretary.JPG";
-import isra from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Isra Sayeeda Chairperson.JPG";
-import malik from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Malik Ather - General Secretary.JPG";
-import omer from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Omer Waheed Vice Chairperson.JPG";
-import samia from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Samia Rahman Co - Treasurer.jpeg";
-import shabbir from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Shabbir Ali Razvi Web Master.JPG";
+// assets lives under src/assets so paths should climb up only two levels from this file
+import aliuddin from "../../assets/GB-25/Aliuddin hussain.jpeg";
+import ibrahim from "../../assets/GB-25/Ibrahim Aejaz Treasurer.JPG";
+import imaduddin from "../../assets/GB-25/Imaduddin Mohammed - Joint Secretary.JPG";
+import isra from "../../assets/GB-25/Isra Sayeeda Chairperson.JPG";
+import malik from "../../assets/GB-25/Malik Ather - General Secretary.JPG";
+import omer from "../../assets/GB-25/Omer Waheed Vice Chairperson.JPG";
+import samia from "../../assets/GB-25/Samia Rahman Co - Treasurer.jpeg";
+import shabbir from "../../assets/GB-25/Shabbir Ali Razvi Web Master.JPG";
 
 // GB member images (actual photos)
 import hafeez from '../../assets/GB PICS/Abdul Hafeez.png';
@@ -25,6 +26,29 @@ import nouman from '../../assets/GB PICS/Nouman.png';
 import psa from '../../assets/GB PICS/PSA Khan.png';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// ─────────────────────────────────────────
+// ANIMATION VARIANTS
+// ─────────────────────────────────────────
+const CONTAINER_VARIANTS = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.06,
+            delayChildren: 0.1
+        }
+    }
+};
+
+const CARD_VARIANTS = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.5, ease: "easeOut" }
+    }
+};
 
 // ─────────────────────────────────────────
 // BATCH YEAR CONFIG
@@ -40,39 +64,39 @@ const BATCH_YEARS = [
 // ─────────────────────────────────────────
 
 const GB_MEMBERS = [
-    { name: 'Abdul Hafeez',    position: 'Chairman',         image: hafeez, linkedin: 'https://www.linkedin.com/in/abdulhafeez', email: null },
-    { name: 'Haifa Nazeer',    position: 'Vice-Chair',        image: haifa,  linkedin: 'https://www.linkedin.com/in/haifanazeer',  email: null },
-    { name: 'Rayyan Siddiqi',  position: 'General Secretary', image: rayyan, linkedin: 'https://www.linkedin.com/in/rayyansiddiqi', email: null },
-    { name: 'Ahamadi Hareem',  position: 'Joint Secretary',   image: hareem, linkedin: 'https://www.linkedin.com/in/ahamadihareem', email: null },
-    { name: 'Abdul Ahad',      position: 'Treasurer',         image: ahad,   linkedin: 'https://www.linkedin.com/in/abdulahad',   email: null },
-    { name: 'Mohammed Nouman', position: 'Web Master',        image: nouman, linkedin: 'https://www.linkedin.com/in/mohammednouman', email: null },
-    { name: 'PSA Khan',        position: 'Liaison Head',      image: psa,    linkedin: 'https://www.linkedin.com/in/psakhan',     email: null },
+    { name: 'Abdul Hafeez', position: 'Chairman', image: hafeez, linkedin: 'https://www.linkedin.com/in/abdul-hafeez-108b09214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', email: null, github:'https://github.com/sofian229' },
+    { name: 'Haifa Nazeer', position: 'Vice-Chair', image: haifa, linkedin: 'https://www.linkedin.com/in/haifa-nazeer-425409284?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', email: null },
+    { name: 'Rayyan Siddiqi', position: 'General Secretary', image: rayyan, linkedin: 'https://www.linkedin.com/in/rayyan-siddiqi-119b472a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', email: 'sidrayyan7@gmail.com' },
+    { name: 'Ahamadi Hareem', position: 'Joint Secretary', image: hareem, linkedin: 'https://www.linkedin.com/in/ahamadi-hareem-9145051b4/', email: 'ahmadihareem3@gmail.com' },
+    { name: 'Abdul Ahad', position: 'Treasurer', image: ahad, linkedin: 'https://www.linkedin.com/in/abdul-ahad-abdul-hamed-a992a6311/', email: 'abdulahadabdulhamed22@gmail.com' },
+    { name: 'Mohammed Nouman', position: 'Web Master', image: nouman, linkedin: 'https://www.linkedin.com/in/mohammed-nouman-3320a7279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', email: null, github: 'https://github.com/MOHAMMED-NOUMAN' },
+    { name: 'PSA Khan', position: 'Liaison Head', image: psa, linkedin: 'https://www.linkedin.com/in/p-s-ahmmad-khan-536703314?utm_source=share_via&utm_content=profile&utm_medium=member_android', email: null , github:' https://github.com/shamsheer1-khan'},
 ];
 
 // GB memebers 2024-25
 
 const GB_2024 = [
-    { name: 'Isra Syeeda',          position: 'Chairman',          image: isra,         linkedin: 'https://www.linkedin.com/in/isra-sayeeda-526a1527a/',                    email: null },
-    { name: 'Omer Waheed',          position: 'Vice-Chair',        image: omer,         linkedin: 'https://www.linkedin.com/in/omer-waheed/',                               email: null },
-    { name: 'Malik Ather',          position: 'General Secretary', image: malik,        linkedin: 'https://www.linkedin.com/in/abdul-malik-ather-mohammed-2b74302a8/',      email: null },
-    { name: 'Imaduddin Mohammed',   position: 'Joint Secretary',   image: imaduddin,    linkedin: 'https://www.linkedin.com/in/imaduddin-mohammed-6967861b7/ ',             email: null },
-    { name: 'Ibrahim Aejaz',        position: 'Treasurer',         image: ibrahim,      linkedin: 'https://www.linkedin.com/in/mohammedibrahimaejaz/',                      email: null },
-    { name: 'Shabbir Ali Razvi',    position: 'Web Master',        image: shabbir,      linkedin: 'https://www.linkedin.com/in/shabbir-ali-razvi-593399237/',               email: null },
-    { name: 'Aliuddin Hussain',     position: 'Liaison Head',      image: aliuddin,     linkedin: 'https://www.linkedin.com/in/aliuddin-hussain-201459280/',                email: null },
-    { name: 'Samia Rahman',         position: 'Co-Treasurer',      image: samia,        linkedin: 'https://www.linkedin.com/in/samia-rahman-8469752a3/',                    email: null },
+    { name: 'Isra Syeeda', position: 'Chairman', image: isra, linkedin: 'https://www.linkedin.com/in/isra-sayeeda-526a1527a/', email: null },
+    { name: 'Omer Waheed', position: 'Vice-Chair', image: omer, linkedin: 'https://www.linkedin.com/in/omer-waheed/', email: 'omerwaheed342@gmail.com' },
+    { name: 'Malik Ather', position: 'General Secretary', image: malik, linkedin: 'https://www.linkedin.com/in/abdul-malik-ather-mohammed-2b74302a8/', email: 'malikather0076@gmail.com' },
+    { name: 'Imaduddin Mohammed', position: 'Joint Secretary', image: imaduddin, linkedin: 'https://www.linkedin.com/in/imaduddin-mohammed-6967861b7/ ', email: 'imaduddin0908@gmail.com' },
+    { name: 'Ibrahim Aejaz', position: 'Treasurer', image: ibrahim, linkedin: 'https://www.linkedin.com/in/mohammedibrahimaejaz/', email: 'ibrahimaejaz@gmail.com' },
+    { name: 'Shabbir Ali Razvi', position: 'Web Master', image: shabbir, linkedin: 'https://www.linkedin.com/in/shabbir-ali-razvi-593399237/', email: null },
+    { name: 'Aliuddin Hussain', position: 'Liaison Head', image: aliuddin, linkedin: 'https://www.linkedin.com/in/aliuddin-hussain-201459280/', email: 'aliuddin.hussain99@gmail.com' },
+    { name: 'Samia Rahman', position: 'Co-Treasurer', image: samia, linkedin: 'https://www.linkedin.com/in/samia-rahman-8469752a3/', email: null },
 
 ];
 
 const DEPT_COLOR = {
-    TECH:              '#1d4ed8',
-    DESIGN:            '#0e7490',
-    MEDIA:             '#0f766e',
-    MARKETING:         '#be185d',
-    RESEARCH:          '#5b21b6',
-    'PRESS & OUTREACH':'#7c2d12',
-    OPERATIONS:        '#92400e',
-    DOCUMENTATION:     '#065f46',
-    HR:                '#831843',
+    TECH: '#1d4ed8',
+    DESIGN: '#0e7490',
+    MEDIA: '#0f766e',
+    MARKETING: '#be185d',
+    RESEARCH: '#5b21b6',
+    'PRESS & OUTREACH': '#7c2d12',
+    OPERATIONS: '#92400e',
+    DOCUMENTATION: '#065f46',
+    HR: '#831843',
 };
 
 const mk = (name, position, department, image, { linkedin = null, github = null, portfolio = null } = {}) => ({
@@ -88,41 +112,41 @@ const EXECOM_DEPARTMENTS_2025 = ['ALL', 'TECH', 'MEDIA', 'MARKETING', 'HR', 'DES
 
 const EXECOM_MEMBERS_2025 = [
     // TECH
-    mk('Mohammed Arfan',           'Tech Head',              'TECH',              img('Arfan.png'), { linkedin: 'https://www.linkedin.com/in/mohammed-arfan-167452171/', github: 'https://github.com/ArfanCodes' }),
-    mk('Mohammed Abdullah Quadri', 'Associate Tech Head',    'TECH',              img('- MOHAMMED ABDULLAH QUADRI.jpeg'),   { linkedin: 'https://www.linkedin.com/in/abdullahquadri', github: 'https://github.com/abdullah-qdev' }),
+    mk('Mohammed Arfan', 'Tech Head', 'TECH', img('Arfan.png'), { linkedin: 'https://www.linkedin.com/in/mohammed-arfan-167452171/', github: 'https://github.com/ArfanCodes' }),
+    mk('Mohammed Abdullah Quadri', 'Associate Tech Head', 'TECH', img('Abdullah.jpg'), { linkedin: 'https://www.linkedin.com/in/abdullahquadri', github: 'https://github.com/abdullah-qdev' }),
 
     // MEDIA
-    mk('Ismail Khan',              'Media Head',             'MEDIA',             img('Ismail Khan.png'), {}),
-    mk('Aman Shaik',               'Associate Media Head',   'MEDIA',             img('Aman Shaik.jpeg'), {}),
-    mk('Ismail Farooq',            'Associate Media Head',   'MEDIA',             img('1000050904 - Ismail Fr.jpeg'), {}),
+    mk('Ismail Khan', 'Media Head', 'MEDIA', img('Ismail Khan.png'), {}),
+    mk('Aman Shaik', 'Associate Media Head', 'MEDIA', img('Aman Shaik.jpeg'), {}),
+    mk('Ismail Farooq', 'Associate Media Head', 'MEDIA', img('1000050904 - Ismail Fr.jpeg'), {}),
 
     // MARKETING
-    mk('Farheen Banu',             'Marketing Head',         'MARKETING',         img('IMG_7659 - FARHEEN BANU 160424733122.jpeg'), { linkedin: 'https://www.linkedin.com/in/farheen-banu-007a05388', github: 'https://github.com/eeenn10' }),
-    mk('Misha Shaik',              'Associate Marketing Head','MARKETING',        img('Misha Shaikh.jpeg'), {}),
+    mk('Farheen Banu', 'Marketing Head', 'MARKETING', img('IMG_7659 - FARHEEN BANU 160424733122.jpeg'), { linkedin: 'https://www.linkedin.com/in/farheen-banu-007a05388', github: 'https://github.com/eeenn10' }),
+    mk('Misha Shaik', 'Associate Marketing Head', 'MARKETING', img('Misha Shaikh.jpeg'), {}),
 
     // HR
-    mk('Ali Abbas',                'HR Head',                'HR',                img('ALI ABBAS VEERJI.jpeg'), {}),
-    mk('Shaista Imtiaz Khan',      'Associate HR Head',      'HR',                img('SHAISTA IMTIAZ KHAN.jpeg'), { linkedin: 'https://www.linkedin.com/in/shaista-khan-994b71390', github: 'https://github.com/shai155' }),
+    mk('Ali Abbas', 'HR Head', 'HR', img('ALI ABBAS VEERJI.jpeg'), {}),
+    mk('Shaista Imtiaz Khan', 'Associate HR Head', 'HR', img('SHAISTA IMTIAZ KHAN.jpeg'), { linkedin: 'https://www.linkedin.com/in/shaista-khan-994b71390', github: 'https://github.com/shai155' }),
 
     // DESIGN
-    mk('Syed Farhaan Ahmed',       'Design Head',            'DESIGN',            img('Syed Farhaan.jpeg'), {}),
-    mk('ShaikAfroze',              'Associate Design Head',  'DESIGN',            img('Afrozeshaik.jpg'), { linkedin: 'https://www.linkedin.com/in/afroze-shaik-73473929a', github: 'https://github.com/Afrozeshaik24' }),
+    mk('Syed Farhaan Ahmed', 'Design Head', 'DESIGN', img('Syed Farhaan.jpeg'), {}),
+    mk('ShaikAfroze', 'Associate Design Head', 'DESIGN', img('Afrozeshaik.jpg'), { linkedin: 'https://www.linkedin.com/in/afroze-shaik-73473929a', github: 'https://github.com/Afrozeshaik24' }),
 
     // RESEARCH
-    mk('Ayman Khaleel',            'Research Head',          'RESEARCH',          img('AYMAN KHALEEL AHMED.jpeg'), {}),
-    mk('Quratulain Nayeem',        'Associate Research Head','RESEARCH',          img('QURATULAIN NAYEEM.JPG'), { linkedin: 'https://www.linkedin.com/in/quratulain-nayeem/', github: 'https://github.com/quratulain-nayeem' }),
+    mk('Ayman Khaleel', 'Research Head', 'RESEARCH', img('AYMAN KHALEEL AHMED.jpeg'), {}),
+    mk('Quratulain Nayeem', 'Associate Research Head', 'RESEARCH', img('QURATULAIN NAYEEM.JPG'), { linkedin: 'https://www.linkedin.com/in/quratulain-nayeem/', github: 'https://github.com/quratulain-nayeem' }),
 
     // PRESS & OUTREACH
-    mk('Zainab Ahmed',             'Press & Outreach Head',  'PRESS & OUTREACH',  img('Zainab.jpeg'), { linkedin: 'https://www.linkedin.com/in/zainab-ahmed-076033324', github: 'https://github.com/zainab-py' }),
-    mk('Mohammed Yahya Hussain',   'Associate P&O Head',     'PRESS & OUTREACH',  img('535e423c-2b98-452d-9f13-f91d6823e867 - Yahya Hussain.jpeg'), { linkedin: 'https://www.linkedin.com/in/yahya-hussain-a124a3290', github: 'https://github.com/Yahya986' }),
+    mk('Zainab Ahmed', 'Press & Outreach Head', 'PRESS & OUTREACH', img('Zainab.jpeg'), { linkedin: 'https://www.linkedin.com/in/zainab-ahmed-076033324', github: 'https://github.com/zainab-py' }),
+    mk('Mohammed Yahya Hussain', 'Associate P&O Head', 'PRESS & OUTREACH', img('535e423c-2b98-452d-9f13-f91d6823e867 - Yahya Hussain.jpeg'), { linkedin: 'https://www.linkedin.com/in/yahya-hussain-a124a3290', github: 'https://github.com/Yahya986' }),
 
     // OPERATIONS
-    mk('Muteebuddin Mohammed',     'Operations Head',        'OPERATIONS',        img('MOHAMMED MUTEEB.png'), {}),
-    mk('Mohammed Ilyas Ahmed',     'Associate Ops Head',     'OPERATIONS',        img('IMG_1297.HEIC - MOHAMMED ILYAS AHMED 160423747105.jpeg'), { linkedin: 'https://www.linkedin.com/in/mohammed-ilyas-ahmed-0b52ab334', github: 'https://github.com/Ilyakhudus' }),
+    mk('Muteebuddin Mohammed', 'Operations Head', 'OPERATIONS', img('MOHAMMED MUTEEB.png'), {}),
+    mk('Mohammed Ilyas Ahmed', 'Associate Ops Head', 'OPERATIONS', img('IMG_1297.HEIC - MOHAMMED ILYAS AHMED 160423747105.jpeg'), { linkedin: 'https://www.linkedin.com/in/mohammed-ilyas-ahmed-0b52ab334', github: 'https://github.com/Ilyakhudus' }),
 
     // DOCUMENTATION
-    mk('Safa Maheen',              'Documentation Head',     'DOCUMENTATION',     img('SAFA MAHEEN.jpeg'), { linkedin: 'https://www.linkedin.com/in/safa-maheen-aa6701336', github: 'https://github.com/safamaheen' }),
-    mk('Syeda Rania',              'Associate Doc Head',     'DOCUMENTATION',     img('- SYEDA RANIA FATIMA.jpg'), {}),
+    mk('Safa Maheen', 'Documentation Head', 'DOCUMENTATION', img('SAFA MAHEEN.jpeg'), { linkedin: 'https://www.linkedin.com/in/safa-maheen-aa6701336', github: 'https://github.com/safamaheen' }),
+    mk('Syeda Rania', 'Associate Doc Head', 'DOCUMENTATION', img('- SYEDA RANIA FATIMA.jpg'), {}),
 ];
 
 // ── CORE 2025-2026 ──
@@ -130,66 +154,66 @@ const CORE_DEPARTMENTS_2025 = ['ALL', 'TECH', 'MEDIA', 'MARKETING', 'HR', 'DESIG
 
 const CORE_MEMBERS_2025 = [
     // TECH
-    mk('Farhan Uddin',             'Core — Tech',            'TECH',              null, { linkedin: 'https://www.linkedin.com/in/farhanuddin0721', github: 'https://github.com/FarhanUddin0721' }),
-    mk('Mohammed Nabeel Uddin',    'Core — Tech',            'TECH',              null, { linkedin: 'http://linkedin.com/in/mohammed-nabeel-uddin-2ab19b391', github: 'https://github.com/nabeel-lab' }),
-    mk('Syed Mukhtar',             'Core — Tech',            'TECH',              null, { github: 'https://github.com/SyedMukhtar11' }),
-    mk('Zaina Tahniyath',          'Core — Tech',            'TECH',              null, { linkedin: 'https://www.linkedin.com/in/zaina-tahniyath-490701336', github: 'https://github.com/ZAINA11749' }),
-    mk('Amreen Fathima',           'Core — Tech',            'TECH',              null, { linkedin: 'https://www.linkedin.com/in/amreen-fathima-288380395', github: 'https://github.com/amreen1633' }),
-    mk('Omar Hussain Shaikh',      'Core — Tech',            'TECH',              null, { linkedin:'https://www.linkedin.com/in/omar-hussain-shaikh-840398396', github: 'https://github.com/command404' }),
-    mk('Mohammed Ozier Nawaz',     'Core — Tech',            'TECH',              null, { linkedin: 'https://www.linkedin.com/in/ozier-nawaz-43b000335', github: 'https://github.com/oz1er' }),
+    mk('Farhan Uddin', 'Core — Tech', 'TECH', null, { linkedin: 'https://www.linkedin.com/in/farhanuddin0721', github: 'https://github.com/FarhanUddin0721' }),
+    mk('Mohammed Nabeel Uddin', 'Core — Tech', 'TECH', null, { linkedin: 'http://linkedin.com/in/mohammed-nabeel-uddin-2ab19b391', github: 'https://github.com/nabeel-lab' }),
+    mk('Syed Mukhtar', 'Core — Tech', 'TECH', null, { github: 'https://github.com/SyedMukhtar11' }),
+    mk('Zaina Tahniyath', 'Core — Tech', 'TECH', null, { linkedin: 'https://www.linkedin.com/in/zaina-tahniyath-490701336', github: 'https://github.com/ZAINA11749' }),
+    mk('Amreen Fathima', 'Core — Tech', 'TECH', null, { linkedin: 'https://www.linkedin.com/in/amreen-fathima-288380395', github: 'https://github.com/amreen1633' }),
+    mk('Omar Hussain Shaikh', 'Core — Tech', 'TECH', null, { linkedin: 'https://www.linkedin.com/in/omar-hussain-shaikh-840398396', github: 'https://github.com/command404' }),
+    mk('Mohammed Ozier Nawaz', 'Core — Tech', 'TECH', null, { linkedin: 'https://www.linkedin.com/in/ozier-nawaz-43b000335', github: 'https://github.com/oz1er' }),
 
     // MEDIA
-    mk('Harun',                    'Core — Media',           'MEDIA',             null, {}),
-    mk('Mariya Anjum',             'Core — Media',           'MEDIA',             null, {}),
-    mk('Mohammed Rayyan',          'Core — Media',           'MEDIA',             null, { github: 'https://github.com/r7yn' }),
-    mk('Mohammed Saleh Bawazir',   'Core — Media',           'MEDIA',             null, { linkedin: 'https://www.linkedin.com/in/mohammed-saleh-bawazir-912434338', github: 'https://github.com/MohammedBawazir25' }),
+    mk('Harun', 'Core — Media', 'MEDIA', null, {}),
+    mk('Mariya Anjum', 'Core — Media', 'MEDIA', null, {}),
+    mk('Mohammed Rayyan', 'Core — Media', 'MEDIA', null, { github: 'https://github.com/r7yn' }),
+    mk('Mohammed Saleh Bawazir', 'Core — Media', 'MEDIA', null, { linkedin: 'https://www.linkedin.com/in/mohammed-saleh-bawazir-912434338', github: 'https://github.com/MohammedBawazir25' }),
 
     // MARKETING
-    mk('Shaik Suhaib Ahmed',       'Core — Marketing',       'MARKETING',         null, { linkedin: 'https://www.linkedin.com/in/shaik-suhaib-3a95a0376' }),
-    mk('Bano Fatima',              'Core — Marketing',       'MARKETING',         null, {}),
-    mk('Mohammed Farhan Khan',     'Core — Marketing',       'MARKETING',         null, {}),
-    mk('Jazlain Uddin',            'Core — Marketing',       'MARKETING',         null, {}),
-    mk('Syed Ayman Ashfaq',        'Core — Marketing',       'MARKETING',         null, { linkedin: 'https://www.linkedin.com/in/syed-ayman-ashfaq-9a9765297' }),
+    mk('Shaik Suhaib Ahmed', 'Core — Marketing', 'MARKETING', null, { linkedin: 'https://www.linkedin.com/in/shaik-suhaib-3a95a0376' }),
+    mk('Bano Fatima', 'Core — Marketing', 'MARKETING', null, {}),
+    mk('Mohammed Farhan Khan', 'Core — Marketing', 'MARKETING', null, {}),
+    mk('Jazlain Uddin', 'Core — Marketing', 'MARKETING', null, {}),
+    mk('Syed Ayman Ashfaq', 'Core — Marketing', 'MARKETING', null, { linkedin: 'https://www.linkedin.com/in/syed-ayman-ashfaq-9a9765297' }),
 
     // HR
-    mk('Abdul Muqeet',             'Core — HR',              'HR',                null, { linkedin: 'https://www.linkedin.com/in/abdul-muqeet-mohammed-aa4624337', portfolio: 'https://500px.com/p/abdulmuqeetm06' }),
-    mk('SAINA PERVEEN',            'Core — HR',              'HR',                null, {}),
-    mk('Yousuf Bee Sumayya',       'Core — HR',              'HR',                null, {}),
-    mk('Syeda Ayesha',             'Core — HR',              'HR',                null, {}),
+    mk('Abdul Muqeet', 'Core — HR', 'HR', null, { linkedin: 'https://www.linkedin.com/in/abdul-muqeet-mohammed-aa4624337', portfolio: 'https://500px.com/p/abdulmuqeetm06' }),
+    mk('SAINA PERVEEN', 'Core — HR', 'HR', null, {}),
+    mk('Yousuf Bee Sumayya', 'Core — HR', 'HR', null, {}),
+    mk('Syeda Ayesha', 'Core — HR', 'HR', null, {}),
 
     // DESIGN
-    mk('Mustafa Ahmed Ali',        'Core — Design',          'DESIGN',            null, {}),
-    mk('Afnan Ahmed Khan',         'Core — Design',          'DESIGN',            null, { linkedin: 'https://www.linkedin.com/in/afnan-ahmed-4a8963335', github: 'https://github.com/afnan-del' }),
-    mk('Tanzil',                   'Core — Design',          'DESIGN',            null, {}),
-    mk('Adeeba Khan',              'Core — Design',          'DESIGN',            null, {}),
+    mk('Mustafa Ahmed Ali', 'Core — Design', 'DESIGN', null, {}),
+    mk('Afnan Ahmed Khan', 'Core — Design', 'DESIGN', null, { linkedin: 'https://www.linkedin.com/in/afnan-ahmed-4a8963335', github: 'https://github.com/afnan-del' }),
+    mk('Tanzil', 'Core — Design', 'DESIGN', null, {}),
+    mk('Adeeba Khan', 'Core — Design', 'DESIGN', null, {}),
 
     // RESEARCH
-    mk('Hadiya Mariyam Ahmed',     'Core — Research',        'RESEARCH',          null, { linkedin: 'https://www.linkedin.com/in/hadiya-mariyam-ahmed-583168346' }),
-    mk('AFFAAF AHMED',             'Core — Research',        'RESEARCH',          null, { linkedin: 'https://www.linkedin.com/in/affaaf-ahmed', github: 'https://github.com/Affaaf-Ahmed' }),
-    mk('Arisa Laiba',              'Core — Research',        'RESEARCH',          null, { linkedin: 'https://www.linkedin.com/in/arisa-laiba', github: 'https://github.com/arisalaiba' }),
-    mk('Aisha Erum',               'Core — Research',        'RESEARCH',          null, { linkedin: 'https://www.linkedin.com/in/aisha-erum-866860366' }),
+    mk('Hadiya Mariyam Ahmed', 'Core — Research', 'RESEARCH', null, { linkedin: 'https://www.linkedin.com/in/hadiya-mariyam-ahmed-583168346' }),
+    mk('AFFAAF AHMED', 'Core — Research', 'RESEARCH', null, { linkedin: 'https://www.linkedin.com/in/affaaf-ahmed', github: 'https://github.com/Affaaf-Ahmed' }),
+    mk('Arisa Laiba', 'Core — Research', 'RESEARCH', null, { linkedin: 'https://www.linkedin.com/in/arisa-laiba', github: 'https://github.com/arisalaiba' }),
+    mk('Aisha Erum', 'Core — Research', 'RESEARCH', null, { linkedin: 'https://www.linkedin.com/in/aisha-erum-866860366' }),
 
     // PRESS & OUTREACH
-    mk('Zuhair Tajammul',          'Core — Press & Outreach','PRESS & OUTREACH',  null, { linkedin: 'https://www.linkedin.com/in/zuhair-tajammul-19b8a5310' }),
-    mk('Mohammed Ayaan Ali Khan',  'Core — Press & Outreach','PRESS & OUTREACH',  null, {}),
-    mk('MOHAMMED ISHAQ ALI',       'Core — Press & Outreach','PRESS & OUTREACH',  null, { linkedin: 'https://www.linkedin.com/in/ishaq-ali-mohammed-596236389/', github: 'https://github.com/aman84sphs-debug' }),
-    mk('Nashra Zarmeen',           'Core — Press & Outreach','PRESS & OUTREACH',  null, { linkedin: 'https://www.linkedin.com/in/nashra-zarmeen-4ab309332', github: 'https://github.com/nashrazarmeen7' }),
-    mk('Shaza Rumman',             'Core — Press & Outreach','PRESS & OUTREACH',  null, {}),
+    mk('Zuhair Tajammul', 'Core — Press & Outreach', 'PRESS & OUTREACH', null, { linkedin: 'https://www.linkedin.com/in/zuhair-tajammul-19b8a5310' }),
+    mk('Mohammed Ayaan Ali Khan', 'Core — Press & Outreach', 'PRESS & OUTREACH', null, {}),
+    mk('MOHAMMED ISHAQ ALI', 'Core — Press & Outreach', 'PRESS & OUTREACH', null, { linkedin: 'https://www.linkedin.com/in/ishaq-ali-mohammed-596236389/', github: 'https://github.com/aman84sphs-debug' }),
+    mk('Nashra Zarmeen', 'Core — Press & Outreach', 'PRESS & OUTREACH', null, { linkedin: 'https://www.linkedin.com/in/nashra-zarmeen-4ab309332', github: 'https://github.com/nashrazarmeen7' }),
+    mk('Shaza Rumman', 'Core — Press & Outreach', 'PRESS & OUTREACH', null, {}),
 
     // OPERATIONS
-    mk('Osman Bin Nasir',          'Core — Operations',      'OPERATIONS',        null, { linkedin: 'https://www.linkedin.com/in/osman-bin-nasir', github: 'https://github.com/Osman-bin-nasir/', portfolio: 'https://osman-bin-nasir.github.io/Portfolio/' }),
-    mk('Murtuza Salman',           'Core — Operations',      'OPERATIONS',        null, {}),
-    mk('Abdul Numan',              'Core — Operations',      'OPERATIONS',        null, { linkedin: 'https://www.linkedin.com/in/abdul-numan-17586328a/', github: 'https://github.com/Numan2244' }),
-    mk('Ahmed Ibrahim Khan',       'Core — Operations',      'OPERATIONS',        null, {}),
-    mk('Mohammed Azeemuddin Ahmed','Core — Operations',      'OPERATIONS',        null, { linkedin: 'https://www.linkedin.com/in/mohammed-azeem-uddin-ahmed-281145285' }),
-    mk('Mohammed Ehteshamuddin Atif','Core — Operations',   'OPERATIONS',        null, {}),
-    mk('Mohammed Abdul Sami',      'Core — Operations',      'OPERATIONS',        null, { github: 'https://github.com/halalfamm' }),
+    mk('Osman Bin Nasir', 'Core — Operations', 'OPERATIONS', null, { linkedin: 'https://www.linkedin.com/in/osman-bin-nasir', github: 'https://github.com/Osman-bin-nasir/', portfolio: 'https://osman-bin-nasir.github.io/Portfolio/' }),
+    mk('Murtuza Salman', 'Core — Operations', 'OPERATIONS', null, {}),
+    mk('Abdul Numan', 'Core — Operations', 'OPERATIONS', null, { linkedin: 'https://www.linkedin.com/in/abdul-numan-17586328a/', github: 'https://github.com/Numan2244' }),
+    mk('Ahmed Ibrahim Khan', 'Core — Operations', 'OPERATIONS', null, {}),
+    mk('Mohammed Azeemuddin Ahmed', 'Core — Operations', 'OPERATIONS', null, { linkedin: 'https://www.linkedin.com/in/mohammed-azeem-uddin-ahmed-281145285' }),
+    mk('Mohammed Ehteshamuddin Atif', 'Core — Operations', 'OPERATIONS', null, {}),
+    mk('Mohammed Abdul Sami', 'Core — Operations', 'OPERATIONS', null, { github: 'https://github.com/halalfamm' }),
 
     // DOCUMENTATION
-    mk('SYED ASIF HUSSAIN',        'Core — Documentation',   'DOCUMENTATION',     null, {}),
-    mk('Ghouse Mohiuddin Ansari',  'Core — Documentation',   'DOCUMENTATION',     null, {}),
-    mk('NAUSHEEN FATIMA',          'Core — Documentation',   'DOCUMENTATION',     null, {}),
-    mk('Syeda Namira Naaz',        'Core — Documentation',   'DOCUMENTATION',     null, {}),
+    mk('SYED ASIF HUSSAIN', 'Core — Documentation', 'DOCUMENTATION', null, {}),
+    mk('Ghouse Mohiuddin Ansari', 'Core — Documentation', 'DOCUMENTATION', null, {}),
+    mk('NAUSHEEN FATIMA', 'Core — Documentation', 'DOCUMENTATION', null, {}),
+    mk('Syeda Namira Naaz', 'Core — Documentation', 'DOCUMENTATION', null, {}),
 ];
 
 // ─────────────────────────────────────────
@@ -215,7 +239,7 @@ const GB_MEMBERS_2026 = [];   // Upcoming — not yet announced
 // ── Lookup by year ──
 const DATA_BY_YEAR = {
     '2024–2025': { gbMembers: GB_2024, execomDepts: EXECOM_DEPARTMENTS_2024, execomMembers: EXECOM_MEMBERS_2024, coreDepts: CORE_DEPARTMENTS_2024, coreMembers: CORE_MEMBERS_2024 },
-    '2025–2026': { gbMembers: GB_MEMBERS,      execomDepts: EXECOM_DEPARTMENTS_2025, execomMembers: EXECOM_MEMBERS_2025, coreDepts: CORE_DEPARTMENTS_2025, coreMembers: CORE_MEMBERS_2025 },
+    '2025–2026': { gbMembers: GB_MEMBERS, execomDepts: EXECOM_DEPARTMENTS_2025, execomMembers: EXECOM_MEMBERS_2025, coreDepts: CORE_DEPARTMENTS_2025, coreMembers: CORE_MEMBERS_2025 },
     '2026–2027': { gbMembers: GB_MEMBERS_2026, execomDepts: EXECOM_DEPARTMENTS_2026, execomMembers: EXECOM_MEMBERS_2026, coreDepts: CORE_DEPARTMENTS_2026, coreMembers: CORE_MEMBERS_2026 },
 };
 
@@ -278,11 +302,10 @@ const FilterTabs = ({ departments, active, onChange }) => (
                 onClick={() => onChange(dep)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-4 py-1.5 rounded-full text-xs md:text-sm font-bold tracking-widest uppercase border-2 transition-all duration-300 ${
-                    active === dep
-                        ? 'bg-cyan-400 text-black border-cyan-400'
-                        : 'bg-white text-neutral-400 border-neutral-200 hover:border-cyan-400/60 hover:text-cyan-400'
-                }`}
+                className={`px-4 py-1.5 rounded-full text-xs md:text-sm font-bold tracking-widest uppercase border-2 transition-all duration-300 ${active === dep
+                    ? 'bg-cyan-400 text-black border-cyan-400'
+                    : 'bg-white text-neutral-400 border-neutral-200 hover:border-cyan-400/60 hover:text-cyan-400'
+                    }`}
             >
                 {dep}
             </motion.button>
@@ -305,17 +328,12 @@ const PhotoPlaceholder = ({ color }) => (
 // ─────────────────────────────────────────
 
 /** GB Card — portrait image | name | position | linkedin + email */
-/** GB Card — portrait image | name | position | linkedin + email */
-const GBCard = ({ member, index, activeYear }) => {
+const GBCard = ({ member, activeYear }) => {
     // Check if this is the 2024-2025 batch to hide the plus button
     const isPastBatch = activeYear === '2024–2025';
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+        <div
             className="group relative bg-white rounded-2xl border border-neutral-200 overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-400/10 hover:-translate-y-2 flex flex-col h-full"
         >
             {/* Top Image Section */}
@@ -332,7 +350,7 @@ const GBCard = ({ member, index, activeYear }) => {
 
                 {/* Only show the plus icon if it's NOT the 2024-2025 batch */}
                 {!isPastBatch && (
-                    <button 
+                    <button
                         onClick={() => alert(`Showing details for ${member.name}`)}
                         className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border border-neutral-200 flex items-center justify-center text-black hover:bg-cyan-400 hover:text-white hover:border-cyan-400 transition-all duration-300 z-20 shadow-lg"
                     >
@@ -378,14 +396,14 @@ const GBCard = ({ member, index, activeYear }) => {
                     </a>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 
 
 /** ExecCom / Core card — portrait image | name | position | portfolio | linkedin + github */
-const MemberCard = ({ member, index }) => {
-    
+const MemberCard = ({ member }) => {
+    return null; // Cards removed as per user request (Section UI remains)
 };
 
 // ─────────────────────────────────────────
@@ -397,8 +415,10 @@ const SectionHeading = ({ eyebrow, title, subtitle }) => {
         if (!ref.current) return;
         gsap.fromTo(ref.current,
             { y: 40, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
-              scrollTrigger: { trigger: ref.current, start: 'top 85%' } }
+            {
+                y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+                scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true }
+            }
         );
     }, []);
 
@@ -478,36 +498,30 @@ const GoverningBodySection = ({ gbMembers, yearStatus, activeYear }) => {
                 {gbMembers.length === 0 ? (
                     <EmptyYearScreen label={yearStatus === 'upcoming' ? 'Coming Soon' : 'Data Not Available'} />
                 ) : (
-                    <div className="space-y-4 md:space-y-5">
-                        {/* Row 1 — Always 4 members */}
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-5">
-                            {gbMembers.slice(0, 4).map((m, i) => (
-                                <GBCard 
-                                    key={i} 
-                                    member={m} 
-                                    index={i} 
-                                    activeYear={activeYear} 
-                                />
-                            ))}
-                        </div>
-                        
-                        {/* Row 2 — Conditional Layout */}
-                        <div className={`grid gap-4 md:gap-5 ${
-                            isCurrentBatch 
-                            ? "grid-cols-2 sm:flex sm:justify-center" // Flex centering for 2025 (3 members)
-                            : "grid-cols-2 sm:grid-cols-4"           // Standard grid for 2024 (4 members)
-                        }`}>
-                            {gbMembers.slice(4, 8).map((m, i) => (
-                                <div key={i + 4} className={isCurrentBatch ? "sm:w-[calc(25%-1rem)] max-w-[300px]" : ""}>
-                                    <GBCard 
-                                        member={m} 
-                                        index={i + 4} 
-                                        activeYear={activeYear} 
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                    <motion.div
+                        key={activeYear}
+                        variants={CONTAINER_VARIANTS}
+                        initial="hidden"
+                        animate="visible"
+                        className="grid grid-cols-1 md:grid-cols-[repeat(24,minmax(0,1fr))] gap-4 md:gap-6 relative z-10"
+                    >
+                        {gbMembers.map((m, i) => {
+                            // Centering logic for 3-member rows in a 4-member grid architecture
+                            // For 2025-26 batch (7 members total), row 2 starts at index 4
+                            const isRow2Start = isCurrentBatch && i === 4;
+
+                            return (
+                                <motion.div
+                                    key={i}
+                                    variants={CARD_VARIANTS}
+                                    className={`col-span-1 md:col-span-6 ${isRow2Start ? "md:col-start-[4]" : ""
+                                        }`}
+                                >
+                                    <GBCard member={m} activeYear={activeYear} />
+                                </motion.div>
+                            );
+                        })}
+                    </motion.div>
                 )}
             </div>
         </section>
@@ -525,11 +539,10 @@ const YearSwitcher = ({ activeYear, onChange }) => (
                 onClick={() => onChange(label)}
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
-                className={`relative px-6 py-2.5 rounded-full text-sm font-black tracking-widest uppercase border-2 transition-all duration-300 ${
-                    activeYear === label
-                        ? 'bg-cyan-400 text-black border-cyan-400 shadow-[0_0_24px_rgba(34,211,238,0.35)]'
-                        : 'bg-white text-neutral-400 border-neutral-200 hover:border-cyan-400/60 hover:text-cyan-400'
-                }`}
+                className={`relative px-6 py-2.5 rounded-full text-sm font-black tracking-widest uppercase border-2 transition-all duration-300 ${activeYear === label
+                    ? 'bg-cyan-400 text-black border-cyan-400 shadow-[0_0_24px_rgba(34,211,238,0.35)]'
+                    : 'bg-white text-neutral-400 border-neutral-200 hover:border-cyan-400/60 hover:text-cyan-400'
+                    }`}
             >
                 {label}
                 {status === 'current' && (
@@ -597,11 +610,17 @@ const ExecomSection = ({ execomDepts, execomMembers, yearStatus }) => {
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeTab}
-                                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                                initial="hidden"
+                                animate="visible"
                                 exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.32, ease: 'easeInOut' }}
-                                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-5">
-                                {filtered.map((m, i) => <MemberCard key={`ec-${i}`} member={m} index={i} />)}
+                                variants={CONTAINER_VARIANTS}
+                                className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-5"
+                            >
+                                {filtered.map((m, i) => (
+                                    <motion.div key={`ec-${i}`} variants={CARD_VARIANTS}>
+                                        <MemberCard member={m} />
+                                    </motion.div>
+                                ))}
                             </motion.div>
                         </AnimatePresence>
                         {filtered.length === 0 && (
@@ -647,11 +666,17 @@ const CoreSection = ({ coreDepts, coreMembers, yearStatus }) => {
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeTab}
-                                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                                initial="hidden"
+                                animate="visible"
                                 exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.32, ease: 'easeInOut' }}
-                                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-5">
-                                {filtered.map((m, i) => <MemberCard key={`core-${i}`} member={m} index={i} />)}
+                                variants={CONTAINER_VARIANTS}
+                                className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-5"
+                            >
+                                {filtered.map((m, i) => (
+                                    <motion.div key={`core-${i}`} variants={CARD_VARIANTS}>
+                                        <MemberCard member={m} />
+                                    </motion.div>
+                                ))}
                             </motion.div>
                         </AnimatePresence>
                         {filtered.length === 0 && (
@@ -688,34 +713,38 @@ export default function Team() {
                 </div>
             </section>
 
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={activeYear}
-                    initial={{ opacity: 0, y: 24 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -12 }}
-                    transition={{ duration: 0.45, ease: 'easeInOut' }}
-                >
-                    <SectionBanner label={`Governing Body · ${activeYear}`} />
-                    <GoverningBodySection gbMembers={yearData.gbMembers} yearStatus={yearStatus} activeYear={activeYear} />
-                    {activeYear !== '2024–2025' && (
-                        <>
-                            <SectionBanner label={`Execom · ${activeYear}`} />
-                            <ExecomSection
-                                execomDepts={yearData.execomDepts}
-                                execomMembers={yearData.execomMembers}
-                                yearStatus={yearStatus}
-                            />
-                            <SectionBanner label={`Core Team · ${activeYear}`} />
-                            <CoreSection
-                                coreDepts={yearData.coreDepts}
-                                coreMembers={yearData.coreMembers}
-                                yearStatus={yearStatus}
-                            />
-                        </>
-                    )}
-                </motion.div>
-            </AnimatePresence>
+            {/* Content Container with Stable Height */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="relative"
+            >
+                <SectionBanner label={`Governing Body · ${activeYear}`} />
+                <GoverningBodySection
+                    gbMembers={yearData.gbMembers}
+                    yearStatus={yearStatus}
+                    activeYear={activeYear}
+                />
+
+                {/* Execom & Core Sections (Cards hidden, UI active) */}
+                {activeYear === '2025–2026' && (
+                    <>
+                        <SectionBanner label={`Execom · ${activeYear}`} />
+                        <ExecomSection
+                            execomDepts={yearData.execomDepts}
+                            execomMembers={yearData.execomMembers}
+                            yearStatus={yearStatus}
+                        />
+                        <SectionBanner label={`Core Team · ${activeYear}`} />
+                        <CoreSection
+                            coreDepts={yearData.coreDepts}
+                            coreMembers={yearData.coreMembers}
+                            yearStatus={yearStatus}
+                        />
+                    </>
+                )}
+            </motion.div>
         </div>
     );
 }
