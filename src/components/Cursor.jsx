@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 
 export default function Cursor() {
   const DOTS = 16                 // number of trail dots
-  const BASE_SIZE = 28            // size of the main dot (px)
+  const BASE_SIZE = 20            // size of the main dot (px)
   const FOLLOW = 0.22             // trail tightness (0.18–0.28 is safe)
 
   const dotsRef = useRef([])

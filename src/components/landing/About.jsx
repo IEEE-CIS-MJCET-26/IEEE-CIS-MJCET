@@ -98,50 +98,15 @@ export default function About() {
                 }
             })
 
-            // 3. Stats grid fade-in + slide-up (staggered, repeatable)
-            const statCards = statsRef.current.children
-
-            // Set initial hidden state
-            gsap.set(statCards, { autoAlpha: 0, y: 60 })
-
+            // 3. Counter scroll trigger (repeatable on both directions)
             ScrollTrigger.create({
                 trigger: statsRef.current,
                 start: 'top 85%',
                 end: 'bottom 20%',
-                onEnter: () => {
-                    gsap.fromTo(statCards,
-                        { autoAlpha: 0, y: 60 },
-                        {
-                            autoAlpha: 1,
-                            y: 0,
-                            duration: 0.8,
-                            stagger: 0.15,
-                            ease: 'power3.out',
-                            onComplete: () => animateCounters()
-                        }
-                    )
-                },
-                onEnterBack: () => {
-                    gsap.fromTo(statCards,
-                        { autoAlpha: 0, y: 60 },
-                        {
-                            autoAlpha: 1,
-                            y: 0,
-                            duration: 0.8,
-                            stagger: 0.15,
-                            ease: 'power3.out',
-                            onComplete: () => animateCounters()
-                        }
-                    )
-                },
-                onLeave: () => {
-                    gsap.set(statCards, { autoAlpha: 0, y: 60 })
-                    resetCounters()
-                },
-                onLeaveBack: () => {
-                    gsap.set(statCards, { autoAlpha: 0, y: 60 })
-                    resetCounters()
-                },
+                onEnter: () => animateCounters(),
+                onEnterBack: () => animateCounters(),
+                onLeave: () => resetCounters(),
+                onLeaveBack: () => resetCounters(),
             })
 
             // 4. Counter animation helper (runs after fade-in completes)

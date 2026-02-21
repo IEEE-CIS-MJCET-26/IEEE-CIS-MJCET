@@ -114,15 +114,21 @@ const MemberCard = ({ member, isHoverEnabled, hoveredMember, onMouseEnter, onMou
 
             {/* Image Wrapper */}
             <div
-                className={`w-[24vw] h-[30vw] max-w-[200px] max-h-[260px] md:w-[180px] md:h-[340px] lg:w-[210px] lg:h-[380px] overflow-hidden transition-all duration-500 will-change-[filter,transform] ${isOtherHovered ? "blur-md grayscale scale-95" : "blur-0 scale-100"
-                    } ${isSelfHovered ? "grayscale-0" : "grayscale"
-                    }`}
+                className={`relative w-[24vw] h-[30vw] max-w-[200px] max-h-[260px] 
+                md:w-[180px] md:h-[340px] lg:w-[210px] lg:h-[380px] 
+                overflow-hidden transition-all duration-500 will-change-[filter,transform]
+                ${isOtherHovered ? "blur-md grayscale scale-95" : "blur-0 scale-100"}
+                ${isSelfHovered ? "grayscale-0" : "grayscale"}`}
             >
                 <img
                     src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover"
                 />
+
+                {/* White fade at bottom */}
+                 <div className="pointer-events-none absolute bottom-0 left-0 w-full h-1/4 
+                bg-gradient-to-t from-white/90 via-white/40 to-transparent" />
             </div>
         </div>
     );
