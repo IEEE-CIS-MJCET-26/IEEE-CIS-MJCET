@@ -5,6 +5,16 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AnimatedBackground from '../AnimatedBackground';
 
+// GB members 2024-25
+import aliuddin from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Aliuddin hussain.jpeg";
+import ibrahim from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Ibrahim Aejaz Treasurer.JPG";
+import imaduddin from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Imaduddin Mohammed - Joint Secretary.JPG";
+import isra from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Isra Sayeeda Chairperson.JPG";
+import malik from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Malik Ather - General Secretary.JPG";
+import omer from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Omer Waheed Vice Chairperson.JPG";
+import samia from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Samia Rahman Co - Treasurer.jpeg";
+import shabbir from "C:/Users/omarh/Documents/projects/IEEE_CIS/IEEE-CIS-MJCET/src/assets/GB-25/Shabbir Ali Razvi Web Master.JPG";
+
 // GB member images (actual photos)
 import hafeez from '../../assets/GB PICS/Abdul Hafeez.png';
 import haifa from '../../assets/GB PICS/Haifa.png';
@@ -37,6 +47,20 @@ const GB_MEMBERS = [
     { name: 'Abdul Ahad',      position: 'Treasurer',         image: ahad,   linkedin: 'https://www.linkedin.com/in/abdulahad',   email: null },
     { name: 'Mohammed Nouman', position: 'Web Master',        image: nouman, linkedin: 'https://www.linkedin.com/in/mohammednouman', email: null },
     { name: 'PSA Khan',        position: 'Liaison Head',      image: psa,    linkedin: 'https://www.linkedin.com/in/psakhan',     email: null },
+];
+
+// GB memebers 2024-25
+
+const GB_2024 = [
+    { name: 'Isra Syeeda',          position: 'Chairman',          image: isra,         linkedin: 'https://www.linkedin.com/in/isra-sayeeda-526a1527a/',                    email: null },
+    { name: 'Omer Waheed',          position: 'Vice-Chair',        image: omer,         linkedin: 'https://www.linkedin.com/in/omer-waheed/',                               email: null },
+    { name: 'Malik Ather',          position: 'General Secretary', image: malik,        linkedin: 'https://www.linkedin.com/in/abdul-malik-ather-mohammed-2b74302a8/',      email: null },
+    { name: 'Imaduddin Mohammed',   position: 'Joint Secretary',   image: imaduddin,    linkedin: 'https://www.linkedin.com/in/imaduddin-mohammed-6967861b7/ ',             email: null },
+    { name: 'Ibrahim Aejaz',        position: 'Treasurer',         image: ibrahim,      linkedin: 'https://www.linkedin.com/in/mohammedibrahimaejaz/',                      email: null },
+    { name: 'Shabbir Ali Razvi',    position: 'Web Master',        image: shabbir,      linkedin: 'https://www.linkedin.com/in/shabbir-ali-razvi-593399237/',               email: null },
+    { name: 'Aliuddin Hussain',     position: 'Liaison Head',      image: aliuddin,     linkedin: 'https://www.linkedin.com/in/aliuddin-hussain-201459280/',                email: null },
+    { name: 'Samia Rahman',         position: 'Co-Treasurer',      image: samia,        linkedin: 'https://www.linkedin.com/in/samia-rahman-8469752a3/',                    email: null },
+
 ];
 
 const DEPT_COLOR = {
@@ -111,7 +135,7 @@ const CORE_MEMBERS_2025 = [
     mk('Syed Mukhtar',             'Core — Tech',            'TECH',              null, { github: 'https://github.com/SyedMukhtar11' }),
     mk('Zaina Tahniyath',          'Core — Tech',            'TECH',              null, { linkedin: 'https://www.linkedin.com/in/zaina-tahniyath-490701336', github: 'https://github.com/ZAINA11749' }),
     mk('Amreen Fathima',           'Core — Tech',            'TECH',              null, { linkedin: 'https://www.linkedin.com/in/amreen-fathima-288380395', github: 'https://github.com/amreen1633' }),
-    mk('Omar Hussain Shaikh',      'Core — Tech',            'TECH',              null, { github: 'https://github.com/command404' }),
+    mk('Omar Hussain Shaikh',      'Core — Tech',            'TECH',              null, { linkedin:'https://www.linkedin.com/in/omar-hussain-shaikh-840398396', github: 'https://github.com/command404' }),
     mk('Mohammed Ozier Nawaz',     'Core — Tech',            'TECH',              null, { linkedin: 'https://www.linkedin.com/in/ozier-nawaz-43b000335', github: 'https://github.com/oz1er' }),
 
     // MEDIA
@@ -190,7 +214,7 @@ const GB_MEMBERS_2026 = [];   // Upcoming — not yet announced
 
 // ── Lookup by year ──
 const DATA_BY_YEAR = {
-    '2024–2025': { gbMembers: GB_MEMBERS_2024, execomDepts: EXECOM_DEPARTMENTS_2024, execomMembers: EXECOM_MEMBERS_2024, coreDepts: CORE_DEPARTMENTS_2024, coreMembers: CORE_MEMBERS_2024 },
+    '2024–2025': { gbMembers: GB_2024, execomDepts: EXECOM_DEPARTMENTS_2024, execomMembers: EXECOM_MEMBERS_2024, coreDepts: CORE_DEPARTMENTS_2024, coreMembers: CORE_MEMBERS_2024 },
     '2025–2026': { gbMembers: GB_MEMBERS,      execomDepts: EXECOM_DEPARTMENTS_2025, execomMembers: EXECOM_MEMBERS_2025, coreDepts: CORE_DEPARTMENTS_2025, coreMembers: CORE_MEMBERS_2025 },
     '2026–2027': { gbMembers: GB_MEMBERS_2026, execomDepts: EXECOM_DEPARTMENTS_2026, execomMembers: EXECOM_MEMBERS_2026, coreDepts: CORE_DEPARTMENTS_2026, coreMembers: CORE_MEMBERS_2026 },
 };
@@ -281,9 +305,83 @@ const PhotoPlaceholder = ({ color }) => (
 // ─────────────────────────────────────────
 
 /** GB Card — portrait image | name | position | linkedin + email */
-const GBCard = ({ member, index }) => {
-    
+/** GB Card — portrait image | name | position | linkedin + email */
+const GBCard = ({ member, index, activeYear }) => {
+    // Check if this is the 2024-2025 batch to hide the plus button
+    const isPastBatch = activeYear === '2024–2025';
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="group relative bg-white rounded-2xl border border-neutral-200 overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-400/10 hover:-translate-y-2 flex flex-col h-full"
+        >
+            {/* Top Image Section */}
+            <div className="relative aspect-[4/5] overflow-hidden bg-neutral-50">
+                {member.image ? (
+                    <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                    />
+                ) : (
+                    <PhotoPlaceholder color="#22d3ee" />
+                )}
+
+                {/* Only show the plus icon if it's NOT the 2024-2025 batch */}
+                {!isPastBatch && (
+                    <button 
+                        onClick={() => alert(`Showing details for ${member.name}`)}
+                        className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border border-neutral-200 flex items-center justify-center text-black hover:bg-cyan-400 hover:text-white hover:border-cyan-400 transition-all duration-300 z-20 shadow-lg"
+                    >
+                        <span className="text-2xl font-light leading-none mb-0.5">+</span>
+                    </button>
+                )}
+
+                <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white via-white/80 to-transparent z-10" />
+            </div>
+
+            {/* Info Section */}
+            <div className="relative z-20 p-5 pt-0 text-center flex-grow flex flex-col justify-between bg-white">
+                <div>
+                    <h3 className="text-xl font-black text-black tracking-tight uppercase leading-tight mb-1" style={{ fontFamily: "'Russo One', sans-serif" }}>
+                        {member.name}
+                    </h3>
+                    <p className="text-cyan-500 text-[10px] font-bold tracking-[0.2em] uppercase">
+                        {member.position}
+                    </p>
+                </div>
+
+                <div className="flex items-center justify-between mt-6 pt-4 border-t border-neutral-100">
+                    <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-neutral-400 hover:text-cyan-400 transition-colors"
+                    >
+                        <Linkedin size={14} />
+                        <span className="text-[10px] font-bold tracking-widest uppercase">linkedin</span>
+                    </a>
+
+                    <a
+                        href={member.email ? `mailto:${member.email}` : member.github || '#'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-neutral-400 hover:text-cyan-400 transition-colors"
+                    >
+                        <span className="text-[10px] font-bold tracking-widest uppercase">
+                            {member.email ? 'mail' : 'GitHub'}
+                        </span>
+                        {member.email ? <Mail size={14} /> : <Github size={14} />}
+                    </a>
+                </div>
+            </div>
+        </motion.div>
+    );
 };
+
 
 /** ExecCom / Core card — portrait image | name | position | portfolio | linkedin + github */
 const MemberCard = ({ member, index }) => {
@@ -361,32 +459,60 @@ const TeamHero = () => (
 // ─────────────────────────────────────────
 // GB SECTION
 // ─────────────────────────────────────────
-const GoverningBodySection = ({ gbMembers, yearStatus }) => (
-    <section className="relative bg-white py-20 md:py-28 px-6 overflow-hidden">
-        <AnimatedBackground />
-        <div className="relative z-10 max-w-7xl mx-auto">
-            <SectionHeading
-                eyebrow="Leadership"
-                title="Governing Body"
-                subtitle="Meet the visionary leaders who guide our organisation towards research excellence and driven success."
-            />
-            {gbMembers.length === 0 ? (
-                <EmptyYearScreen label={yearStatus === 'upcoming' ? 'Coming Soon' : 'Data Not Available'} />
-            ) : (
-                <div className="space-y-6 md:space-y-8">
-                    {/* Row 1 — 4 members */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-5">
-                        {gbMembers.slice(0, 4).map((m, i) => <GBCard key={i} member={m} index={i} />)}
+// ─────────────────────────────────────────
+// GB SECTION
+// ─────────────────────────────────────────
+const GoverningBodySection = ({ gbMembers, yearStatus, activeYear }) => {
+    // Determine if we should center the bottom row (for the 7-member 2025 batch)
+    const isCurrentBatch = activeYear === '2025–2026';
+
+    return (
+        <section className="relative bg-white py-20 md:py-28 px-6 overflow-hidden">
+            <AnimatedBackground />
+            <div className="relative z-10 max-w-7xl mx-auto">
+                <SectionHeading
+                    eyebrow="Leadership"
+                    title="Governing Body"
+                    subtitle="Meet the visionary leaders who guide our organisation towards research excellence and driven success."
+                />
+                {gbMembers.length === 0 ? (
+                    <EmptyYearScreen label={yearStatus === 'upcoming' ? 'Coming Soon' : 'Data Not Available'} />
+                ) : (
+                    <div className="space-y-4 md:space-y-5">
+                        {/* Row 1 — Always 4 members */}
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-5">
+                            {gbMembers.slice(0, 4).map((m, i) => (
+                                <GBCard 
+                                    key={i} 
+                                    member={m} 
+                                    index={i} 
+                                    activeYear={activeYear} 
+                                />
+                            ))}
+                        </div>
+                        
+                        {/* Row 2 — Conditional Layout */}
+                        <div className={`grid gap-4 md:gap-5 ${
+                            isCurrentBatch 
+                            ? "grid-cols-2 sm:flex sm:justify-center" // Flex centering for 2025 (3 members)
+                            : "grid-cols-2 sm:grid-cols-4"           // Standard grid for 2024 (4 members)
+                        }`}>
+                            {gbMembers.slice(4, 8).map((m, i) => (
+                                <div key={i + 4} className={isCurrentBatch ? "sm:w-[calc(25%-1rem)] max-w-[300px]" : ""}>
+                                    <GBCard 
+                                        member={m} 
+                                        index={i + 4} 
+                                        activeYear={activeYear} 
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                    {/* Row 2 — 3 members, centered */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5 max-w-3xl mx-auto">
-                        {gbMembers.slice(4).map((m, i) => <GBCard key={i + 4} member={m} index={i + 4} />)}
-                    </div>
-                </div>
-            )}
-        </div>
-    </section>
-);
+                )}
+            </div>
+        </section>
+    );
+};
 
 // ─────────────────────────────────────────
 // YEAR SWITCHER
@@ -571,7 +697,7 @@ export default function Team() {
                     transition={{ duration: 0.45, ease: 'easeInOut' }}
                 >
                     <SectionBanner label={`Governing Body · ${activeYear}`} />
-                    <GoverningBodySection gbMembers={yearData.gbMembers} yearStatus={yearStatus} />
+                    <GoverningBodySection gbMembers={yearData.gbMembers} yearStatus={yearStatus} activeYear={activeYear} />
                     {activeYear !== '2024–2025' && (
                         <>
                             <SectionBanner label={`Execom · ${activeYear}`} />
