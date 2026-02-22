@@ -4,6 +4,7 @@ import { Linkedin, Github, Mail, Globe, ExternalLink } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AnimatedBackground from '../AnimatedBackground';
+import TeamMemberModal from '../TeamMemberModal';
 
 // GB members 2024-25
 // assets lives under src/assets so paths should climb up only two levels from this file
@@ -64,13 +65,22 @@ const BATCH_YEARS = [
 // ─────────────────────────────────────────
 
 const GB_MEMBERS = [
-    { name: 'Abdul Hafeez', position: 'Chairman', image: hafeez, linkedin: 'https://www.linkedin.com/in/abdul-hafeez-108b09214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', email: null, github:'https://github.com/sofian229' },
-    { name: 'Haifa Nazeer', position: 'Vice-Chair', image: haifa, linkedin: 'https://www.linkedin.com/in/haifa-nazeer-425409284?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', email: null, github:'https://github.com/haifanazeer1' },
+    { name: 'Abdul Hafeez', position: 'Chairman', image: hafeez, linkedin: 'https://www.linkedin.com/in/abdul-hafeez-108b09214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', email: null, github: 'https://github.com/sofian229' },
+    {
+        name: 'Haifa Nazeer',
+        position: 'Vice-Chair',
+        image: haifa,
+        linkedin: 'https://www.linkedin.com/in/haifa-nazeer-425409284?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
+        email: null,
+        github: 'https://github.com/haifanazeer1',
+        description: "I am a dynamic and driven student leader who loves turning ideas into action. I bring energy, clarity, and serious main-character productivity to everything I do, always making sure that whatever I’m part of has both impact and intention. I enjoy blending tech, creativity, and community work while constantly pushing myself to grow and do better. Outside of leadership mode, I’m a full-time foodie who absolutely loves food (no compromises there), proudly obsessed with Almarai, and I genuinely enjoy driving my car with good music and peaceful vibes. I’m ambitious, organized, and always moving forward—both in life and on the road. ",
+        skills: ["Student Leadership", "Strategic Planning", "Community Impact", "Creative Direction"]
+    },
     { name: 'Rayyan Siddiqi', position: 'General Secretary', image: rayyan, linkedin: 'https://www.linkedin.com/in/rayyan-siddiqi-119b472a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', email: 'sidrayyan7@gmail.com' },
-    { name: 'Ahamadi Hareem', position: 'Joint Secretary', image: hareem, linkedin: 'https://www.linkedin.com/in/ahamadi-hareem-9145051b4/', github:'https://github.com/Ahareem29' },
+    { name: 'Ahamadi Hareem', position: 'Joint Secretary', image: hareem, linkedin: 'https://www.linkedin.com/in/ahamadi-hareem-9145051b4/', github: 'https://github.com/Ahareem29' },
     { name: 'Abdul Ahad', position: 'Treasurer', image: ahad, linkedin: 'https://www.linkedin.com/in/abdul-ahad-abdul-hamed-a992a6311/', email: 'abdulahadabdulhamed22@gmail.com' },
     { name: 'Mohammed Nouman', position: 'Web Master', image: nouman, linkedin: 'https://www.linkedin.com/in/mohammed-nouman-3320a7279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', email: null, github: 'https://github.com/MOHAMMED-NOUMAN' },
-    { name: 'PSA Khan', position: 'Liaison Head', image: psa, linkedin: 'https://www.linkedin.com/in/p-s-ahmmad-khan-536703314?utm_source=share_via&utm_content=profile&utm_medium=member_android', email: null , github:' https://github.com/shamsheer1-khan'},
+    { name: 'PSA Khan', position: 'Liaison Head', image: psa, linkedin: 'https://www.linkedin.com/in/p-s-ahmmad-khan-536703314?utm_source=share_via&utm_content=profile&utm_medium=member_android', email: null, github: ' https://github.com/shamsheer1-khan' },
 ];
 
 // GB memebers 2024-25
@@ -328,7 +338,7 @@ const PhotoPlaceholder = ({ color }) => (
 // ─────────────────────────────────────────
 
 /** GB Card — portrait image | name | position | linkedin + email */
-const GBCard = ({ member, activeYear }) => {
+const GBCard = ({ member, activeYear, onPlusClick }) => {
     // Check if this is the 2024-2025 batch to hide the plus button
     const isPastBatch = activeYear === '2024–2025';
 
@@ -351,7 +361,7 @@ const GBCard = ({ member, activeYear }) => {
                 {/* Only show the plus icon if it's NOT the 2024-2025 batch */}
                 {!isPastBatch && (
                     <button
-                        onClick={() => alert(`Showing details for ${member.name}`)}
+                        onClick={() => onPlusClick(member)}
                         className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border border-neutral-200 flex items-center justify-center text-black hover:bg-cyan-400 hover:text-white hover:border-cyan-400 transition-all duration-300 z-20 shadow-lg"
                     >
                         <span className="text-2xl font-light leading-none mb-0.5">+</span>
@@ -483,6 +493,7 @@ const TeamHero = () => (
 // GB SECTION
 // ─────────────────────────────────────────
 const GoverningBodySection = ({ gbMembers, yearStatus, activeYear }) => {
+    const [selectedMember, setSelectedMember] = useState(null);
     // Determine if we should center the bottom row (for the 7-member 2025 batch)
     const isCurrentBatch = activeYear === '2025–2026';
 
@@ -517,12 +528,19 @@ const GoverningBodySection = ({ gbMembers, yearStatus, activeYear }) => {
                                     className={`col-span-1 md:col-span-6 ${isRow2Start ? "md:col-start-[4]" : ""
                                         }`}
                                 >
-                                    <GBCard member={m} activeYear={activeYear} />
+                                    <GBCard member={m} activeYear={activeYear} onPlusClick={setSelectedMember} />
                                 </motion.div>
                             );
                         })}
                     </motion.div>
                 )}
+
+                {/* Team Member Detail Modal */}
+                <TeamMemberModal
+                    member={selectedMember}
+                    isOpen={!!selectedMember}
+                    onClose={() => setSelectedMember(null)}
+                />
             </div>
         </section>
     );
