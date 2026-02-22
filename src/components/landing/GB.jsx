@@ -247,15 +247,7 @@ const GB = () => {
                         ease: 'linear'
                     }}
                 />
-                <div style={{
-                    position: 'absolute',
-                    bottom: '40px',
-                    left: '20px',
-                    width: '180px',
-                    height: '140px',
-                    backgroundColor: 'rgba(14, 204, 242, 0.65)',
-                    borderRadius: '12px'
-                }} />
+                
             </div>
             <Marquee />
             <div className="relative z-content max-w-6xl w-full mx-auto space-y-1">

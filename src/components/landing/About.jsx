@@ -37,117 +37,92 @@ export default function About() {
         }
     ]
 
-    useEffect(() => {
-        // Guard against null refs
-        if (!sectionRef.current || !textRef.current || !statsRef.current || !pinWrapperRef.current) return
+  useEffect(() => {
+    if (!sectionRef.current || !textRef.current || !statsRef.current || !pinWrapperRef.current) return
 
-        const lenis = new Lenis()
-        function raf(time) {
-            lenis.raf(time)
-            requestAnimationFrame(raf)
-        }
+    const lenis = new Lenis()
+    function raf(time) {
+        lenis.raf(time)
         requestAnimationFrame(raf)
+    }
+    requestAnimationFrame(raf)
 
-        // Initialize SplitType
-        const text = new SplitType(textRef.current, {
-            types: 'chars,words',
+    const text = new SplitType(textRef.current, {
+        types: 'chars,words',
+    })
+
+    let ctx = gsap.context(() => {
+
+        const masterTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top top',
+                end: '+=300%',
+                pin: pinWrapperRef.current,
+                pinSpacing: true,
+                scrub: 1,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+            }
         })
 
-        // Create GSAP Context
-        let ctx = gsap.context(() => {
-            const masterTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: 'top top',
-                    end: '+=300%', // Ample space for the full sequence
-                    pin: pinWrapperRef.current,
-                    pinSpacing: true,
-                    scrub: 1,
-                    anticipatePin: 1,
-                    invalidateOnRefresh: true,
-                }
-            })
+        const counters = statsRef.current.querySelectorAll('.stat-count')
 
-            // 1. Identify counters
-            const counters = statsRef.current.querySelectorAll('.stat-count')
+        text.chars.forEach((char, i) => {
+            const isHighlighted = char.parentElement.closest('.highlight')
+            const charDelay = i * 0.02
 
-            // 2. Unified character reveal and color highlight
-            text.chars.forEach((char, i) => {
-                const isHighlighted = char.parentElement.closest('.highlight')
-                const charDelay = i * 0.02
+            masterTl.fromTo(
+                char,
+                { opacity: 0.15, color: isHighlighted ? '#737373' : undefined },
+                {
+                    opacity: 1,
+                    color: isHighlighted ? '#22d3ee' : undefined,
+                    duration: 0.8,
+                    ease: 'none'
+                },
+                charDelay
+            )
+        })
 
-                if (isHighlighted) {
-                    masterTl.fromTo(char,
-                        { opacity: 0.15, color: '#737373' },
-                        {
-                            opacity: 1,
-                            color: '#22d3ee',
-                            duration: 0.8,
-                            ease: 'none'
-                        },
-                        charDelay
-                    )
-                } else {
-                    masterTl.fromTo(char,
-                        { opacity: 0.15 },
-                        {
-                            opacity: 1,
-                            duration: 0.8,
-                            ease: 'none'
-                        }, charDelay)
-                }
-            })
+        ScrollTrigger.create({
+            trigger: statsRef.current,
+            start: 'top 85%',
+            once: true, // IMPORTANT: prevents reset
+            onEnter: animateCounters
+        })
 
-            // 3. Counter scroll trigger (repeatable on both directions)
-            ScrollTrigger.create({
-                trigger: statsRef.current,
-                start: 'top 85%',
-                end: 'bottom 20%',
-                onEnter: () => animateCounters(),
-                onEnterBack: () => animateCounters(),
-                onLeave: () => resetCounters(),
-                onLeaveBack: () => resetCounters(),
-            })
+        function animateCounters() {
+            counters.forEach((counter, index) => {
+                const target = stats[index].value
+                const isFloat = !Number.isInteger(target)
 
-            // 4. Counter animation helper (runs after fade-in completes)
-            function animateCounters() {
-                counters.forEach((counter, index) => {
-                    const target = stats[index].value
-                    const isFloat = !Number.isInteger(target)
-
-                    gsap.fromTo(counter,
-                        { textContent: 0 },
-                        {
-                            textContent: target,
-                            duration: 2,
-                            ease: 'power2.out',
-                            snap: { textContent: isFloat ? 0.1 : 1 },
-                            onUpdate: function () {
-                                const val = parseFloat(this.targets()[0].textContent)
-                                this.targets()[0].textContent = isFloat
-                                    ? val.toFixed(1)
-                                    : Math.ceil(val).toLocaleString()
-                            }
+                gsap.fromTo(counter,
+                    { textContent: 0 },
+                    {
+                        textContent: target,
+                        duration: 2,
+                        ease: 'power2.out',
+                        snap: { textContent: isFloat ? 0.1 : 1 },
+                        onUpdate() {
+                            const val = parseFloat(counter.textContent)
+                            counter.textContent = isFloat
+                                ? val.toFixed(1)
+                                : Math.ceil(val).toLocaleString()
                         }
-                    )
-                })
-            }
-
-            // Reset counters to 0
-            function resetCounters() {
-                counters.forEach((counter) => {
-                    counter.textContent = '0'
-                })
-            }
-
-        }, sectionRef) // Scope to sectionRef
-
-        return () => {
-            lenis.destroy()
-            text.revert()
-            ctx.revert()
+                    }
+                )
+            })
         }
-    }, [])
+
+    }, sectionRef)   // ✅ CLOSE gsap.context PROPERLY
+
+    return () => {
+        lenis.destroy()
+        text.revert()
+        ctx.revert()
+    }
+}, [])
 
     return (
         <section
@@ -222,5 +197,6 @@ export default function About() {
                 </div>
             </div>
         </section>
-    )
+    )   
+
 }

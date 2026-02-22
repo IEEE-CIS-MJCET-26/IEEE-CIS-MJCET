@@ -65,9 +65,9 @@ const BATCH_YEARS = [
 
 const GB_MEMBERS = [
     { name: 'Abdul Hafeez', position: 'Chairman', image: hafeez, linkedin: 'https://www.linkedin.com/in/abdul-hafeez-108b09214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', email: null, github:'https://github.com/sofian229' },
-    { name: 'Haifa Nazeer', position: 'Vice-Chair', image: haifa, linkedin: 'https://www.linkedin.com/in/haifa-nazeer-425409284?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', email: null },
+    { name: 'Haifa Nazeer', position: 'Vice-Chair', image: haifa, linkedin: 'https://www.linkedin.com/in/haifa-nazeer-425409284?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', email: null, github:'https://github.com/haifanazeer1' },
     { name: 'Rayyan Siddiqi', position: 'General Secretary', image: rayyan, linkedin: 'https://www.linkedin.com/in/rayyan-siddiqi-119b472a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', email: 'sidrayyan7@gmail.com' },
-    { name: 'Ahamadi Hareem', position: 'Joint Secretary', image: hareem, linkedin: 'https://www.linkedin.com/in/ahamadi-hareem-9145051b4/', email: 'ahmadihareem3@gmail.com' },
+    { name: 'Ahamadi Hareem', position: 'Joint Secretary', image: hareem, linkedin: 'https://www.linkedin.com/in/ahamadi-hareem-9145051b4/', github:'https://github.com/Ahareem29' },
     { name: 'Abdul Ahad', position: 'Treasurer', image: ahad, linkedin: 'https://www.linkedin.com/in/abdul-ahad-abdul-hamed-a992a6311/', email: 'abdulahadabdulhamed22@gmail.com' },
     { name: 'Mohammed Nouman', position: 'Web Master', image: nouman, linkedin: 'https://www.linkedin.com/in/mohammed-nouman-3320a7279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', email: null, github: 'https://github.com/MOHAMMED-NOUMAN' },
     { name: 'PSA Khan', position: 'Liaison Head', image: psa, linkedin: 'https://www.linkedin.com/in/p-s-ahmmad-khan-536703314?utm_source=share_via&utm_content=profile&utm_medium=member_android', email: null , github:' https://github.com/shamsheer1-khan'},
