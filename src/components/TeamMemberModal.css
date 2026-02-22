@@ -3,8 +3,7 @@
    Theme: #FFFFFF | rgba(14,204,242,0.65) | #0ECCF2
    ═══════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Russo+One&display=swap');
 /* ── Overlay ── */
 .tmm-overlay {
   position: fixed;
@@ -26,13 +25,9 @@
   width: 92%;
   max-width: 900px;
   max-height: 90vh;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   border-radius: 24px;
-  /* Precise Glassmorphism: bg-white/10 + backdrop-blur-sm (4px) */
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px) saturate(1.8);
-  -webkit-backdrop-filter: blur(4px) saturate(1.8);
+  background: white;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow:
     0 32px 100px rgba(0, 0, 0, 0.1),
@@ -46,6 +41,7 @@
 /* Scrollbar */
 .tmm-container::-webkit-scrollbar {
   width: 3px;
+  overflow: hidden;
 }
 
 .tmm-container::-webkit-scrollbar-track {
@@ -89,12 +85,22 @@
 
 /* ── Inner layout wrapper ── */
 .tmm-inner {
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding: 28px 32px 32px;
   display: flex;
   flex-direction: column;
   gap: 0;
 }
+.tmm-inner::-webkit-scrollbar {
+  width: 3px;
+}
 
+.tmm-inner::-webkit-scrollbar-thumb {
+  background: rgba(14, 204, 242, 0.25);
+  border-radius: 3px;
+}
 /* ── Image Section ── */
 .tmm-image-wrapper {
   position: relative;
@@ -164,7 +170,8 @@
   font-size: 26px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
+  font-family: 'Russo One', sans-serif;
   color: #0d0d0d;
   margin: 0 0 6px;
   line-height: 1.15;

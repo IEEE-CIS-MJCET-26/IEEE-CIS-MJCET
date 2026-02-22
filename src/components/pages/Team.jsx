@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Linkedin, Github, Mail, Globe, ExternalLink } from 'lucide-react';
+import { Linkedin, Github, Mail, Globe, ExternalLink, Instagram } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AnimatedBackground from '../AnimatedBackground';
@@ -65,22 +65,22 @@ const BATCH_YEARS = [
 // ─────────────────────────────────────────
 
 const GB_MEMBERS = [
-    { name: 'Abdul Hafeez', position: 'Chairman', image: hafeez, linkedin: 'https://www.linkedin.com/in/abdul-hafeez-108b09214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', email: null, github: 'https://github.com/sofian229' },
+    { name: 'Abdul Hafeez', position: 'Chairman', image: hafeez, linkedin: 'https://www.linkedin.com/in/abdul-hafeez-108b09214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',Instagram:'https://www.instagram.com/ah.sofiian/', email: null, github: 'https://github.com/sofian229' },
     {
         name: 'Haifa Nazeer',
         position: 'Vice-Chair',
         image: haifa,
-        linkedin: 'https://www.linkedin.com/in/haifa-nazeer-425409284?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
+        linkedin: 'https://www.linkedin.com/in/haifa-nazeer-425409284?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',Instagram:'https://www.instagram.com/haiff_04/',
         email: null,
         github: 'https://github.com/haifanazeer1',
         description: "I am a dynamic and driven student leader who loves turning ideas into action. I bring energy, clarity, and serious main-character productivity to everything I do, always making sure that whatever I’m part of has both impact and intention. I enjoy blending tech, creativity, and community work while constantly pushing myself to grow and do better. Outside of leadership mode, I’m a full-time foodie who absolutely loves food (no compromises there), proudly obsessed with Almarai, and I genuinely enjoy driving my car with good music and peaceful vibes. I’m ambitious, organized, and always moving forward—both in life and on the road. ",
         skills: ["Student Leadership", "Strategic Planning", "Community Impact", "Creative Direction"]
     },
-    { name: 'Rayyan Siddiqi', position: 'General Secretary', image: rayyan, linkedin: 'https://www.linkedin.com/in/rayyan-siddiqi-119b472a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', email: 'sidrayyan7@gmail.com' },
-    { name: 'Ahamadi Hareem', position: 'Joint Secretary', image: hareem, linkedin: 'https://www.linkedin.com/in/ahamadi-hareem-9145051b4/', github: 'https://github.com/Ahareem29' },
-    { name: 'Abdul Ahad', position: 'Treasurer', image: ahad, linkedin: 'https://www.linkedin.com/in/abdul-ahad-abdul-hamed-a992a6311/', email: 'abdulahadabdulhamed22@gmail.com' },
-    { name: 'Mohammed Nouman', position: 'Web Master', image: nouman, linkedin: 'https://www.linkedin.com/in/mohammed-nouman-3320a7279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', email: null, github: 'https://github.com/MOHAMMED-NOUMAN' },
-    { name: 'PSA Khan', position: 'Liaison Head', image: psa, linkedin: 'https://www.linkedin.com/in/p-s-ahmmad-khan-536703314?utm_source=share_via&utm_content=profile&utm_medium=member_android', email: null, github: ' https://github.com/shamsheer1-khan' },
+    { name: 'Rayyan Siddiqi', position: 'General Secretary', image: rayyan, linkedin: 'https://www.linkedin.com/in/rayyan-siddiqi-119b472a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',Instagram:'https://www.instagram.com/rayyansidiqiii/', email: 'sidrayyan7@gmail.com' },
+    { name: 'Ahamadi Hareem', position: 'Joint Secretary', image: hareem, linkedin: 'https://www.linkedin.com/in/ahamadi-hareem-9145051b4/',Instagram:'https://www.instagram.com/ciaobelles/' ,github: 'https://github.com/Ahareem29' },
+    { name: 'Abdul Ahad', position: 'Treasurer', image: ahad, linkedin: 'https://www.linkedin.com/in/abdul-ahad-abdul-hamed-a992a6311/', Instagram:'https://www.instagram.com/abdul_ahad_2208/',email: 'abdulahadabdulhamed22@gmail.com' },
+    { name: 'Mohammed Nouman', position: 'Web Master', image: nouman, linkedin: 'https://www.linkedin.com/in/mohammed-nouman-3320a7279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', email: null, github: 'https://github.com/MOHAMMED-NOUMAN',Instagram: 'https://www.instagram.com/noumxn_05/', description: 'I’m a passionate full-stack developer who genuinely enjoys building things and pushing myself beyond what’s expected. I tend to work harder than I’m supposed to, stay focused on my own path, and I’m rarely bothered by others’ opinions. I live by one simple philosophy: "what’s a privilege to you could be a luxury for someone else", a reminder to stay grateful and humble. Despite being a five-time hackathon winner, I don’t go around boasting about it; I prefer staying grounded and helping others understand how they can achieve what I’ve been able to do. Outside of coding, I love playing cricket and football, watching anime, learning more about my faith, and admiring motorcycles. Late-night coding sessions feel natural to me, while my mornings are usually about stuffing food and heading to college.', skills: ["Full-Stack Development", "Problem Solving", "Team Collaboration", "Leadership", "Public Speaking"] },
+    { name: 'PSA Khan', position: 'Liaison Head', image: psa, linkedin: 'https://www.linkedin.com/in/p-s-ahmmad-khan-536703314?utm_source=share_via&utm_content=profile&utm_medium=member_android', email: null,Instagram: 'https://www.instagram.com/shamsheer_4/', github: ' https://github.com/shamsheer1-khan' },
 ];
 
 // GB memebers 2024-25

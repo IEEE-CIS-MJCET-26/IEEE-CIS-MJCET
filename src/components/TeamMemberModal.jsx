@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Linkedin, Github, Mail, Globe } from 'lucide-react';
+import { Linkedin, Github, Mail, Globe, Instagram } from 'lucide-react';
 import './TeamMemberModal.css';
 
 // ── Animation Variants ──
@@ -41,6 +41,9 @@ const buildSocials = (member) => {
     }
     if (member.portfolio) {
         socials.push({ label: 'Portfolio', href: member.portfolio, Icon: Globe });
+    }
+    if(member.Instagram){
+        socials.push({label: 'Instagram', href: member.Instagram, Icon: Instagram});
     }
     return socials;
 };
