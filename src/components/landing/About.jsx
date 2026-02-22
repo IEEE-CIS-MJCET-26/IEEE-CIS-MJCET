@@ -19,21 +19,21 @@ export default function About() {
             value: 20,
             suffix: '+',
             title: 'Research Papers',
-            subtitle: 'Successfully Published'
+            subtitle: 'Published in recognized journals and conferences'
         },
         {
             icon: Cpu,
             value: 100,
             suffix: '+',
             title: 'Technical Workshops',
-            subtitle: 'Organized'
+            subtitle: 'Successfully conducted across diverse domains'
         },
         {
             icon: UsersRound,
             value: 1500,
             suffix: '+',
             title: 'Followers',
-            subtitle: 'Across social media platforms like LinkedIn, Instagram and Twitter'
+            subtitle: 'A growing community across leading social platforms'
         }
     ]
 

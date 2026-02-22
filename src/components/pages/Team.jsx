@@ -439,7 +439,7 @@ const SectionHeading = ({ eyebrow, title, subtitle }) => {
 // PAGE HERO
 // ─────────────────────────────────────────
 const TeamHero = () => (
-    <section className="relative min-h-[60vh] flex flex-col items-center justify-center px-6 bg-white overflow-hidden">
+    <section className="relative min-h-[60vh] md:mt-12 mt-4 flex flex-col items-center justify-center px-6 bg-white overflow-hidden">
         <AnimatedBackground />
 
         <div className="relative z-10 text-center max-w-4xl mx-auto">
@@ -451,7 +451,7 @@ const TeamHero = () => (
 
             <motion.h1
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
-                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase leading-none tracking-tighter text-black mb-6"
+                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase leading-relaxed tracking-tighter text-black mb-6"
                 style={{ fontFamily: "'Russo One', sans-serif" }}>
                 OUR<br />
                 <span className="text-cyan-400">TEAM</span>

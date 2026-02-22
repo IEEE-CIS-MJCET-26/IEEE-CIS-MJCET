@@ -82,7 +82,7 @@ export default function Navbar() {
                         {/* Logo */}
                         <div className="flex items-center">
                             <img
-                                src="/assets/White Logo - Transparent BG.png"
+                                src="/assets/White Logo.png"
                                 alt="IEEE CIS"
                                 className="h-16 md:h-20 w-auto object-contain -my-2"
                             />
@@ -169,7 +169,7 @@ export default function Navbar() {
                                 className="flex justify-center pb-12"
                             >
                                 <img
-                                    src="/assets/White Logo - Transparent BG.png"
+                                    src="/assets/White Logo.png"
                                     alt="IEEE CIS"
                                     className="h-20 w-auto opacity-100"
                                 />

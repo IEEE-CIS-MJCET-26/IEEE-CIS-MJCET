@@ -157,7 +157,7 @@ export default function Hero() {
                     className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-4"
                 >
                     <img
-                        src="/assets/White Logo - Transparent BG.png"
+                        src="/assets/White Logo.png"
                         alt="IEEE CIS"
                         className="w-auto h-48 sm:h-64 md:h-80 max-w-[90vw]"
                     />

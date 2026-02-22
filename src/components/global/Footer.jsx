@@ -47,7 +47,7 @@ export default function Footer() {
                     {/* Left Section - Logo & Description */}
                     <div className="space-y-6">
                         <img
-                            src="/assets/White Logo - Transparent BG.png"
+                            src="/assets/White Logo.png"
                             alt="IEEE CIS"
                             className="h-28 w-auto object-contain"
                         />
