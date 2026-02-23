@@ -65,22 +65,22 @@ const BATCH_YEARS = [
 // ─────────────────────────────────────────
 
 const GB_MEMBERS = [
-    { name: 'Abdul Hafeez', position: 'Chairman', image: hafeez, linkedin: 'https://www.linkedin.com/in/abdul-hafeez-108b09214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',Instagram:'https://www.instagram.com/ah.sofiian/', email: null, github: 'https://github.com/sofian229' },
+    { name: 'Abdul Hafeez', position: 'Chairman', image: hafeez, linkedin: 'https://www.linkedin.com/in/abdul-hafeez-108b09214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', Instagram: 'https://www.instagram.com/ah.sofiian/', email: null, github: 'https://github.com/sofian229' },
     {
         name: 'Haifa Nazeer',
         position: 'Vice-Chair',
         image: haifa,
-        linkedin: 'https://www.linkedin.com/in/haifa-nazeer-425409284?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',Instagram:'https://www.instagram.com/haiff_04/',
+        linkedin: 'https://www.linkedin.com/in/haifa-nazeer-425409284?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', Instagram: 'https://www.instagram.com/haiff_04/',
         email: null,
         github: 'https://github.com/haifanazeer1',
         description: "I am a dynamic and driven student leader who loves turning ideas into action. I bring energy, clarity, and serious main-character productivity to everything I do, always making sure that whatever I’m part of has both impact and intention. I enjoy blending tech, creativity, and community work while constantly pushing myself to grow and do better. Outside of leadership mode, I’m a full-time foodie who absolutely loves food (no compromises there), proudly obsessed with Almarai, and I genuinely enjoy driving my car with good music and peaceful vibes. I’m ambitious, organized, and always moving forward—both in life and on the road. ",
         skills: ["Student Leadership", "Strategic Planning", "Community Impact", "Creative Direction"]
     },
-    { name: 'Rayyan Siddiqi', position: 'General Secretary', image: rayyan, linkedin: 'https://www.linkedin.com/in/rayyan-siddiqi-119b472a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',Instagram:'https://www.instagram.com/rayyansidiqiii/', email: 'sidrayyan7@gmail.com' },
-    { name: 'Ahamadi Hareem', position: 'Joint Secretary', image: hareem, linkedin: 'https://www.linkedin.com/in/ahamadi-hareem-9145051b4/',Instagram:'https://www.instagram.com/ciaobelles/' ,github: 'https://github.com/Ahareem29' },
-    { name: 'Abdul Ahad', position: 'Treasurer', image: ahad, linkedin: 'https://www.linkedin.com/in/abdul-ahad-abdul-hamed-a992a6311/', Instagram:'https://www.instagram.com/abdul_ahad_2208/',email: 'abdulahadabdulhamed22@gmail.com' },
-    { name: 'Mohammed Nouman', position: 'Web Master', image: nouman, linkedin: 'https://www.linkedin.com/in/mohammed-nouman-3320a7279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', email: null, github: 'https://github.com/MOHAMMED-NOUMAN',Instagram: 'https://www.instagram.com/noumxn_05/', description: 'I’m a passionate full-stack developer who genuinely enjoys building things and pushing myself beyond what’s expected. I tend to work harder than I’m supposed to, stay focused on my own path, and I’m rarely bothered by others’ opinions. I live by one simple philosophy: "what’s a privilege to you could be a luxury for someone else", a reminder to stay grateful and humble. Despite being a five-time hackathon winner, I don’t go around boasting about it; I prefer staying grounded and helping others understand how they can achieve what I’ve been able to do. Outside of coding, I love playing cricket and football, watching anime, learning more about my faith, and admiring motorcycles. Late-night coding sessions feel natural to me, while my mornings are usually about stuffing food and heading to college.', skills: ["Full-Stack Development", "Problem Solving", "Team Collaboration", "Leadership", "Public Speaking"] },
-    { name: 'PSA Khan', position: 'Liaison Head', image: psa, linkedin: 'https://www.linkedin.com/in/p-s-ahmmad-khan-536703314?utm_source=share_via&utm_content=profile&utm_medium=member_android', email: null,Instagram: 'https://www.instagram.com/shamsheer_4/', github: ' https://github.com/shamsheer1-khan' },
+    { name: 'Rayyan Siddiqi', position: 'General Secretary', image: rayyan, linkedin: 'https://www.linkedin.com/in/rayyan-siddiqi-119b472a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', Instagram: 'https://www.instagram.com/rayyansidiqiii/', email: 'sidrayyan7@gmail.com' },
+    { name: 'Ahamadi Hareem', position: 'Joint Secretary', image: hareem, linkedin: 'https://www.linkedin.com/in/ahamadi-hareem-9145051b4/', Instagram: 'https://www.instagram.com/ciaobelles/', github: 'https://github.com/Ahareem29' },
+    { name: 'Abdul Ahad', position: 'Treasurer', image: ahad, linkedin: 'https://www.linkedin.com/in/abdul-ahad-abdul-hamed-a992a6311/', Instagram: 'https://www.instagram.com/abdul_ahad_2208/', email: 'abdulahadabdulhamed22@gmail.com' },
+    { name: 'Mohammed Nouman', position: 'Web Master', image: nouman, linkedin: 'https://www.linkedin.com/in/mohammed-nouman-3320a7279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', email: null, github: 'https://github.com/MOHAMMED-NOUMAN', Instagram: 'https://www.instagram.com/noumxn_05/', description: 'I’m a passionate full-stack developer who genuinely enjoys building things and pushing myself beyond what’s expected. I tend to work harder than I’m supposed to, stay focused on my own path, and I’m rarely bothered by others’ opinions. I live by one simple philosophy: "what’s a privilege to you could be a luxury for someone else", a reminder to stay grateful and humble. Despite being a five-time hackathon winner, I don’t go around boasting about it; I prefer staying grounded and helping others understand how they can achieve what I’ve been able to do. Outside of coding, I love playing cricket and football, watching anime, learning more about my faith, and admiring motorcycles. Late-night coding sessions feel natural to me, while my mornings are usually about stuffing food and heading to college.', skills: ["Full-Stack Development", "Problem Solving", "Team Collaboration", "Leadership", "Public Speaking"] },
+    { name: 'PSA Khan', position: 'Liaison Head', image: psa, linkedin: 'https://www.linkedin.com/in/p-s-ahmmad-khan-536703314?utm_source=share_via&utm_content=profile&utm_medium=member_android', email: null, Instagram: 'https://www.instagram.com/shamsheer_4/', github: ' https://github.com/shamsheer1-khan' },
 ];
 
 // GB memebers 2024-25
@@ -412,9 +412,111 @@ const GBCard = ({ member, activeYear, onPlusClick }) => {
 
 
 /** ExecCom / Core card — portrait image | name | position | portfolio | linkedin + github */
+
 const MemberCard = ({ member }) => {
-    return null; // Cards removed as per user request (Section UI remains)
+    const gradients = {
+        TECH: "from-blue-200 to-indigo-200",
+        MEDIA: "from-purple-200 to-pink-200",
+        MARKETING: "from-orange-200 to-amber-200",
+        HR: "from-rose-200 to-pink-200",
+        DESIGN: "from-teal-200 to-emerald-200",
+        RESEARCH: "from-violet-200 to-purple-200",
+        "PRESS & OUTREACH": "from-yellow-200 to-orange-200",
+        OPERATIONS: "from-green-200 to-teal-200",
+        DOCUMENTATION: "from-cyan-200 to-blue-200",
+    };
+
+    const gradient =
+        gradients[member.department] || "from-gray-200 to-gray-300";
+
+    return (
+        <motion.div
+            variants={CARD_VARIANTS}
+            whileHover={{
+                scale: 1.05,
+                y: -10,
+                transition: { duration: 0.3 },
+            }}
+            className="bg-white rounded-2xl overflow-hidden shadow-md 
+                       hover:shadow-2xl hover:shadow-cyan-200/50
+                       transition-all duration-500 group"
+        >
+            {/* Pastel Top */}
+            <div
+                className={`h-56 bg-gradient-to-br ${gradient} 
+                            flex items-center justify-center 
+                            overflow-hidden`}
+            >
+                {member.image ? (
+                    <motion.img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.4 }}
+                    />
+                ) : (
+                    <span className="text-white text-4xl font-black opacity-20 tracking-widest">
+                        PN
+                    </span>
+                )}
+            </div>
+
+            {/* Info Section */}
+            <div className="p-5 text-center">
+                {/* Name */}
+                <h3
+                    className="text-lg uppercase tracking-tight"
+                    style={{ fontFamily: "'Russo One', sans-serif" }}
+                >
+                    {member.name}
+                </h3>
+
+                {/* Position */}
+                <p className="text-cyan-400 text-xs font-bold tracking-widest uppercase mt-1">
+                    {member.position}
+                </p>
+
+                {/* Social Icons */}
+                <div className="flex justify-center gap-6 mt-4 text-gray-500">
+                    <motion.a
+                        href={member.linkedin || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.2 }}
+                        className="hover:text-cyan-500 transition"
+                    >
+                        <Linkedin size={18} />
+                    </motion.a>
+
+                    <motion.a
+                        href={member.github || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.2 }}
+                        className="hover:text-black transition"
+                    >
+                        <Github size={18} />
+                    </motion.a>
+
+                    {member.portfolio && (
+                        <motion.a
+                            href={member.portfolio}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.2 }}
+                            className="hover:text-emerald-500 transition"
+                        >
+                            <Globe size={18} />
+                        </motion.a>
+                    )}
+                </div>
+            </div>
+        </motion.div>
+    );
 };
+
+
 
 // ─────────────────────────────────────────
 // SECTION HEADING — reusable
@@ -483,7 +585,7 @@ const TeamHero = () => (
             <motion.div className="w-px h-8 bg-gradient-to-b from-cyan-400 to-transparent"
                 animate={{ scaleY: [1, 0.4, 1] }} transition={{ duration: 1.5, repeat: Infinity }} />
         </motion.div>
-    </section>
+    </section >
 );
 
 // ─────────────────────────────────────────
