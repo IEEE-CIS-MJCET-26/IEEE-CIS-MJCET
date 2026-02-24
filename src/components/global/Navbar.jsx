@@ -13,7 +13,6 @@ export default function Navbar() {
         { name: 'CONTACT US', href: '/contact' },
     ]
 
-    // Menu container animation - scaleY from top
     const menuVariants = {
         hidden: {
             scaleY: 0,
@@ -80,7 +79,7 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex items-center justify-between">
                         {/* Logo */}
-                        <div className="flex items-center">
+                        <div className="flex items-center py-2">
                             <img
                                 src="/assets/White Logo.png"
                                 alt="IEEE CIS"

@@ -9,6 +9,7 @@ export default {
       fontFamily: {
         russo: ['"Russo One"', 'cursive'],
         stalinist: ['"Stalinist One"', 'cursive'],
+        inter: ['"Inter"', 'sans-serif'],
       },
     },
   },

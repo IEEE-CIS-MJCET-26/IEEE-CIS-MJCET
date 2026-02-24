@@ -54,7 +54,7 @@ const Marquee = () => {
             if (animation) animation.kill();
             window.removeEventListener('resize', initAnimation);
             clearTimeout(timer);
-        };
+        };  
     }, []);
 
     const TextItem = ({ isOutlined }) => (
@@ -202,7 +202,6 @@ const GB = () => {
                         height: '256px',
                         borderRadius:'50%',
                         backgroundColor: 'rgba(34, 211, 238, 0.2)'
-
                 }}
                  animate={{
                         y: [0, -20, 0],
@@ -211,8 +210,7 @@ const GB = () => {
                     transition={{
                         y: { duration: 8, repeat: Infinity, ease: 'easeInOut' },
                         rotate: { duration: 40, repeat: Infinity, ease: 'linear' }
-                    }}
-                
+                    }}                
             />
                 <motion.div
                     style={{

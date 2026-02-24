@@ -65,7 +65,7 @@ const BATCH_YEARS = [
 // ─────────────────────────────────────────
 
 const GB_MEMBERS = [
-    { name: 'Abdul Hafeez', position: 'Chairman', image: hafeez, linkedin: 'https://www.linkedin.com/in/abdul-hafeez-108b09214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', Instagram: 'https://www.instagram.com/ah.sofiian/', email: null, github: 'https://github.com/sofian229' },
+    { name: 'Abdul Hafeez', position: 'Chairman', image: hafeez, description: "I’m Abdul Hafeez, a curious developer who loves building things that actually do something cool. From game development to AI and full-stack web apps, I enjoy experimenting with different tech and learning by getting my hands dirty. I believe failure is just part of the process—I don’t mind messing up as long as I’m learning from it, moving forward, and trying again until things work. When I’m not coding, you’ll probably find me at the gym or in the kitchen, cooking food that can generously be described as edible.", linkedin: 'https://www.linkedin.com/in/abdul-hafeez-108b09214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', Instagram: 'https://www.instagram.com/ah.sofiian/', email: null, github: 'https://github.com/sofian229', skills: ["Front End", "AI", "Public Speaking", "Event Organising"] },
     {
         name: 'Haifa Nazeer',
         position: 'Vice-Chair',
@@ -76,11 +76,11 @@ const GB_MEMBERS = [
         description: "I am a dynamic and driven student leader who loves turning ideas into action. I bring energy, clarity, and serious main-character productivity to everything I do, always making sure that whatever I’m part of has both impact and intention. I enjoy blending tech, creativity, and community work while constantly pushing myself to grow and do better. Outside of leadership mode, I’m a full-time foodie who absolutely loves food (no compromises there), proudly obsessed with Almarai, and I genuinely enjoy driving my car with good music and peaceful vibes. I’m ambitious, organized, and always moving forward—both in life and on the road. ",
         skills: ["Student Leadership", "Strategic Planning", "Community Impact", "Creative Direction"]
     },
-    { name: 'Rayyan Siddiqi', position: 'General Secretary', image: rayyan, linkedin: 'https://www.linkedin.com/in/rayyan-siddiqi-119b472a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', Instagram: 'https://www.instagram.com/rayyansidiqiii/', email: 'sidrayyan7@gmail.com' },
-    { name: 'Ahamadi Hareem', position: 'Joint Secretary', image: hareem, linkedin: 'https://www.linkedin.com/in/ahamadi-hareem-9145051b4/', Instagram: 'https://www.instagram.com/ciaobelles/', github: 'https://github.com/Ahareem29' },
+    { name: 'Rayyan Siddiqi', position: 'General Secretary', image: rayyan, linkedin: 'https://www.linkedin.com/in/rayyan-siddiqi-119b472a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', description: "I naturally bring humor into conversations and enjoy making people laugh, even in simple moments. It’s not something I force—it just comes naturally, and I like keeping the atmosphere light and comfortable for everyone around me.I’m also very chill by nature. I don’t stress over small things or create unnecessary drama. I prefer handling situations calmly and going with the flow instead of overthinking everything. I’m comfortable being myself and believe in keeping things real, positive, and easygoing while simply enjoying life and spreading good energy.", Instagram: 'https://www.instagram.com/rayyansidiqiii/', skills: ["Public Speaking", "Communication", "Leadership"], email: 'sidrayyan7@gmail.com' },
+    { name: 'Ahamadi Hareem', position: 'Joint Secretary', image: hareem, linkedin: 'https://www.linkedin.com/in/ahamadi-hareem-9145051b4/', description: "Hi, I’m Hareem, often described as chill, funny, and serious all at once. I enjoy speaking, sharing ideas, and bringing people together, sometimes enough to earn the title of “most talkative” in class. At the same time, I value listening and reading the room before making decisions. I take pride in being dependable and organized, always ready to take on responsibility and step beyond my comfort zone. To me, leadership is about execution. I set clear goals and follow through with focus and accountability. Beyond responsibilities, I value balance, meaningful conversations, good food, and a slice of pizza whenever possible. I believe in strong coffee, stronger opinions, and living with equal parts ambition and appetite.", Instagram: 'https://www.instagram.com/ciaobelles/', github: 'https://github.com/Ahareem29', skills: ['Design', 'Research', 'Flutter app development', 'Comunication'] },
     { name: 'Abdul Ahad', position: 'Treasurer', image: ahad, linkedin: 'https://www.linkedin.com/in/abdul-ahad-abdul-hamed-a992a6311/', Instagram: 'https://www.instagram.com/abdul_ahad_2208/', email: 'abdulahadabdulhamed22@gmail.com' },
     { name: 'Mohammed Nouman', position: 'Web Master', image: nouman, linkedin: 'https://www.linkedin.com/in/mohammed-nouman-3320a7279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', email: null, github: 'https://github.com/MOHAMMED-NOUMAN', Instagram: 'https://www.instagram.com/noumxn_05/', description: 'I’m a passionate full-stack developer who genuinely enjoys building things and pushing myself beyond what’s expected. I tend to work harder than I’m supposed to, stay focused on my own path, and I’m rarely bothered by others’ opinions. I live by one simple philosophy: "what’s a privilege to you could be a luxury for someone else", a reminder to stay grateful and humble. Despite being a five-time hackathon winner, I don’t go around boasting about it; I prefer staying grounded and helping others understand how they can achieve what I’ve been able to do. Outside of coding, I love playing cricket and football, watching anime, learning more about my faith, and admiring motorcycles. Late-night coding sessions feel natural to me, while my mornings are usually about stuffing food and heading to college.', skills: ["Full-Stack Development", "Problem Solving", "Team Collaboration", "Leadership", "Public Speaking"] },
-    { name: 'PSA Khan', position: 'Liaison Head', image: psa, linkedin: 'https://www.linkedin.com/in/p-s-ahmmad-khan-536703314?utm_source=share_via&utm_content=profile&utm_medium=member_android', email: null, Instagram: 'https://www.instagram.com/shamsheer_4/', github: ' https://github.com/shamsheer1-khan' },
+    { name: 'PSA Khan', position: 'Liaison Head', image: psa, linkedin: 'https://www.linkedin.com/in/p-s-ahmmad-khan-536703314?utm_source=share_via&utm_content=profile&utm_medium=member_android', email: null, Instagram: 'https://www.instagram.com/shamsheer_4/', github: ' https://github.com/shamsheer1-khan', skills: ["Machine Learning", "Web Development", "Leadership"], description: "I am Ahmmad Khan, currently serving as the Liaison Head of the CIS Club Governing Body. I enjoy connecting with people, building strong networks, and helping our club grow through better communication and collaboration. Coming from a defence background, discipline and responsibility have always been important values in my life. I aspire to become a pilot in the Indian Air Force and serve the nation with pride. Apart from club activities, I am interested in technology, leadership, and history. In my free time, I enjoy reading, learning new skills, and constantly working on improving myself." },
 ];
 
 // GB memebers 2024-25
@@ -127,8 +127,8 @@ const EXECOM_MEMBERS_2025 = [
 
     // MEDIA
     mk('Ismail Khan', 'Media Head', 'MEDIA', img('Ismail Khan.png'), {}),
-    mk('Aman Shaik', 'Associate Media Head', 'MEDIA', img('Aman Shaik.jpeg'), {}),
-    mk('Ismail Farooq', 'Associate Media Head', 'MEDIA', img('1000050904 - Ismail Fr.jpeg'), {}),
+    mk('Aman Shaik', 'Associate Media Head', 'MEDIA', img('Aman Shaik(1).jpg'), {}),
+    mk('Ismail Farooq', 'Associate Media Head', 'MEDIA', img('Ismail Farooq.jpg'), {}),
 
     // MARKETING
     mk('Farheen Banu', 'Marketing Head', 'MARKETING', img('IMG_7659 - FARHEEN BANU 160424733122.jpeg'), { linkedin: 'https://www.linkedin.com/in/farheen-banu-007a05388', github: 'https://github.com/eeenn10' }),
@@ -411,108 +411,131 @@ const GBCard = ({ member, activeYear, onPlusClick }) => {
 };
 
 
-/** ExecCom / Core card — portrait image | name | position | portfolio | linkedin + github */
+/** ExecCom / Core card — portrait | name | portfolio | designation | socials */
 
 const MemberCard = ({ member }) => {
     const gradients = {
-        TECH: "from-blue-200 to-indigo-200",
-        MEDIA: "from-purple-200 to-pink-200",
-        MARKETING: "from-orange-200 to-amber-200",
-        HR: "from-rose-200 to-pink-200",
-        DESIGN: "from-teal-200 to-emerald-200",
-        RESEARCH: "from-violet-200 to-purple-200",
-        "PRESS & OUTREACH": "from-yellow-200 to-orange-200",
-        OPERATIONS: "from-green-200 to-teal-200",
-        DOCUMENTATION: "from-cyan-200 to-blue-200",
+        TECH: 'from-blue-200 to-indigo-200',
+        MEDIA: 'from-purple-200 to-pink-200',
+        MARKETING: 'from-orange-200 to-amber-200',
+        HR: 'from-rose-200 to-pink-200',
+        DESIGN: 'from-teal-200 to-emerald-200',
+        RESEARCH: 'from-violet-200 to-purple-200',
+        'PRESS & OUTREACH': 'from-yellow-200 to-orange-200',
+        OPERATIONS: 'from-green-200 to-teal-200',
+        DOCUMENTATION: 'from-cyan-200 to-blue-200',
     };
 
-    const gradient =
-        gradients[member.department] || "from-gray-200 to-gray-300";
+    const gradient = gradients[member.department] || 'from-gray-200 to-gray-300';
+
+    // Simplify "Tech Head" → "Head", "Associate Tech Head" → "Associate Head", "Core — Tech" → "Core Member"
+    const simplifyRole = (pos = '') => {
+        const l = pos.toLowerCase();
+        if (l.startsWith('associate')) return 'Associate Head';
+        if (l.includes('head')) return 'Head';
+        if (l.startsWith('core')) return 'Core Member';
+        return pos;
+    };
 
     return (
-        <motion.div
-            variants={CARD_VARIANTS}
-            whileHover={{
-                scale: 1.05,
-                y: -10,
-                transition: { duration: 0.3 },
-            }}
-            className="bg-white rounded-2xl overflow-hidden shadow-md 
-                       hover:shadow-2xl hover:shadow-cyan-200/50
-                       transition-all duration-500 group"
-        >
-            {/* Pastel Top */}
+   
+        <div className="group relative bg-white rounded-2xl overflow-hidden transform-gpu will-change-transform transition-transform duration-200 ease-out hover:-translate-y-2">
+
+            {/* Pre-painted shadow overlay — opacity-only transition, zero layout cost */}
             <div
-                className={`h-56 bg-gradient-to-br ${gradient} 
-                            flex items-center justify-center 
-                            overflow-hidden`}
-            >
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                style={{ boxShadow: '0 20px 40px -8px rgba(34,211,238,0.2), 0 8px 16px -4px rgba(0,0,0,0.1)' }}
+            />
+
+            {/* Image area */}
+            <div className={`h-64 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}>
                 {member.image ? (
-                    <motion.img
+                    <img
                         src={member.image}
                         alt={member.name}
-                        className="w-full h-full object-cover"
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.4 }}
+                        className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+                        loading="lazy"
                     />
                 ) : (
-                    <span className="text-white text-4xl font-black opacity-20 tracking-widest">
-                        PN
+                    <span className="text-white text-4xl font-black opacity-20 tracking-widest select-none">
+                        {member.name.slice(0, 2).toUpperCase()}
                     </span>
                 )}
             </div>
 
-            {/* Info Section */}
-            <div className="p-5 text-center">
+            {/* Info — Name → Portfolio → Designation */}
+            <div className="p-5 text-center relative z-10">
+
                 {/* Name */}
                 <h3
-                    className="text-lg uppercase tracking-tight"
+                    className="text-base uppercase tracking-tight text-neutral-900 leading-tight"
                     style={{ fontFamily: "'Russo One', sans-serif" }}
                 >
                     {member.name}
                 </h3>
 
-                {/* Position */}
-                <p className="text-cyan-400 text-xs font-bold tracking-widest uppercase mt-1">
-                    {member.position}
+                {/* Portfolio (department) */}
+                <p className="text-[10px] font-bold tracking-[0.2em] uppercase mt-1 text-neutral-400">
+                    {member.department}
                 </p>
 
-                {/* Social Icons */}
-                <div className="flex justify-center gap-6 mt-4 text-gray-500">
-                    <motion.a
-                        href={member.linkedin || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.2 }}
-                        className="hover:text-cyan-500 transition"
-                    >
-                        <Linkedin size={18} />
-                    </motion.a>
+                {/* Designation (position / role) — simplified to Head / Associate Head / Core Member */}
+                <p className="text-cyan-500 text-xs font-semibold tracking-wider uppercase mt-0.5">
+                    {simplifyRole(member.position)}
+                </p>
 
-                    <motion.a
-                        href={member.github || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.2 }}
-                        className="hover:text-black transition"
-                    >
-                        <Github size={18} />
-                    </motion.a>
+                {/* Social links — LinkedIn & GitHub always visible */}
+                <div className="flex justify-center gap-5 mt-4">
+                    {/* LinkedIn */}
+                    {member.linkedin ? (
+                        <a
+                            href={member.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-neutral-400 transition-colors duration-150 hover:text-cyan-500 hover:scale-110 inline-block transform-gpu"
+                            aria-label="LinkedIn"
+                        >
+                            <Linkedin size={16} />
+                        </a>
+                    ) : (
+                        <span className="text-neutral-400 inline-block">
+                            <Linkedin size={16} />
+                        </span>
+                    )}
 
+                    {/* GitHub */}
+                    {member.github ? (
+                        <a
+                            href={member.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-neutral-400 transition-colors duration-150 hover:text-neutral-900 hover:scale-110 inline-block transform-gpu"
+                            aria-label="GitHub"
+                        >
+                            <Github size={16} />
+                        </a>
+                    ) : (
+                        <span className="text-neutral-400 inline-block">
+                            <Github size={16} />
+                        </span>
+                    )}
+
+                    {/* Portfolio — only shown when available */}
                     {member.portfolio && (
-                        <motion.a
+                        <a
                             href={member.portfolio}
                             target="_blank"
                             rel="noopener noreferrer"
-                            whileHover={{ scale: 1.2 }}
-                            className="hover:text-emerald-500 transition"
+                            className="text-neutral-400 transition-colors duration-150 hover:text-emerald-500 hover:scale-110 inline-block transform-gpu"
+                            aria-label="Portfolio"
                         >
-                            <Globe size={18} />
-                        </motion.a>
+                            <Globe size={16} />
+                        </a>
                     )}
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 
@@ -563,10 +586,10 @@ const TeamHero = () => (
 
             <motion.h1
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
-                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase leading-relaxed tracking-tighter text-black mb-6"
+                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase leading-relaxed tracking-normal text-black mb-6"
                 style={{ fontFamily: "'Russo One', sans-serif" }}>
                 OUR<br />
-                <span className="text-cyan-400">TEAM</span>
+                <span className="text-cyan-400 tracking-normal">TEAM</span>
             </motion.h1>
 
             <motion.p
@@ -708,51 +731,59 @@ const ExecomSection = ({ execomDepts, execomMembers, yearStatus }) => {
     const filtered = activeTab === 'ALL' ? execomMembers : execomMembers.filter(m => m.department === activeTab);
 
     return (
-        <section className="relative bg-white py-20 md:py-28 px-6 overflow-hidden">
-            {/* Subtle top separator */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent pointer-events-none" />
-            <AnimatedBackground />
+         <section className="relative bg-white py-20 md:py-28 px-6 overflow-hidden">
+      {/* Subtle top separator */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent pointer-events-none" />
 
-            <div className="relative z-10 max-w-7xl mx-auto">
-                <SectionHeading
-                    eyebrow="Executive Committee"
-                    title="Execom Members"
-                    subtitle="The passionate team members who bring our vision to life, year after year."
-                />
 
-                {execomMembers.length === 0 ? (
-                    <EmptyYearScreen label={yearStatus === 'upcoming' ? 'Coming Soon' : 'Data Not Available'} />
-                ) : (
-                    <>
-                        <div className="mb-10 md:mb-12">
-                            <FilterTabs departments={execomDepts} active={activeTab} onChange={setActiveTab} />
-                        </div>
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={activeTab}
-                                initial="hidden"
-                                animate="visible"
-                                exit={{ opacity: 0, y: -10 }}
-                                variants={CONTAINER_VARIANTS}
-                                className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-5"
-                            >
-                                {filtered.map((m, i) => (
-                                    <motion.div key={`ec-${i}`} variants={CARD_VARIANTS}>
-                                        <MemberCard member={m} />
-                                    </motion.div>
-                                ))}
-                            </motion.div>
-                        </AnimatePresence>
-                        {filtered.length === 0 && (
-                            <div className="text-center py-20 text-neutral-300">
-                                <p className="text-4xl mb-3">—</p>
-                                <p className="text-sm tracking-widest uppercase">No members in this department</p>
-                            </div>
-                        )}
-                    </>
-                )}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <SectionHeading
+          eyebrow="Executive Committee"
+          title="Execom Members"
+          subtitle="The passionate team members who bring our vision to life, year after year."
+        />
+
+        {execomMembers.length === 0 ? (
+          <EmptyYearScreen
+            label={yearStatus === 'upcoming' ? 'Coming Soon' : 'Data Not Available'}
+          />
+        ) : (
+          <>
+            <div className="mb-10 md:mb-12">
+              <FilterTabs
+                departments={execomDepts}
+                active={activeTab}
+                onChange={setActiveTab}
+              />
             </div>
-        </section>
+
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-7">
+              {filtered.map((m, i) => (
+                <div
+                  key={`ec-${i}`}
+                  className="
+                    transform transition-all duration-300 ease-out
+                    hover:-translate-y-1
+                    hover:shadow-xl
+                  "
+                >
+                  <MemberCard member={m} />
+                </div>
+              ))}
+            </div>
+
+            {filtered.length === 0 && (
+              <div className="text-center py-20 text-neutral-300">
+                <p className="text-4xl mb-3">—</p>
+                <p className="text-sm tracking-widest uppercase">
+                  No members in this department
+                </p>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </section>
     );
 };
 
@@ -790,7 +821,7 @@ const CoreSection = ({ coreDepts, coreMembers, yearStatus }) => {
                                 animate="visible"
                                 exit={{ opacity: 0, y: -10 }}
                                 variants={CONTAINER_VARIANTS}
-                                className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-5"
+                                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-7"
                             >
                                 {filtered.map((m, i) => (
                                     <motion.div key={`core-${i}`} variants={CARD_VARIANTS}>
