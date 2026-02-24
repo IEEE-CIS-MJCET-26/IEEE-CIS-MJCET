@@ -1,6 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import AnimatedBackground from "../AnimatedBackground";
+
+import va1 from "../../assets/EVENT-PHOTOS/va1.jpg";
+import va2 from "../../assets/EVENT-PHOTOS/va2.jpg";
+import va3 from "../../assets/EVENT-PHOTOS/va3.jpg";
+import va4 from "../../assets/EVENT-PHOTOS/va4.jpg";
+import va5 from "../../assets/EVENT-PHOTOS/va5.jpg";
+
+import env1 from "../../assets/EVENT-PHOTOS/env1.jpg";
+import env2 from "../../assets/EVENT-PHOTOS/env2.jpg";
+import env3 from "../../assets/EVENT-PHOTOS/env3.jpg";  
+import env4 from "../../assets/EVENT-PHOTOS/env4.jpg";
+import env5 from "../../assets/EVENT-PHOTOS/env5.jpg";
+
+import cu1 from "../../assets/EVENT-PHOTOS/cu1.jpg";
+import cu2 from "../../assets/EVENT-PHOTOS/cu2.jpg";
+import cu3 from "../../assets/EVENT-PHOTOS/cu3.jpg";
+import cu4 from "../../assets/EVENT-PHOTOS/cu4.jpg";
+import cu5 from "../../assets/EVENT-PHOTOS/cu5.jpg";
+import cu6 from "../../assets/EVENT-PHOTOS/cu6.jpg";
+import cu7 from "../../assets/EVENT-PHOTOS/cu7.jpg";
+
+import oe1 from "../../assets/EVENT-PHOTOS/oe1.jpg";
+import oe2 from "../../assets/EVENT-PHOTOS/oe2.jpg";
+import oe3 from "../../assets/EVENT-PHOTOS/oe3.jpg";
+import oe4 from "../../assets/EVENT-PHOTOS/oe4.jpg";
+import oe5 from "../../assets/EVENT-PHOTOS/oe5.jpg";
+import oe6 from "../../assets/EVENT-PHOTOS/oe6.jpg";
+
+import mm1 from "../../assets/EVENT-PHOTOS/mm1.jpg";
+import mm2 from "../../assets/EVENT-PHOTOS/mm2.jpg";
+import mm3 from "../../assets/EVENT-PHOTOS/mm3.jpg";
+import mm4 from "../../assets/EVENT-PHOTOS/mm4.jpg";
+import mm5 from "../../assets/EVENT-PHOTOS/mm5.jpg";
+import mm6 from "../../assets/EVENT-PHOTOS/mm6.jpg";
+
+import pd1 from "../../assets/EVENT-PHOTOS/pd1.jpg";
+import pd2 from "../../assets/EVENT-PHOTOS/pd2.jpg";
+import pd3 from "../../assets/EVENT-PHOTOS/pd3.jpg";
+import pd4 from "../../assets/EVENT-PHOTOS/pd4.jpg";
+import pd5 from "../../assets/EVENT-PHOTOS/pd5.jpg";
+
+import ai1 from "../../assets/EVENT-PHOTOS/ai1.jpeg";
+import ai2 from "../../assets/EVENT-PHOTOS/ai2.JPG";
+import ai3 from "../../assets/EVENT-PHOTOS/ai3.jpg";
+import ai4 from "../../assets/EVENT-PHOTOS/ai4.jpg";
+
+import cwc1 from "../../assets/EVENT-PHOTOS/cwc1.jpg";
+import cwc2 from "../../assets/EVENT-PHOTOS/cwc2.jpg";
+import cwc3 from "../../assets/EVENT-PHOTOS/cwc3.jpg";
+import cwc4 from "../../assets/EVENT-PHOTOS/cwc4.jpg";
 
 import aimazing from "../../assets/posters/aimazing.png";
 import plantation from "../../assets/posters/plantation.png";
@@ -23,15 +73,78 @@ const upcomingEvents = [
 ];
 
 export const pastEvents = [
-    { title: "VIDEO ALCHEMY", image: videoalchemy, description: "AI video creation workshop" },
-    { title: "CYBER UNMASKED", image: cyberunmasked, description: "AI video creation workshop" },
-    { title: "ENVISAGE", image: envisage, description: "Project competition and exhibition" },
-    { title: "OCEAN EXPEDITION", image: oceanexp, description: "Industrial visit to INCOIS" },
-    { title: "MYSTERY MANIA", image: mysterymania, description: "Fun and exciting IEEE CIS event" },
-    { title: "DONATION DRIVE", image: donation, description: "Social service donation initiative." },
-    { title: "CODE WITH CIS", image: codewithcis, description: "Coding event conducted by IEEE CIS." },
-    { title: "PLANTATION DRIVE", image: plantation, description: "Tree plantation initiative for environment." },
-    { title: "AI AMAZING", image: aimazing, description: "AI Amazing event organized by IEEE CIS." },
+  {
+  title: "VIDEO ALCHEMY",
+  images: [videoalchemy,va1, va2, va3, va4, va5],
+  description: "Video Alchemy was a vibrant and hands-on event that introduced students to the art of video editing and digital storytelling. Participants learned how to transform simple ideas into impactful visual content through scripting, editing techniques, transitions, and sound design. The practical approach allowed students to experiment with tools and express their creativity freely. The sessions encouraged originality and effective communication through multimedia platforms. From raw clips to polished videos, participants experienced the complete creative process. Video Alchemy not only enhanced technical skills but also boosted confidence, inspiring students to explore content creation with creativity and passion.",
+  date: "15 Feb 2025",
+  time: "10:00 AM",
+  venue: "Seminar Hall"
+  },
+  {
+    title: "CYBER UNMASKED",
+    images: [cyberunmasked, cu1, cu2, cu3, cu4, cu5, cu6, cu7],
+    description: "Cyber Unmasked was an informative and engaging event that highlighted the importance of cybersecurity in today’s digital age. Participants learned about common online threats such as phishing, malware, and data breaches, along with practical ways to stay safe online. Real-world examples and interactive explanations made the sessions relatable and easy to understand. The event emphasized the need for digital awareness and responsible internet usage. Students actively participated in discussions, gaining confidence in identifying and preventing cyber risks. Cyber Unmasked successfully equipped attendees with essential knowledge while sparking interest in cybersecurity as a vital and growing field.",
+    date: "10 Jan 2025",
+    time: "11:00 AM",
+    venue: "Auditorium"
+  },
+  {
+    title: "ENVISAGE",
+    images: [envisage, env1, env2, env3, env4, env5],
+    description: "Envisage was a creative and forward-looking event that encouraged students to think beyond boundaries and present innovative ideas. It provided a supportive platform where participants could share solutions to real-world problems and receive valuable feedback. The event promoted confidence, communication skills, and critical thinking through interactive discussions and idea presentations. Students were inspired to transform their imagination into practical concepts and explore new perspectives. The collaborative atmosphere fostered creativity and mutual learning. Envisage ultimately empowered participants to believe in their ideas, think strategically, and take meaningful steps toward their academic and professional aspirations.",
+    date: "5 July 2025",
+    time: "9:00 AM",
+    venue: "Ghulam Ahmed Hall"
+  },
+  {
+    title: "OCEAN EXPEDITION",
+    images: [oceanexp, oe1, oe2, oe3, oe4, oe5, oe6],
+    description: "Ocean Expedition was an eye-opening event that focused on raising awareness about marine life and environmental conservation. Through engaging presentations and interactive discussions, students learned about ocean biodiversity, pollution, and the urgent need to protect aquatic ecosystems. The event encouraged participants to reflect on how daily habits, such as plastic usage, impact marine life. Students actively shared ideas on sustainable practices and climate action. The sessions were both informative and inspiring, promoting responsibility toward the environment. Ocean Expedition not only expanded participants’ knowledge but also motivated them to adopt eco-friendly habits and become more conscious global citizens.",
+    date: "2 May 2025",
+    time: "8:00 AM",
+    venue: "INCOIS Hyderabad"
+  },
+  {
+    title: "MYSTERY MANIA",
+    images: [mysterymania, mm1, mm2, mm3, mm4, mm5, mm6],
+    description: "Mystery Mania was a lively and exciting event that brought out the problem-solver in every participant. Filled with puzzles, riddles, and clue-based challenges, the event tested analytical thinking, teamwork, and quick decision-making. Teams worked together under time pressure, creating an atmosphere of suspense and friendly competition. The energy in the room was contagious as participants eagerly decoded clues and solved tricky problems. Beyond the fun, the event helped sharpen critical thinking skills and encouraged collaboration. Mystery Mania successfully combined learning with entertainment, leaving students with a sense of achievement and plenty of memorable moments.",
+    date: "20 March 2025",
+    time: "2:00 PM",
+    venue: "Seminar Hall"
+  },
+  {
+    title: "DONATION DRIVE",
+    images: [donation, donation],
+    description: "The Ramadan Donation Drive was a thoughtful and compassionate effort to support underprivileged families during the holy month of Ramadan. Students and volunteers united to collect groceries, essential food items, and funds to prepare donation kits for those facing financial difficulties. The initiative reflected the true spirit of Ramadan; generosity, gratitude, and community service. Volunteers carefully organized and distributed the kits to ensure families could observe the month with dignity and comfort. The drive fostered unity and empathy among participants, creating a strong sense of purpose. It was a meaningful experience that not only helped many families but also reinforced the importance of giving back to society.",
+    date: "12 April 2025",
+    time: "10:30 AM",
+    venue: "Campus Grounds"
+  },
+  {
+    title: "CODE WITH CIS",
+    images: [codewithcis, cwc1, cwc2, cwc3, cwc4],
+    description: "Code with CIS was an enriching five-day online workshop designed to strengthen students’ programming foundations, particularly in the C language. The sessions covered everything from basic algorithms and flowcharts to advanced topics like pointers and file handling. Each class combined clear explanations with practical coding exercises, helping participants apply what they learned in real time. The speakers focused on building logical thinking and problem-solving skills, making the learning process interactive and engaging. Students actively participated in discussions and hands-on tasks, which boosted their confidence in coding. Overall, Code with CIS created a supportive learning environment that empowered beginners to take their first strong steps into the world of programming..",
+    date: "18 Feb 2025",
+    time: "1:00 PM",
+    venue: "Computer Lab"
+  },
+  {
+    title: "PLANTATION DRIVE",
+    images: [plantation, pd1, pd2, pd3, pd4, pd5],
+    description: "The Plantation Drive was a meaningful initiative that brought students together for a greener cause. With the aim of promoting environmental awareness and sustainability, volunteers planted saplings around the campus as a step toward increasing green cover. The activity symbolized hope, responsibility, and a shared commitment to protecting nature. Along with planting trees, participants learned about the importance of maintaining ecological balance and combating climate change. The drive created a sense of teamwork and collective action, as everyone contributed enthusiastically. More than just planting saplings, the event planted a sense of environmental responsibility in the hearts of students, encouraging them to care for the planet long term",
+    date: "22 Aug 2024",
+    time: "9:30 AM",
+    venue: "College Campus"
+  },
+  {
+    title: "AI AMAZING",
+    images: [aimazing, ai1, ai2, ai3, ai4],
+    description: "AI Mazing was an engaging and inspiring technical event that introduced students to the fascinating world of Artificial Intelligence. Through interactive sessions and real-life examples, participants explored how AI and machine learning are shaping industries such as healthcare, automation, and cybersecurity. The speakers broke down complex concepts into simple, easy-to-understand explanations, making the sessions accessible even for beginners. Live demonstrations and practical insights kept the audience actively involved and curious throughout. The event not only enhanced technical understanding but also encouraged students to think innovatively and ethically about AI’s future. Overall, Ai mazing sparked interest, boosted confidence, and motivated participants to explore opportunities in this rapidly growing field.",
+    date: "15 Sept 2024",
+    time: "10:00 AM",
+    venue: "Main Auditorium"
+  }
 ];
 
 const PastEventCard = ({ event, onRecapClick }) => {
@@ -43,7 +156,7 @@ const PastEventCard = ({ event, onRecapClick }) => {
             {/* Poster Wrapper */}
             <div className="relative aspect-[3/4] rounded-[1.5rem] bg-white overflow-hidden flex items-center justify-center p-6 transition-colors duration-500">
                 <img
-                    src={event.image}
+                    src={event.images?.[0]}
                     alt={event.title}
                     className="w-full h-full object-contain group:hover-scale:1.05 transition-all duration-500 rounded-xl shadow-[0_12px_40px_-8px_rgba(0,0,0,0.15)] z-10"
                 />
@@ -88,7 +201,15 @@ const PastEventCard = ({ event, onRecapClick }) => {
 
 export default function Events() {
     const [selectedEvent, setSelectedEvent] = useState(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
+    useEffect(() => {
+    if (selectedEvent) setCurrentIndex(0);
+    }, [selectedEvent]);
+
+    useEffect(() => {
+    }, [selectedEvent]);
+    
     return (
         <div className="relative bg-white min-h-screen overflow-hidden">
 
@@ -251,6 +372,108 @@ export default function Events() {
                     </div>
                 </section>
             </div>
+
+            
+{selectedEvent && (
+  <div
+    className="fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50"
+    onClick={() => setSelectedEvent(null)}
+  >
+    {/* MODAL BOX */}
+    <div
+      className="relative bg-white text-gray-900 rounded-2xl p-8 w-[90%] max-w-4xl max-h-[85vh] overflow-y-auto shadow-2xl border border-cyan-400/30"
+      onClick={(e) => e.stopPropagation()}
+    >
+
+      {/* CLOSE BUTTON */}
+      <button
+        onClick={() => setSelectedEvent(null)}
+        className="absolute top-4 right-5 text-2xl text-gray-400 hover:text-cyan-400 transition"
+      >
+        ✕
+      </button>
+
+      {/* EVENT TITLE */}
+      <h2 className="text-3xl font-russo font-black text-center mb-8 text-gray-900 tracking-normal uppercase">
+        {selectedEvent.title}
+    </h2>
+
+      
+<div className="overflow-hidden w-full mb-10">
+
+  
+{selectedEvent?.images && (
+  <div className="overflow-hidden w-full mb-10">
+
+    <motion.div
+      className="flex gap-6"
+      animate={{ x: ["0%", "-50%"] }}
+      transition={{
+        ease: "linear",
+        duration: 18,
+        repeat: Infinity,
+      }}
+    >
+      {[...selectedEvent.images, ...selectedEvent.images].map(
+        (img, index) => (
+          <div
+            key={index}
+            className="w-40 h-40 flex-shrink-0 rounded-xl overflow-hidden border border-cyan-400/40"
+          >
+            <img
+              src={img}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )
+      )}
+    </motion.div>
+
+  </div>
+)}
+</div>
+
+      {/* ABOUT EVENT */}
+      <div className="text-center mb-12">
+        <h3 className="font-inter text-cyan-400 text-sm md:text-base tracking-[0.35em] uppercase text-center mb-4">
+        • ABOUT EVENT •
+        </h3>
+
+        <p className="text-gray-600 max-w-2xl mx-auto">
+          {selectedEvent.description}
+        </p>
+      </div>
+
+      {/* DATE TIMEs ITEM VEENUE */}
+      <div className="grid grid-cols-3 text-center gap-6">
+
+        <div>
+          <p className="text-xs text-cyan-400 tracking-widest">DATE</p>
+          <p className="font-semibold text-gray">
+            {selectedEvent.date}
+          </p>
         </div>
-    );
+
+        <div>
+          <p className="text-xs text-cyan-400 tracking-widest">TIME</p>
+          <p className="font-semibold text-gray">
+            {selectedEvent.time}
+          </p>
+        </div>
+
+        <div>
+          <p className="text-xs text-cyan-400 tracking-widest">VENUE</p>
+          <p className="font-semibold text-gray">
+            {selectedEvent.venue}
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+)}
+        
+</div>
+);
 }

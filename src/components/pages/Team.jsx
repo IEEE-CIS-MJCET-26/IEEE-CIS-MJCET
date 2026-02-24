@@ -160,70 +160,71 @@ const EXECOM_MEMBERS_2025 = [
 ];
 
 // ── CORE 2025-2026 ──
+const coreImg = (filename) => `/assets/team/core/${filename}`;
 const CORE_DEPARTMENTS_2025 = ['ALL', 'TECH', 'MEDIA', 'MARKETING', 'HR', 'DESIGN', 'RESEARCH', 'PRESS & OUTREACH', 'OPERATIONS', 'DOCUMENTATION'];
 
 const CORE_MEMBERS_2025 = [
     // TECH
-    mk('Farhan Uddin', 'Core — Tech', 'TECH', null, { linkedin: 'https://www.linkedin.com/in/farhanuddin0721', github: 'https://github.com/FarhanUddin0721' }),
-    mk('Mohammed Nabeel Uddin', 'Core — Tech', 'TECH', null, { linkedin: 'http://linkedin.com/in/mohammed-nabeel-uddin-2ab19b391', github: 'https://github.com/nabeel-lab' }),
-    mk('Syed Mukhtar', 'Core — Tech', 'TECH', null, { github: 'https://github.com/SyedMukhtar11' }),
-    mk('Zaina Tahniyath', 'Core — Tech', 'TECH', null, { linkedin: 'https://www.linkedin.com/in/zaina-tahniyath-490701336', github: 'https://github.com/ZAINA11749' }),
-    mk('Amreen Fathima', 'Core — Tech', 'TECH', null, { linkedin: 'https://www.linkedin.com/in/amreen-fathima-288380395', github: 'https://github.com/amreen1633' }),
-    mk('Omar Hussain Shaikh', 'Core — Tech', 'TECH', null, { linkedin: 'https://www.linkedin.com/in/omar-hussain-shaikh-840398396', github: 'https://github.com/command404' }),
-    mk('Mohammed Ozier Nawaz', 'Core — Tech', 'TECH', null, { linkedin: 'https://www.linkedin.com/in/ozier-nawaz-43b000335', github: 'https://github.com/oz1er' }),
+    mk('Farhan Uddin', 'Core — Tech', 'TECH', coreImg('FARHAN UDDIN.JPG'), { linkedin: 'https://www.linkedin.com/in/farhanuddin0721', github: 'https://github.com/FarhanUddin0721' }),
+    mk('Mohammed Nabeel Uddin', 'Core — Tech', 'TECH', coreImg('mohammed nabeel.jpeg'), { linkedin: 'http://linkedin.com/in/mohammed-nabeel-uddin-2ab19b391', github: 'https://github.com/nabeel-lab' }),
+    mk('Syed Mukhtar', 'Core — Tech', 'TECH',coreImg('SYED MUKHTARUDDIN QURAISHI.jpg'), { github: 'https://github.com/SyedMukhtar11' }),
+    mk('Zaina Tahniyath', 'Core — Tech', 'TECH',coreImg('ZAINA TAHNIYATH.jpg'), { linkedin: 'https://www.linkedin.com/in/zaina-tahniyath-490701336', github: 'https://github.com/ZAINA11749' }),
+    mk('Amreen Fathima', 'Core — Tech', 'TECH', coreImg('amreen fathima.jpeg'), { linkedin: 'https://www.linkedin.com/in/amreen-fathima-288380395', github: 'https://github.com/amreen1633' }),
+    mk('Omar Hussain Shaikh', 'Core — Tech', 'TECH', coreImg('Omar hussain Shaikh.jpg'), { linkedin: 'https://www.linkedin.com/in/omar-hussain-shaikh-840398396', github: 'https://github.com/command404' }),
+    mk('Mohammed Ozier Nawaz', 'Core — Tech', 'TECH', coreImg('ozier.jpeg'), { linkedin: 'https://www.linkedin.com/in/ozier-nawaz-43b000335', github: 'https://github.com/oz1er' }),
 
     // MEDIA
-    mk('Harun', 'Core — Media', 'MEDIA', null, {}),
+    mk('Harun', 'Core — Media', 'MEDIA',coreImg('HARUN SOHEB MOHIUDDIN.jpeg'), {}),
     mk('Mariya Anjum', 'Core — Media', 'MEDIA', null, {}),
-    mk('Mohammed Rayyan', 'Core — Media', 'MEDIA', null, { github: 'https://github.com/r7yn' }),
-    mk('Mohammed Saleh Bawazir', 'Core — Media', 'MEDIA', null, { linkedin: 'https://www.linkedin.com/in/mohammed-saleh-bawazir-912434338', github: 'https://github.com/MohammedBawazir25' }),
+    mk('Mohammed Rayyan', 'Core — Media', 'MEDIA',coreImg('Mohammed Rayyan.jpg'), { github: 'https://github.com/r7yn' }),
+    mk('Mohammed Saleh Bawazir', 'Core — Media', 'MEDIA',coreImg('MOHAMMED SALEH BAWAZIR.jpeg'), { linkedin: 'https://www.linkedin.com/in/mohammed-saleh-bawazir-912434338', github: 'https://github.com/MohammedBawazir25' }),
 
     // MARKETING
-    mk('Shaik Suhaib Ahmed', 'Core — Marketing', 'MARKETING', null, { linkedin: 'https://www.linkedin.com/in/shaik-suhaib-3a95a0376' }),
-    mk('Bano Fatima', 'Core — Marketing', 'MARKETING', null, {}),
-    mk('Mohammed Farhan Khan', 'Core — Marketing', 'MARKETING', null, {}),
-    mk('Jazlain Uddin', 'Core — Marketing', 'MARKETING', null, {}),
-    mk('Syed Ayman Ashfaq', 'Core — Marketing', 'MARKETING', null, { linkedin: 'https://www.linkedin.com/in/syed-ayman-ashfaq-9a9765297' }),
+    mk('Shaik Suhaib Ahmed', 'Core — Marketing', 'MARKETING',coreImg('SHAIK SUHAIB AHMED.png'), { linkedin: 'https://www.linkedin.com/in/shaik-suhaib-3a95a0376' }),
+    mk('Bano Fatima', 'Core — Marketing', 'MARKETING',coreImg('BANO FATIMA.jpeg'), {}),
+    mk('Mohammed Farhan Khan', 'Core — Marketing', 'MARKETING',coreImg('Mohammed Farhan Khan.jpeg'), {}),
+    mk('Jazlain Uddin', 'Core — Marketing', 'MARKETING',coreImg('Jazlain Uddin.jpg'), {}),
+    mk('Syed Ayman Ashfaq', 'Core — Marketing', 'MARKETING',coreImg('SYED AYMAN ASHFAQ.jpeg'), { linkedin: 'https://www.linkedin.com/in/syed-ayman-ashfaq-9a9765297' }),
 
     // HR
-    mk('Abdul Muqeet', 'Core — HR', 'HR', null, { linkedin: 'https://www.linkedin.com/in/abdul-muqeet-mohammed-aa4624337', portfolio: 'https://500px.com/p/abdulmuqeetm06' }),
-    mk('SAINA PERVEEN', 'Core — HR', 'HR', null, {}),
-    mk('Yousuf Bee Sumayya', 'Core — HR', 'HR', null, {}),
-    mk('Syeda Ayesha', 'Core — HR', 'HR', null, {}),
+    mk('Abdul Muqeet', 'Core — HR', 'HR',coreImg('ABDUL MUQEET MOHAMMED.webp'), { linkedin: 'https://www.linkedin.com/in/abdul-muqeet-mohammed-aa4624337', portfolio: 'https://500px.com/p/abdulmuqeetm06' }),
+    mk('SAINA PERVEEN', 'Core — HR', 'HR',coreImg('SAINA PERVEEN.jpeg'), {}),
+    mk('Yousuf Bee Sumayya', 'Core — HR', 'HR',coreImg('YOUSUF BEE SUMAYYA.jpeg'), {}),
+    mk('Syeda Ayesha', 'Core — HR', 'HR',coreImg('SYEDA AYESHA.png'), {}),
 
     // DESIGN
-    mk('Mustafa Ahmed Ali', 'Core — Design', 'DESIGN', null, {}),
-    mk('Afnan Ahmed Khan', 'Core — Design', 'DESIGN', null, { linkedin: 'https://www.linkedin.com/in/afnan-ahmed-4a8963335', github: 'https://github.com/afnan-del' }),
-    mk('Tanzil', 'Core — Design', 'DESIGN', null, {}),
-    mk('Adeeba Khan', 'Core — Design', 'DESIGN', null, {}),
+    mk('Mustafa Ahmed Ali', 'Core — Design', 'DESIGN',coreImg('Mustafa.png'), {}),
+    mk('Afnan Ahmed Khan', 'Core — Design', 'DESIGN',coreImg('Afnan khan.jpg'), { linkedin: 'https://www.linkedin.com/in/afnan-ahmed-4a8963335', github: 'https://github.com/afnan-del' }),
+    mk('Tanzil', 'Core — Design', 'DESIGN',coreImg('Tanzil.jpg'), {}),
+    mk('Adeeba Khan', 'Core — Design', 'DESIGN',coreImg('Adeeba .jpg'), {}),
 
     // RESEARCH
-    mk('Hadiya Mariyam Ahmed', 'Core — Research', 'RESEARCH', null, { linkedin: 'https://www.linkedin.com/in/hadiya-mariyam-ahmed-583168346' }),
-    mk('AFFAAF AHMED', 'Core — Research', 'RESEARCH', null, { linkedin: 'https://www.linkedin.com/in/affaaf-ahmed', github: 'https://github.com/Affaaf-Ahmed' }),
-    mk('Arisa Laiba', 'Core — Research', 'RESEARCH', null, { linkedin: 'https://www.linkedin.com/in/arisa-laiba', github: 'https://github.com/arisalaiba' }),
-    mk('Aisha Erum', 'Core — Research', 'RESEARCH', null, { linkedin: 'https://www.linkedin.com/in/aisha-erum-866860366' }),
+    mk('Hadiya Mariyam Ahmed', 'Core — Research', 'RESEARCH',coreImg('HADIYA MARIYAM AHMED.png'), { linkedin: 'https://www.linkedin.com/in/hadiya-mariyam-ahmed-583168346' }),
+    mk('AFFAAF AHMED', 'Core — Research', 'RESEARCH',coreImg('AFFAAF AHMED.jpg'), { linkedin: 'https://www.linkedin.com/in/affaaf-ahmed', github: 'https://github.com/Affaaf-Ahmed' }),
+    mk('Arisa Laiba', 'Core — Research', 'RESEARCH',coreImg('arisa.jpeg'), { linkedin: 'https://www.linkedin.com/in/arisa-laiba', github: 'https://github.com/arisalaiba' }),
+    mk('Aisha Erum', 'Core — Research', 'RESEARCH',coreImg('AISHA ERUM .jpg'), { linkedin: 'https://www.linkedin.com/in/aisha-erum-866860366' }),
 
     // PRESS & OUTREACH
-    mk('Zuhair Tajammul', 'Core — Press & Outreach', 'PRESS & OUTREACH', null, { linkedin: 'https://www.linkedin.com/in/zuhair-tajammul-19b8a5310' }),
-    mk('Mohammed Ayaan Ali Khan', 'Core — Press & Outreach', 'PRESS & OUTREACH', null, {}),
-    mk('MOHAMMED ISHAQ ALI', 'Core — Press & Outreach', 'PRESS & OUTREACH', null, { linkedin: 'https://www.linkedin.com/in/ishaq-ali-mohammed-596236389/', github: 'https://github.com/aman84sphs-debug' }),
-    mk('Nashra Zarmeen', 'Core — Press & Outreach', 'PRESS & OUTREACH', null, { linkedin: 'https://www.linkedin.com/in/nashra-zarmeen-4ab309332', github: 'https://github.com/nashrazarmeen7' }),
-    mk('Shaza Rumman', 'Core — Press & Outreach', 'PRESS & OUTREACH', null, {}),
+    mk('Zuhair Tajammul', 'Core — Press & Outreach', 'PRESS & OUTREACH',coreImg('ZUHAIR TAJAMMUL.jpg'), { linkedin: 'https://www.linkedin.com/in/zuhair-tajammul-19b8a5310' }),
+    mk('Mohammed Ayaan Ali Khan', 'Core — Press & Outreach', 'PRESS & OUTREACH',coreImg('Ayaan Khan.png'), {}),
+    mk('MOHAMMED ISHAQ ALI', 'Core — Press & Outreach', 'PRESS & OUTREACH',coreImg('MOHAMMED ISHAQ ALI.png'), { linkedin: 'https://www.linkedin.com/in/ishaq-ali-mohammed-596236389/', github: 'https://github.com/aman84sphs-debug' }),
+    mk('Nashra Zarmeen', 'Core — Press & Outreach', 'PRESS & OUTREACH',coreImg('NASHRA ZARMEEN.jpg'), { linkedin: 'https://www.linkedin.com/in/nashra-zarmeen-4ab309332', github: 'https://github.com/nashrazarmeen7' }),
+    mk('Shaza Rumman', 'Core — Press & Outreach', 'PRESS & OUTREACH',coreImg('SHAZA RUMMAN.jpeg'), {}),
 
     // OPERATIONS
-    mk('Osman Bin Nasir', 'Core — Operations', 'OPERATIONS', null, { linkedin: 'https://www.linkedin.com/in/osman-bin-nasir', github: 'https://github.com/Osman-bin-nasir/', portfolio: 'https://osman-bin-nasir.github.io/Portfolio/' }),
-    mk('Murtuza Salman', 'Core — Operations', 'OPERATIONS', null, {}),
-    mk('Abdul Numan', 'Core — Operations', 'OPERATIONS', null, { linkedin: 'https://www.linkedin.com/in/abdul-numan-17586328a/', github: 'https://github.com/Numan2244' }),
+    mk('Osman Bin Nasir', 'Core — Operations', 'OPERATIONS',null, { linkedin: 'https://www.linkedin.com/in/osman-bin-nasir', github: 'https://github.com/Osman-bin-nasir/', portfolio: 'https://osman-bin-nasir.github.io/Portfolio/' }),
+    mk('Murtuza Salman', 'Core — Operations', 'OPERATIONS',coreImg('MURTUZA SALMAN .png'), {}),
+    mk('Abdul Numan', 'Core — Operations', 'OPERATIONS',coreImg('Abdul Numan.png'), { linkedin: 'https://www.linkedin.com/in/abdul-numan-17586328a/', github: 'https://github.com/Numan2244' }),
     mk('Ahmed Ibrahim Khan', 'Core — Operations', 'OPERATIONS', null, {}),
-    mk('Mohammed Azeemuddin Ahmed', 'Core — Operations', 'OPERATIONS', null, { linkedin: 'https://www.linkedin.com/in/mohammed-azeem-uddin-ahmed-281145285' }),
+    mk('Mohammed Azeemuddin Ahmed', 'Core — Operations', 'OPERATIONS',coreImg('Mohammed Azeem Uddin Ahmed.jpg'), { linkedin: 'https://www.linkedin.com/in/mohammed-azeem-uddin-ahmed-281145285' }),
     mk('Mohammed Ehteshamuddin Atif', 'Core — Operations', 'OPERATIONS', null, {}),
-    mk('Mohammed Abdul Sami', 'Core — Operations', 'OPERATIONS', null, { github: 'https://github.com/halalfamm' }),
+    mk('Mohammed Abdul Sami', 'Core — Operations', 'OPERATIONS',coreImg('Abdul Sami.webp'), { github: 'https://github.com/halalfamm' }),
 
     // DOCUMENTATION
-    mk('SYED ASIF HUSSAIN', 'Core — Documentation', 'DOCUMENTATION', null, {}),
-    mk('Ghouse Mohiuddin Ansari', 'Core — Documentation', 'DOCUMENTATION', null, {}),
-    mk('NAUSHEEN FATIMA', 'Core — Documentation', 'DOCUMENTATION', null, {}),
-    mk('Syeda Namira Naaz', 'Core — Documentation', 'DOCUMENTATION', null, {}),
+    mk('SYED ASIF HUSSAIN', 'Core — Documentation', 'DOCUMENTATION',coreImg('SYED ASIF HUSSAIN.jpeg'), {}),
+    mk('Ghouse Mohiuddin Ansari', 'Core — Documentation', 'DOCUMENTATION',coreImg('G.M Ansari.jpg'), {}),
+    mk('NAUSHEEN FATIMA', 'Core — Documentation', 'DOCUMENTATION',coreImg('NAUSHEEN FATIMA.jpg'), {}),
+    mk('Syeda Namira Naaz', 'Core — Documentation', 'DOCUMENTATION',coreImg('Syeda Namira Naaz.jpg'), {}),
 ];
 
 // ─────────────────────────────────────────
@@ -525,7 +526,7 @@ const MemberCard = ({ member }) => {
                     {member.portfolio && (
                         <a
                             href={member.portfolio}
-                            target="_blank"
+                            target="_blank" 
                             rel="noopener noreferrer"
                             className="text-neutral-400 transition-colors duration-150 hover:text-emerald-500 hover:scale-110 inline-block transform-gpu"
                             aria-label="Portfolio"
