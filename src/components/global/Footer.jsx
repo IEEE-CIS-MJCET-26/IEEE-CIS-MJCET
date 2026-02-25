@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { Linkedin, Instagram, ArrowUpRight } from 'lucide-react'
 import { useState, useEffect } from 'react'
-import noumanImg from '../../assets/GB PICS/Nouman.png'
-import arfanImg  from '../../assets/Arfan.png'
-import chairImg from '../../assets/GB PICS/Abdul Hafeez.png'
+import noumanImg from '../../assets/GB PICS/WEB MASTER.png'
+import hafeezImg from '../../assets/GB PICS/Abdul Hafeez.png'
+import arfanImg from '../../assets/Arfan.png'
 
 export default function Footer() {
     const [hoveredDev, setHoveredDev] = useState(null)
@@ -32,11 +32,14 @@ export default function Footer() {
     ]
 
     const developers = [
-        { name: 'Mohammed Nouman', role: 'Web Master',          initials: 'MN', color: '#22d3ee', image: noumanImg,                                                          imageStyle: { scale: '1.75', objectPosition: 'center 15%' } },
-        { name: 'Mohammed Arfan',  role: 'Tech Head',            initials: 'MA', color: '#818cf8', image: arfanImg,                                                            imageStyle: { scale: '1.75', objectPosition: 'center 15%' } },
-        { name: 'Abdullah Quadri', role: 'Associate Tech Head', initials: 'AQ', color: '#34d399', image: '/assets/team/execom/Abdullah.jpg',             imageStyle: { scale: '1.0',  objectPosition: 'center 10%' } },
-        { name: 'Ozier Nawaz',     role: 'Core — Tech',          initials: 'ON', color: '#f472b6', image: null,                                                              imageStyle: {} },
-        { name: 'Abdul Hafeez', role: 'Chairman',        initials: 'AH', color: '#2481fb', image: chairImg,                                                           imageStyle: { scale: '1.5', objectPosition: 'center 0%' } },
+        { name: 'Mohammed Nouman', role: 'Web Master', initials: 'MN', color: '#22d3ee', image: noumanImg, imageStyle: { scale: '1.75', objectPosition: 'center 15%' } },
+        { name: 'Abdul Hafeez', role: 'Chairman', initials: 'AH', color: '#2481fb', image: hafeezImg, imageStyle: { scale: '1.5', objectPosition: 'center 0%' } },
+        { name: 'Mohammed Arfan', role: 'Tech Head', initials: 'MA', color: '#818cf8', image: arfanImg, imageStyle: { scale: '1.75', objectPosition: 'center 15%' } },
+        { name: 'Abdullah Quadri', role: 'Associate Tech Head', initials: 'AQ', color: '#34d399', image: '/assets/team/execom/Abdullah.jpg', imageStyle: { scale: '1.1', objectPosition: 'center 10%' } },
+        { name: 'Mohammed Ozier Nawaz', role: 'Tech Core', initials: 'ON', color: '#f472b6', image: '/assets/team/core/ozier.jpeg', imageStyle: { scale: '1.1', objectPosition: 'center top' } },
+        { name: 'Zaina Tahniyat', role: 'Tech Core', initials: 'ZT', color: '#fb923c', image: '/assets/team/core/ZAINA TAHNIYATH.jpg', imageStyle: { scale: '1.1', objectPosition: 'center top' } },
+        { name: 'Omar Hussain Shaikh', role: 'Tech Core', initials: 'OS', color: '#a855f7', image: '/assets/team/core/Omar hussan.jpg', imageStyle: { scale: '1.1', objectPosition: 'center top' } },
+        { name: 'Amreen Fathima', role: 'Tech Core', initials: 'AF', color: '#06b6d4', image: '/assets/team/core/amreen fathima.jpeg', imageStyle: { scale: '1.3', objectPosition: 'center top' } },
     ]
 
     return (
@@ -142,8 +145,8 @@ export default function Footer() {
                 </div>
 
                 {/* Developers Section */}
-                <div className="mt-12 pt-8 border-t border-gray-800">
-                    <h3 className="text-sm font-bold text-center tracking-[0.3em] text-gray-500 uppercase mb-10">CRAFTED BY</h3>
+                <div className="mt-8 pt-6 border-t border-gray-800">
+                    <h3 className="text-xs font-bold text-center tracking-[0.3em] text-gray-500 uppercase mb-8">CRAFTED BY</h3>
 
                     <style>{`
                         @keyframes dev-ring-pulse {
@@ -178,7 +181,7 @@ export default function Footer() {
                         }
                     `}</style>
 
-                    <div className="flex justify-center items-center gap-16 md:gap-24 flex-wrap">
+                    <div className="flex justify-center items-center gap-5 sm:gap-6 lg:gap-4 xl:gap-8 flex-wrap lg:flex-nowrap">
                         {developers.map((dev, index) => (
                             <div
                                 key={index}
@@ -189,7 +192,7 @@ export default function Footer() {
                                 {/* Tooltip above */}
                                 <div className="dev-tooltip mb-3 text-center">
                                     <div
-                                        className="px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap"
+                                        className="px-2.5 py-1 rounded-xl text-[10px] sm:text-xs font-bold whitespace-nowrap"
                                         style={{
                                             background: `linear-gradient(135deg, ${dev.color}22, ${dev.color}11)`,
                                             border: `1px solid ${dev.color}55`,
@@ -247,7 +250,7 @@ export default function Footer() {
                     </div>
 
                     {/* Animated Text Section */}
-                    <div className="mt-10 text-center">
+                    <div className="mt-6 text-center">
                         <div className="inline-flex items-center gap-3 mx-auto text-3xl md:text-4xl font-bold">
                             <span
                                 className={`text-cyan-400 transition-opacity duration-500 inline-block min-w-[200px] md:min-w-[280px] text-center ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
