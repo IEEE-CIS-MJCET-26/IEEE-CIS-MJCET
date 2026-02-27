@@ -47,7 +47,12 @@ const CARD_VARIANTS = {
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.5, ease: "easeOut" }
+        transition: { duration: 0.4, ease: 'easeOut' }
+    },
+    exit: {
+        opacity: 0,
+        y: -10,
+        transition: { duration: 0.2 }
     }
 };
 
@@ -78,7 +83,7 @@ const GB_MEMBERS = [
     },
     { name: 'Rayyan Siddiqi', position: 'General Secretary', image: rayyan, linkedin: 'https://www.linkedin.com/in/rayyan-siddiqi-119b472a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', description: "I naturally bring humor into conversations and enjoy making people laugh, even in simple moments. It’s not something I force—it just comes naturally, and I like keeping the atmosphere light and comfortable for everyone around me.I’m also very chill by nature. I don’t stress over small things or create unnecessary drama. I prefer handling situations calmly and going with the flow instead of overthinking everything. I’m comfortable being myself and believe in keeping things real, positive, and easygoing while simply enjoying life and spreading good energy.", Instagram: 'https://www.instagram.com/rayyansidiqiii/', skills: ["Public Speaking", "Communication", "Leadership"], email: 'sidrayyan7@gmail.com' },
     { name: 'Ahamadi Hareem', position: 'Joint Secretary', image: hareem, linkedin: 'https://www.linkedin.com/in/ahamadi-hareem-9145051b4/', description: "Hi, I’m Hareem, often described as chill, funny, and serious all at once. I enjoy speaking, sharing ideas, and bringing people together, sometimes enough to earn the title of “most talkative” in class. At the same time, I value listening and reading the room before making decisions. I take pride in being dependable and organized, always ready to take on responsibility and step beyond my comfort zone. To me, leadership is about execution. I set clear goals and follow through with focus and accountability. Beyond responsibilities, I value balance, meaningful conversations, good food, and a slice of pizza whenever possible. I believe in strong coffee, stronger opinions, and living with equal parts ambition and appetite.", Instagram: 'https://www.instagram.com/ciaobelles/', github: 'https://github.com/Ahareem29', skills: ['Design', 'Research', 'Flutter app development', 'Comunication'] },
-    { name: 'Abdul Ahad', position: 'Treasurer', image: ahad, linkedin: 'https://www.linkedin.com/in/abdul-ahad-abdul-hamed-a992a6311/', Instagram: 'https://www.instagram.com/abdul_ahad_2208/', email: 'abdulahadabdulhamed22@gmail.com', description:'I am currently serving as the Treasurer of our college tech club, where I oversee financial planning and ensure smooth management of club funds. I believe in transparency, accountability, and efficient resource utilization to support impactful technical initiatives. Along with managing finances, I actively contribute to the planning and execution of events. My goal is to help the club grow sustainably while empowering students to explore technology with confidence.' },
+    { name: 'Abdul Ahad', position: 'Treasurer', image: ahad, linkedin: 'https://www.linkedin.com/in/abdul-ahad-abdul-hamed-a992a6311/', Instagram: 'https://www.instagram.com/abdul_ahad_2208/', email: 'abdulahadabdulhamed22@gmail.com', description: 'I am currently serving as the Treasurer of our college tech club, where I oversee financial planning and ensure smooth management of club funds. I believe in transparency, accountability, and efficient resource utilization to support impactful technical initiatives. Along with managing finances, I actively contribute to the planning and execution of events. My goal is to help the club grow sustainably while empowering students to explore technology with confidence.' },
     { name: 'Mohammed Nouman', position: 'Web Master', image: nouman, linkedin: 'https://www.linkedin.com/in/mohammed-nouman-3320a7279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', email: null, github: 'https://github.com/MOHAMMED-NOUMAN', Instagram: 'https://www.instagram.com/noumxn_05/', description: 'I’m a passionate full-stack developer who genuinely enjoys building things and pushing myself beyond what’s expected. I tend to work harder than I’m supposed to, stay focused on my own path, and I’m rarely bothered by others’ opinions. I live by one simple philosophy: "what’s a privilege to you could be a luxury for someone else", a reminder to stay grateful and humble. Despite being a five-time hackathon winner, I don’t go around boasting about it; I prefer staying grounded and helping others understand how they can achieve what I’ve been able to do. Outside of coding, I love playing cricket and football, watching anime, learning more about my faith, and admiring motorcycles. Late-night coding sessions feel natural to me, while my mornings are usually about stuffing food and heading to college.', skills: ["Full-Stack Development", "Problem Solving", "Team Collaboration", "Leadership", "Public Speaking"] },
     { name: 'PSA Khan', position: 'Liaison Head', image: psa, linkedin: 'https://www.linkedin.com/in/p-s-ahmmad-khan-536703314?utm_source=share_via&utm_content=profile&utm_medium=member_android', email: null, Instagram: 'https://www.instagram.com/shamsheer_4/', github: ' https://github.com/shamsheer1-khan', skills: ["Machine Learning", "Web Development", "Leadership"], description: "I am Ahmmad Khan, currently serving as the Liaison Head of the CIS Club Governing Body. I enjoy connecting with people, building strong networks, and helping our club grow through better communication and collaboration. Coming from a defence background, discipline and responsibility have always been important values in my life. I aspire to become a pilot in the Indian Air Force and serve the nation with pride. Apart from club activities, I am interested in technology, leadership, and history. In my free time, I enjoy reading, learning new skills, and constantly working on improving myself." },
 ];
@@ -156,7 +161,7 @@ const EXECOM_MEMBERS_2025 = [
 
     // DOCUMENTATION
     mk('Safa Maheen', 'Documentation Head', 'DOCUMENTATION', img('SAFA MAHEEN.jpeg'), { linkedin: 'https://www.linkedin.com/in/safa-maheen-aa6701336', github: 'https://github.com/safamaheen' }),
-    mk('Syeda Rania', 'Associate Doc Head', 'DOCUMENTATION', img('- SYEDA RANIA FATIMA.jpg'), {}),
+    mk('Syeda Rania', 'Associate Doc Head', 'DOCUMENTATION', img('- SYEDA RANIA FATIMA.jpg'), {linkedin:'https://www.linkedin.com/in/syeda-r-7b3337396?utm_source=share_via&utm_content=profile&utm_medium=member_ios'}),
 ];
 
 // ── CORE 2025-2026 ──
@@ -164,71 +169,71 @@ const coreImg = (filename) => `/assets/team/core/${filename}`;
 const CORE_DEPARTMENTS_2025 = ['ALL', 'TECH', 'MEDIA', 'MARKETING', 'HR', 'DESIGN', 'RESEARCH', 'PRESS & OUTREACH', 'OPERATIONS', 'DOCUMENTATION'];
 
 const CORE_MEMBERS_2025 = [
-  // TECH
-  mk('Farhan Uddin', 'Core — Tech', 'TECH', coreImg('FARHAN UDDIN.png'), { linkedin: 'https://www.linkedin.com/in/farhanuddin0721', github: 'https://github.com/FarhanUddin0721' }),
-  mk('Mohammed Nabeel Uddin', 'Core — Tech', 'TECH', coreImg('mohammed nabeel.jpeg'), { linkedin: 'http://linkedin.com/in/mohammed-nabeel-uddin-2ab19b391', github: 'https://github.com/nabeel-lab' }),
-  mk('Syed Mukhtar', 'Core — Tech', 'TECH', coreImg('SYED MUKHTARUDDIN QURAISHI.jpg'), { github: 'https://github.com/SyedMukhtar11' }),
-  mk('Zaina Tahniyath', 'Core — Tech', 'TECH', coreImg('ZAINA TAHNIYATH.jpg'), { linkedin: 'https://www.linkedin.com/in/zaina-tahniyath-490701336', github: 'https://github.com/ZAINA11749' }),
-  mk('Amreen Fathima', 'Core — Tech', 'TECH', coreImg('amreen fathima.jpeg'), { linkedin: 'https://www.linkedin.com/in/amreen-fathima-288380395', github: 'https://github.com/amreen1633' }),
-  mk('Omar Hussain Shaikh', 'Core — Tech', 'TECH', coreImg('Omar hussan.jpg'), { linkedin: 'https://www.linkedin.com/in/omar-hussain-shaikh-840398396', github: 'https://github.com/command404' }),
-  mk('Mohammed Ozier Nawaz', 'Core — Tech', 'TECH', coreImg('ozier.jpeg'), { linkedin: 'https://www.linkedin.com/in/ozier-nawaz-43b000335', github: 'https://github.com/oz1er' }),
+    // TECH
+    mk('Farhan Uddin', 'Core — Tech', 'TECH', coreImg('FARHAN UDDIN.png'), { linkedin: 'https://www.linkedin.com/in/farhanuddin0721', github: 'https://github.com/FarhanUddin0721' }),
+    mk('Mohammed Nabeel Uddin', 'Core — Tech', 'TECH', coreImg('mohammed nabeel.jpeg'), { linkedin: 'http://linkedin.com/in/mohammed-nabeel-uddin-2ab19b391', github: 'https://github.com/nabeel-lab' }),
+    mk('Syed Mukhtar', 'Core — Tech', 'TECH', coreImg('SYED MUKHTARUDDIN QURAISHI.jpg'), { github: 'https://github.com/SyedMukhtar11' }),
+    mk('Zaina Tahniyath', 'Core — Tech', 'TECH', coreImg('ZAINA TAHNIYATH.jpg'), { linkedin: 'https://www.linkedin.com/in/zaina-tahniyath-490701336', github: 'https://github.com/ZAINA11749' }),
+    mk('Amreen Fathima', 'Core — Tech', 'TECH', coreImg('amreen fathima.jpeg'), { linkedin: 'https://www.linkedin.com/in/amreen-fathima-288380395', github: 'https://github.com/amreen1633' }),
+    mk('Omar Hussain Shaikh', 'Core — Tech', 'TECH', coreImg('Omar hussan.jpg'), { linkedin: 'https://www.linkedin.com/in/omar-hussain-shaikh-840398396', github: 'https://github.com/command404' }),
+    mk('Mohammed Ozier Nawaz', 'Core — Tech', 'TECH', coreImg('ozier.jpeg'), { linkedin: 'https://www.linkedin.com/in/ozier-nawaz-43b000335', github: 'https://github.com/oz1er' }),
 
-  // MEDIA
-  mk('Harun', 'Core — Media', 'MEDIA', coreImg('HARUN SOHEB MOHIUDDIN.jpeg'), {}),
-  mk('Mehwish', 'Core — Media', 'MEDIA',coreImg('Mehwish.jpeg'), {}),
-  mk('Mohammed Rayyan', 'Core — Media', 'MEDIA', coreImg('Mohammed Rayyan.jpg'), { github: 'https://github.com/r7yn' }),
-  mk('Mohammed Saleh Bawazir', 'Core — Media', 'MEDIA', coreImg('MOHAMMED SALEH BAWAZIR.jpeg'), { linkedin: 'https://www.linkedin.com/in/mohammed-saleh-bawazir-912434338', github: 'https://github.com/MohammedBawazir25' }),
+    // MEDIA
+    mk('Harun', 'Core — Media', 'MEDIA', coreImg('HARUN SOHEB MOHIUDDIN.jpeg'), {}),
+    mk('Mehwish', 'Core — Media', 'MEDIA', coreImg('Mehwish.jpeg'), {}),
+    mk('Mohammed Rayyan', 'Core — Media', 'MEDIA', coreImg('Mohammed Rayyan.jpg'), { github: 'https://github.com/r7yn' }),
+    mk('Mohammed Saleh Bawazir', 'Core — Media', 'MEDIA', coreImg('MOHAMMED SALEH BAWAZIR.jpeg'), { linkedin: 'https://www.linkedin.com/in/mohammed-saleh-bawazir-912434338', github: 'https://github.com/MohammedBawazir25' }),
 
-  // MARKETING
-  mk('Shaik Suhaib Ahmed', 'Core — Marketing', 'MARKETING', coreImg('SHAIK SUHAIB AHMED.png'), { linkedin: 'https://www.linkedin.com/in/shaik-suhaib-3a95a0376' }),
-  mk('Bano Fatima', 'Core — Marketing', 'MARKETING', coreImg('Bano.jpg'), {}),
-  mk('Mohammed Farhan Khan', 'Core — Marketing', 'MARKETING', coreImg('Mohammed Farhan Khan.jpeg'), {}),
-  mk('Jazlain Uddin', 'Core — Marketing', 'MARKETING', coreImg('Jazlain Uddin.jpg'), {}),
-  mk('Syed Ayman Ashfaq', 'Core — Marketing', 'MARKETING', coreImg('SYED AYMAN ASHFAQ.jpeg'), { linkedin: 'https://www.linkedin.com/in/syed-ayman-ashfaq-9a9765297' }),
+    // MARKETING
+    mk('Shaik Suhaib Ahmed', 'Core — Marketing', 'MARKETING', coreImg('SHAIK SUHAIB AHMED.png'), { linkedin: 'https://www.linkedin.com/in/shaik-suhaib-3a95a0376' }),
+    mk('Bano Fatima', 'Core — Marketing', 'MARKETING', coreImg('Bano.jpg'), {linkedin:'https://www.linkedin.com/in/bano-fatima-0409b8339/'}),
+    mk('Mohammed Farhan Khan', 'Core — Marketing', 'MARKETING', coreImg('Mohammed Farhan Khan.jpeg'), {}),
+    mk('Jazlain Uddin', 'Core — Marketing', 'MARKETING', coreImg('Jazlain Uddin.jpg'), {}),
+    mk('Syed Ayman Ashfaq', 'Core — Marketing', 'MARKETING', coreImg('SYED AYMAN ASHFAQ.jpeg'), { linkedin: 'https://www.linkedin.com/in/syed-ayman-ashfaq-9a9765297' }),
 
-  // HR
-  mk('Abdul Muqeet', 'Core — HR', 'HR', coreImg('ABDUL MUQEET MOHAMMED.webp'), { linkedin: 'https://www.linkedin.com/in/abdul-muqeet-mohammed-aa4624337', portfolio: 'https://500px.com/p/abdulmuqeetm06' }),
-  mk('SAINA PERVEEN', 'Core — HR', 'HR', coreImg('SAINA PERVEEN.jpeg'), {}),
-  mk('Yousuf Bee Sumayya', 'Core — HR', 'HR', coreImg('Summaiya Kaleem.jpeg'), {}),
-  mk('Syeda Ayesha', 'Core — HR', 'HR', coreImg('SYEDA AYESHA.png'), {}),
+    // HR
+    mk('Abdul Muqeet', 'Core — HR', 'HR', coreImg('ABDUL MUQEET MOHAMMED.webp'), { linkedin: 'https://www.linkedin.com/in/abdul-muqeet-mohammed-aa4624337', portfolio: 'https://500px.com/p/abdulmuqeetm06' }),
+    mk('SAINA PERVEEN', 'Core — HR', 'HR', coreImg('SAINA PERVEEN.jpeg'), {}),
+    mk('Yousuf Bee Sumayya', 'Core — HR', 'HR', coreImg('Summaiya Kaleem.jpeg'), {}),
+    mk('Syeda Ayesha', 'Core — HR', 'HR', coreImg('SYEDA AYESHA.png'), {linkedin:'https://www.linkedin.com/in/syeda-ayesha-96a470387/'}),
 
-  // DESIGN
-  mk('Mustafa Ahmed Ali', 'Core — Design', 'DESIGN', coreImg('Mustafa (2).png'), {}),
-  mk('Afnan Ahmed Khan', 'Core — Design', 'DESIGN', coreImg('Afnan khan.jpg'), { linkedin: 'https://www.linkedin.com/in/afnan-ahmed-4a8963335', github: 'https://github.com/afnan-del' }),
-  mk('Tanzil', 'Core — Design', 'DESIGN', coreImg('Tanzil.jpg'), {}),
-  mk('Adeeba Khan', 'Core — Design', 'DESIGN', coreImg('Adeeba .jpg'), {}),
+    // DESIGN
+    mk('Mustafa Ahmed Ali', 'Core — Design', 'DESIGN', coreImg('Mustafa (2).png'), {linkedin:'https://www.linkedin.com/in/mustafa-ahmed-ali-045666392/'}),
+    mk('Afnan Ahmed Khan', 'Core — Design', 'DESIGN', coreImg('Afnan khan.jpg'), { linkedin: 'https://www.linkedin.com/in/afnan-ahmed-4a8963335', github: 'https://github.com/afnan-del' }),
+    mk('Tanzil', 'Core — Design', 'DESIGN', coreImg('Tanzil.jpg'), {}),
+    mk('Adeeba Khan', 'Core — Design', 'DESIGN', coreImg('Adeeba .jpg'), {linkedin:'https://www.linkedin.com/in/adeeba-khan-27ba26330'}),
 
-  // RESEARCH
-  mk('Osman Bin Nasir', 'Core — Research', 'RESEARCH', coreImg('Osman.jpg'), {
-    linkedin: 'https://www.linkedin.com/in/osman-bin-nasir',
-    github: 'https://github.com/Osman-bin-nasir/',
-    portfolio: 'https://osman-bin-nasir.github.io/Portfolio/'
-  }),
-  mk('Hadiya Mariyam Ahmed', 'Core — Research', 'RESEARCH', coreImg('HADIYA MARIYAM AHMED.png'), { linkedin: 'https://www.linkedin.com/in/hadiya-mariyam-ahmed-583168346' }),
-  mk('AFFAAF AHMED', 'Core — Research', 'RESEARCH', coreImg('AFFAAF AHMED.jpg'), { linkedin: 'https://www.linkedin.com/in/affaaf-ahmed', github: 'https://github.com/Affaaf-Ahmed' }),
-  mk('Arisa Laiba', 'Core — Research', 'RESEARCH', coreImg('arisa.jpeg'), { linkedin: 'https://www.linkedin.com/in/arisa-laiba', github: 'https://github.com/arisalaiba' }),
-  mk('Aisha Erum', 'Core — Research', 'RESEARCH', coreImg('AISHA ERUM .jpg'), { linkedin: 'https://www.linkedin.com/in/aisha-erum-866860366' }),
+    // RESEARCH
+    mk('Osman Bin Nasir', 'Core — Research', 'RESEARCH', coreImg('Osman.jpg'), {
+        linkedin: 'https://www.linkedin.com/in/osman-bin-nasir',
+        github: 'https://github.com/Osman-bin-nasir/',
+        portfolio: 'https://osman-bin-nasir.github.io/Portfolio/'
+    }),
+    mk('Hadiya Mariyam Ahmed', 'Core — Research', 'RESEARCH', coreImg('HADIYA MARIYAM AHMED.png'), { linkedin: 'https://www.linkedin.com/in/hadiya-mariyam-ahmed-583168346' }),
+    mk('AFFAAF AHMED', 'Core — Research', 'RESEARCH', coreImg('AFFAAF AHMED.jpg'), { linkedin: 'https://www.linkedin.com/in/affaaf-ahmed', github: 'https://github.com/Affaaf-Ahmed' }),
+    mk('Arisa Laiba', 'Core — Research', 'RESEARCH', coreImg('arisa.jpeg'), { linkedin: 'https://www.linkedin.com/in/arisa-laiba', github: 'https://github.com/arisalaiba' }),
+    mk('Aisha Erum', 'Core — Research', 'RESEARCH', coreImg('AISHA ERUM .jpg'), { linkedin: 'https://www.linkedin.com/in/aisha-erum-866860366' }),
 
-  // PRESS & OUTREACH
-  mk('Zuhair Tajammul', 'Core — Press & Outreach', 'PRESS & OUTREACH', coreImg('ZUHAIR TAJAMMUL.jpg'), { linkedin: 'https://www.linkedin.com/in/zuhair-tajammul-19b8a5310' }),
-  mk('Mohammed Ayaan Ali Khan', 'Core — Press & Outreach', 'PRESS & OUTREACH', coreImg('Ayaan Khan.png'), {}),
-  mk('MOHAMMED ISHAQ ALI', 'Core — Press & Outreach', 'PRESS & OUTREACH', coreImg('Ishaq.jpg'), { linkedin: 'https://www.linkedin.com/in/ishaq-ali-mohammed-596236389/', github: 'https://github.com/aman84sphs-debug' }),
-  mk('Nashra Zarmeen', 'Core — Press & Outreach', 'PRESS & OUTREACH', coreImg('NASHRA ZARMEEN.jpg'), { linkedin: 'https://www.linkedin.com/in/nashra-zarmeen-4ab309332', github: 'https://github.com/nashrazarmeen7' }),
-  mk('Shaza Rumman', 'Core — Press & Outreach', 'PRESS & OUTREACH', coreImg('SHAZA RUMMAN.jpeg'), {}),
+    // PRESS & OUTREACH
+    mk('Zuhair Tajammul', 'Core — Press & Outreach', 'PRESS & OUTREACH', coreImg('ZUHAIR TAJAMMUL.jpg'), { linkedin: 'https://www.linkedin.com/in/zuhair-tajammul-19b8a5310' }),
+    mk('Mohammed Ayaan Ali Khan', 'Core — Press & Outreach', 'PRESS & OUTREACH', coreImg('Ayaan Khan.png'), {}),
+    mk('MOHAMMED ISHAQ ALI', 'Core — Press & Outreach', 'PRESS & OUTREACH', coreImg('Ishaq.jpg'), { linkedin: 'https://www.linkedin.com/in/ishaq-ali-mohammed-596236389/', github: 'https://github.com/aman84sphs-debug' }),
+    mk('Nashra Zarmeen', 'Core — Press & Outreach', 'PRESS & OUTREACH', coreImg('NASHRA ZARMEEN.jpg'), { linkedin: 'https://www.linkedin.com/in/nashra-zarmeen-4ab309332', github: 'https://github.com/nashrazarmeen7' }),
+    mk('Shaza Rumman', 'Core — Press & Outreach', 'PRESS & OUTREACH', coreImg('SHAZA RUMMAN.jpeg'), {linkedin:'https://www.linkedin.com/in/shaza-rumman-3a0878331?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app'}),
 
-  // OPERATIONS
-  mk('Murtuza Salman', 'Core — Operations', 'OPERATIONS', coreImg('Murtuza.jpg'), {}),
-  mk('Abdul Numan', 'Core — Operations', 'OPERATIONS', coreImg('Abdul Numan.png'), { linkedin: 'https://www.linkedin.com/in/abdul-numan-17586328a/', github: 'https://github.com/Numan2244' }),
-  mk('Ahmed Ibrahim Khan', 'Core — Operations', 'OPERATIONS', coreImg('Ahmed Ibrahim Khan(1).jpg'), {}),
-  mk('Mohammed Azeemuddin Ahmed', 'Core — Operations', 'OPERATIONS', coreImg('Mohammed Azeem Uddin Ahmed.jpg'), { linkedin: 'https://www.linkedin.com/in/mohammed-azeem-uddin-ahmed-281145285' }),
-  mk('Mohammed Ehteshamuddin Atif', 'Core — Operations', 'OPERATIONS', coreImg('Ehtesham.jpg'), {}),
-  mk('Mohammed Abdul Sami', 'Core — Operations', 'OPERATIONS', coreImg('Abdul Sami.webp'), { github: 'https://github.com/halalfamm' }),
+    // OPERATIONS
+    mk('Murtuza Salman', 'Core — Operations', 'OPERATIONS', coreImg('Murtuza.jpg'), {}),
+    mk('Abdul Numan', 'Core — Operations', 'OPERATIONS', coreImg('Abdul Numan.png'), { linkedin: 'https://www.linkedin.com/in/abdul-numan-17586328a/', github: 'https://github.com/Numan2244' }),
+    mk('Ahmed Ibrahim Khan', 'Core — Operations', 'OPERATIONS', coreImg('Ahmed Ibrahim Khan(1).jpg'), {}),
+    mk('Mohammed Azeemuddin Ahmed', 'Core — Operations', 'OPERATIONS', coreImg('Mohammed Azeem Uddin Ahmed.jpg'), { linkedin: 'https://www.linkedin.com/in/mohammed-azeem-uddin-ahmed-281145285' }),
+    mk('Mohammed Ehteshamuddin Atif', 'Core — Operations', 'OPERATIONS', coreImg('Ehtesham.jpg'), {linkedin:'https://www.linkedin.com/in/mohammed-ehteshamuddin-atif-04a17027a/'}),
+    mk('Mohammed Abdul Sami', 'Core — Operations', 'OPERATIONS', coreImg('Abdul Sami.webp'), { github: 'https://github.com/halalfamm' }),
 
-  // DOCUMENTATION
-  mk('SYED ASIF HUSSAIN', 'Core — Documentation', 'DOCUMENTATION', coreImg('SYED ASIF HUSSAIN.jpeg'), {}),
-  mk('Ghouse Mohiuddin Ansari', 'Core — Documentation', 'DOCUMENTATION', coreImg('G.M Ansari.jpg'), {}),
-  mk('NAUSHEEN FATIMA', 'Core — Documentation', 'DOCUMENTATION', coreImg('NAUSHEEN FATIMA.jpg'), {}),
-  mk('Syeda Namira Naaz', 'Core — Documentation', 'DOCUMENTATION', coreImg('Syeda Namira Naaz.jpg'), {}),
+    // DOCUMENTATION
+    mk('SYED ASIF HUSSAIN', 'Core — Documentation', 'DOCUMENTATION', coreImg('SYED ASIF HUSSAIN.jpeg'), {}),
+    mk('Ghouse Mohiuddin Ansari', 'Core — Documentation', 'DOCUMENTATION', coreImg('G.M Ansari.jpg'), {linkedin:'https://www.linkedin.com/in/g-m-ansari-b6a08336a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'}),
+    mk('NAUSHEEN FATIMA', 'Core — Documentation', 'DOCUMENTATION', coreImg('NAUSHEEN FATIMA.jpg'), {linkedin:'https://www.linkedin.com/in/nausheenfatima-fatima-55b338396?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'}),
+    mk('Syeda Namira Naaz', 'Core — Documentation', 'DOCUMENTATION', coreImg('Syeda Namira Naaz.jpg'), {linkedin:'https://www.linkedin.com/in/syeda-namira-naaz-3b5189397?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'}),
 ];
 
 // ─────────────────────────────────────────
@@ -443,101 +448,123 @@ const MemberCard = ({ member }) => {
     };
 
     return (
-   
-        <div className="group relative bg-white rounded-2xl overflow-hidden transform-gpu will-change-transform transition-transform duration-200 ease-out hover:-translate-y-2">
-
-            {/* Pre-painted shadow overlay — opacity-only transition, zero layout cost */}
+        <div className="h-full">
             <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                style={{ boxShadow: '0 20px 40px -8px rgba(34,211,238,0.2), 0 8px 16px -4px rgba(0,0,0,0.1)' }}
-            />
+                className="group relative h-full flex flex-col rounded-2xl overflow-hidden transform-gpu will-change-transform transition-all duration-300 ease-out hover:scale-[1.03]"
+                style={{
+                    background: '#0d0d0d',
+                    border: '1px solid rgba(255,255,255,0.06)',
+                    boxShadow: '0 0 0 0 rgba(34,211,238,0)',
+                }}
+                onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 24px -4px rgba(34,211,238,0.2), 0 8px 32px -8px rgba(0,0,0,0.6)'}
+                onMouseLeave={e => e.currentTarget.style.boxShadow = '0 0 0 0 rgba(34,211,238,0)'}
+            >
 
-            {/* Image area */}
-            <div className={`h-64 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}>
-                {member.image ? (
-                    <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-                        loading="lazy"
+                {/* Cyan accent spine — left edge, reveals on hover */}
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute top-0 left-0 w-[2px] bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
+                    style={{ height: '100%' }}
+                />
+
+                {/* Image area */}
+                <div className={`relative aspect-[4/5] md:aspect-auto md:h-64 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}>
+                    {member.image ? (
+                        <img
+                            src={member.image}
+                            alt={member.name}
+                            className="w-full h-full object-cover object-top md:object-center transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                            loading="lazy"
+                        />
+                    ) : (
+                        <span className="text-white/10 text-5xl font-black tracking-[0.2em] select-none uppercase">
+                            {member.name.slice(0, 2).toUpperCase()}
+                        </span>
+                    )}
+
+                    {/* Bottom scrim — image sits inside card */}
+                    <div
+                        aria-hidden="true"
+                        className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-transparent to-transparent"
                     />
-                ) : (
-                    <span className="text-white text-4xl font-black opacity-20 tracking-widest select-none">
-                        {member.name.slice(0, 2).toUpperCase()}
-                    </span>
-                )}
-            </div>
 
-            {/* Info — Name → Portfolio → Designation */}
-            <div className="p-5 text-center relative z-10">
+                    {/* Hover depth overlay */}
+                    <div
+                        aria-hidden="true"
+                        className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-[#0d0d0d]/30 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500"
+                    />
+                </div>
 
-                {/* Name */}
-                <h3
-                    className="text-base uppercase tracking-tight text-neutral-900 leading-tight"
-                    style={{ fontFamily: "'Russo One', sans-serif" }}
-                >
-                    {member.name}
-                </h3>
+                {/* Info — Name → Department → Designation */}
+                <div className="px-5 pt-3 pb-4 text-center relative z-10 flex-1 flex flex-col justify-center">
 
-                {/* Portfolio (department) */}
-                <p className="text-[10px] font-bold tracking-[0.2em] uppercase mt-1 text-neutral-400">
-                    {member.department}
-                </p>
+                    {/* Name — most prominent */}
+                    <h3
+                        className="text-[15px] font-bold uppercase tracking-wider text-white leading-snug"
+                        style={{ fontFamily: "'Russo One', sans-serif" }}
+                    >
+                        {member.name}
+                    </h3>
 
-                {/* Designation (position / role) — simplified to Head / Associate Head / Core Member */}
-                <p className="text-cyan-500 text-xs font-semibold tracking-wider uppercase mt-0.5">
-                    {simplifyRole(member.position)}
-                </p>
+                    {/* Department — muted, supportive */}
+                    <p className="text-[9px] font-semibold tracking-[0.3em] uppercase mt-1.5 text-neutral-500">
+                        {member.department}
+                    </p>
 
-                {/* Social links — LinkedIn & GitHub always visible */}
-                <div className="flex justify-center gap-5 mt-4">
-                    {/* LinkedIn */}
-                    {member.linkedin ? (
-                        <a
-                            href={member.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-neutral-400 transition-colors duration-150 hover:text-cyan-500 hover:scale-110 inline-block transform-gpu"
-                            aria-label="LinkedIn"
-                        >
-                            <Linkedin size={16} />
-                        </a>
-                    ) : (
-                        <span className="text-neutral-400 inline-block">
-                            <Linkedin size={16} />
-                        </span>
-                    )}
+                    {/* Designation — subtle accent */}
+                    <p className="text-cyan-400/80 text-[10px] font-semibold tracking-widest uppercase mt-1">
+                        {simplifyRole(member.position)}
+                    </p>
 
-                    {/* GitHub */}
-                    {member.github ? (
-                        <a
-                            href={member.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-neutral-400 transition-colors duration-150 hover:text-neutral-900 hover:scale-110 inline-block transform-gpu"
-                            aria-label="GitHub"
-                        >
-                            <Github size={16} />
-                        </a>
-                    ) : (
-                        <span className="text-neutral-400 inline-block">
-                            <Github size={16} />
-                        </span>
-                    )}
+                    {/* Social icon footer */}
+                    <div className="flex justify-center gap-3 mt-4 pt-3 border-t border-white/[0.06]">
+                        {/* LinkedIn */}
+                        {member.linkedin ? (
+                            <a
+                                href={member.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-1.5 rounded-md text-neutral-500 transition-all duration-200 hover:text-cyan-400 hover:bg-cyan-400/10 inline-block transform-gpu hover:scale-110"
+                                aria-label="LinkedIn"
+                            >
+                                <Linkedin size={15} />
+                            </a>
+                        ) : (
+                            <span className="p-1.5 text-neutral-700 inline-block">
+                                <Linkedin size={15} />
+                            </span>
+                        )}
 
-                    {/* Portfolio — only shown when available */}
-                    {member.portfolio && (
-                        <a
-                            href={member.portfolio}
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-neutral-400 transition-colors duration-150 hover:text-emerald-500 hover:scale-110 inline-block transform-gpu"
-                            aria-label="Portfolio"
-                        >
-                            <Globe size={16} />
-                        </a>
-                    )}
+                        {/* GitHub */}
+                        {member.github ? (
+                            <a
+                                href={member.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-1.5 rounded-md text-neutral-500 transition-all duration-200 hover:text-white hover:bg-white/10 inline-block transform-gpu hover:scale-110"
+                                aria-label="GitHub"
+                            >
+                                <Github size={15} />
+                            </a>
+                        ) : (
+                            <span className="p-1.5 text-neutral-700 inline-block">
+                                <Github size={15} />
+                            </span>
+                        )}
+
+                        {/* Portfolio — only shown when available */}
+                        {member.portfolio && (
+                            <a
+                                href={member.portfolio}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-1.5 rounded-md text-neutral-500 transition-all duration-200 hover:text-emerald-400 hover:bg-emerald-400/10 inline-block transform-gpu hover:scale-110"
+                                aria-label="Portfolio"
+                            >
+                                <Globe size={15} />
+                            </a>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
@@ -579,7 +606,7 @@ const SectionHeading = ({ eyebrow, title, subtitle }) => {
 // PAGE HERO
 // ─────────────────────────────────────────
 const TeamHero = () => (
-    <section className="relative min-h-[60vh] md:mt-12 mt-4 flex flex-col items-center justify-center px-6 bg-white overflow-hidden">
+    <section className="relative min-h-[60vh] md:mt-16 mt-2 flex flex-col items-center justify-center px-6 bg-white overflow-hidden">
         <AnimatedBackground />
 
         <div className="relative z-10 text-center max-w-4xl mx-auto">
@@ -736,59 +763,64 @@ const ExecomSection = ({ execomDepts, execomMembers, yearStatus }) => {
     const filtered = activeTab === 'ALL' ? execomMembers : execomMembers.filter(m => m.department === activeTab);
 
     return (
-         <section className="relative bg-white py-20 md:py-28 px-6 overflow-hidden">
-      {/* Subtle top separator */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent pointer-events-none" />
-
-
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <SectionHeading
-          eyebrow="Executive Committee"
-          title="Execom Members"
-          subtitle="The passionate team members who bring our vision to life, year after year."
-        />
-
-        {execomMembers.length === 0 ? (
-          <EmptyYearScreen
-            label={yearStatus === 'upcoming' ? 'Coming Soon' : 'Data Not Available'}
-          />
-        ) : (
-          <>
-            <div className="mb-10 md:mb-12">
-              <FilterTabs
-                departments={execomDepts}
-                active={activeTab}
-                onChange={setActiveTab}
-              />
+        <section className="relative py-20 md:py-28 px-6 overflow-hidden" style={{ background: 'linear-gradient(135deg, #f0fdff 0%, #ffffff 40%, #ecfeff 100%)' }}>
+            {/* Subtle top separator */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent pointer-events-none" />
+            <div className="opacity-60">
+                <AnimatedBackground />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-7">
-              {filtered.map((m, i) => (
-                <div
-                  key={`ec-${i}`}
-                  className="
-                    transform transition-all duration-300 ease-out
-                    hover:-translate-y-1
-                    hover:shadow-xl
-                  "
-                >
-                  <MemberCard member={m} />
-                </div>
-              ))}
-            </div>
 
-            {filtered.length === 0 && (
-              <div className="text-center py-20 text-neutral-300">
-                <p className="text-4xl mb-3">—</p>
-                <p className="text-sm tracking-widest uppercase">
-                  No members in this department
-                </p>
-              </div>
-            )}
-          </>
-        )}
-      </div>
-    </section>
+            <div className="relative z-10 max-w-7xl mx-auto">
+                <SectionHeading
+                    eyebrow="Executive Committee"
+                    title="Execom Members"
+                    subtitle="The passionate team members who bring our vision to life, year after year."
+                />
+
+                {execomMembers.length === 0 ? (
+                    <EmptyYearScreen
+                        label={yearStatus === 'upcoming' ? 'Coming Soon' : 'Data Not Available'}
+                    />
+                ) : (
+                    <>
+                        <div className="mb-10 md:mb-12">
+                            <FilterTabs
+                                departments={execomDepts}
+                                active={activeTab}
+                                onChange={setActiveTab}
+                            />
+                        </div>
+
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={activeTab}
+                                initial="hidden"
+                                animate="visible"
+                                exit="exit"
+                                variants={CONTAINER_VARIANTS}
+                                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8"
+                            >
+                                {filtered.map((m, i) => (
+                                    <motion.div key={`ec-${i}`} variants={CARD_VARIANTS}>
+                                        <MemberCard member={m} />
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </AnimatePresence>
+
+                        {filtered.length === 0 && (
+                            <div className="text-center py-20 text-neutral-300">
+                                <p className="text-4xl mb-3">—</p>
+                                <p className="text-sm tracking-widest uppercase">
+                                    No members in this department
+                                </p>
+                            </div>
+                        )}
+                    </>
+                )}
+            </div>
+        </section>
     );
 };
 
@@ -826,7 +858,7 @@ const CoreSection = ({ coreDepts, coreMembers, yearStatus }) => {
                                 animate="visible"
                                 exit={{ opacity: 0, y: -10 }}
                                 variants={CONTAINER_VARIANTS}
-                                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-7"
+                                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8"
                             >
                                 {filtered.map((m, i) => (
                                     <motion.div key={`core-${i}`} variants={CARD_VARIANTS}>

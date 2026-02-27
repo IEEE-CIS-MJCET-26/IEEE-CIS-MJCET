@@ -37,92 +37,92 @@ export default function About() {
         }
     ]
 
-  useEffect(() => {
-    if (!sectionRef.current || !textRef.current || !statsRef.current || !pinWrapperRef.current) return
+    useEffect(() => {
+        if (!sectionRef.current || !textRef.current || !statsRef.current || !pinWrapperRef.current) return
 
-    const lenis = new Lenis()
-    function raf(time) {
-        lenis.raf(time)
+        const lenis = new Lenis()
+        function raf(time) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
         requestAnimationFrame(raf)
-    }
-    requestAnimationFrame(raf)
 
-    const text = new SplitType(textRef.current, {
-        types: 'chars,words',
-    })
-
-    let ctx = gsap.context(() => {
-
-        const masterTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: sectionRef.current,
-                start: 'top top',
-                end: '+=300%',
-                pin: pinWrapperRef.current,
-                pinSpacing: true,
-                scrub: 1,
-                anticipatePin: 1,
-                invalidateOnRefresh: true,
-            }
+        const text = new SplitType(textRef.current, {
+            types: 'chars,words',
         })
 
-        const counters = statsRef.current.querySelectorAll('.stat-count')
+        let ctx = gsap.context(() => {
 
-        text.chars.forEach((char, i) => {
-            const isHighlighted = char.parentElement.closest('.highlight')
-            const charDelay = i * 0.02
+            const masterTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top top',
+                    end: '+=300%',
+                    pin: pinWrapperRef.current,
+                    pinSpacing: true,
+                    scrub: 1,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                }
+            })
 
-            masterTl.fromTo(
-                char,
-                { opacity: 0.15, color: isHighlighted ? '#737373' : undefined },
-                {
-                    opacity: 1,
-                    color: isHighlighted ? '#22d3ee' : undefined,
-                    duration: 0.8,
-                    ease: 'none'
-                },
-                charDelay
-            )
-        })
+            const counters = statsRef.current.querySelectorAll('.stat-count')
 
-        ScrollTrigger.create({
-            trigger: statsRef.current,
-            start: 'top 85%',
-            once: true, // IMPORTANT: prevents reset
-            onEnter: animateCounters
-        })
+            text.chars.forEach((char, i) => {
+                const isHighlighted = char.parentElement.closest('.highlight')
+                const charDelay = i * 0.02
 
-        function animateCounters() {
-            counters.forEach((counter, index) => {
-                const target = stats[index].value
-                const isFloat = !Number.isInteger(target)
-
-                gsap.fromTo(counter,
-                    { textContent: 0 },
+                masterTl.fromTo(
+                    char,
+                    { opacity: 0.15, color: isHighlighted ? '#737373' : undefined },
                     {
-                        textContent: target,
-                        duration: 2,
-                        ease: 'power2.out',
-                        snap: { textContent: isFloat ? 0.1 : 1 },
-                        onUpdate() {
-                            const val = parseFloat(counter.textContent)
-                            counter.textContent = isFloat
-                                ? val.toFixed(1)
-                                : Math.ceil(val).toLocaleString()
-                        }
-                    }
+                        opacity: 1,
+                        color: isHighlighted ? '#22d3ee' : undefined,
+                        duration: 0.8,
+                        ease: 'none'
+                    },
+                    charDelay
                 )
             })
+
+            ScrollTrigger.create({
+                trigger: statsRef.current,
+                start: 'top 85%',
+                once: true, // IMPORTANT: prevents reset
+                onEnter: animateCounters
+            })
+
+            function animateCounters() {
+                counters.forEach((counter, index) => {
+                    const target = stats[index].value
+                    const isFloat = !Number.isInteger(target)
+
+                    gsap.fromTo(counter,
+                        { textContent: 0 },
+                        {
+                            textContent: target,
+                            duration: 2,
+                            ease: 'power2.out',
+                            snap: { textContent: isFloat ? 0.1 : 1 },
+                            onUpdate() {
+                                const val = parseFloat(counter.textContent)
+                                counter.textContent = isFloat
+                                    ? val.toFixed(1)
+                                    : Math.ceil(val).toLocaleString()
+                            }
+                        }
+                    )
+                })
+            }
+
+        }, sectionRef)   // ✅ CLOSE gsap.context PROPERLY
+
+        return () => {
+            lenis.destroy()
+            text.revert()
+            ctx.revert()
         }
-
-    }, sectionRef)   // ✅ CLOSE gsap.context PROPERLY
-
-    return () => {
-        lenis.destroy()
-        text.revert()
-        ctx.revert()
-    }
-}, [])
+    }, [])
 
     return (
         <section
@@ -131,7 +131,7 @@ export default function About() {
         >
             <div
                 ref={pinWrapperRef}
-                className="relative z-content w-full cursor-pointer min-h-screen md:h-screen flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 pt-28 pb-12 md:pt-32 md:pb-16"
+                className="relative z-content w-full cursor-pointer min-h-screen md:h-screen flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 pt-28 pb-12 md:pt-44 md:pb-16"
             >
                 <div className="max-w-6xl w-full flex flex-col items-center">
                     {/* Header Label */}
@@ -197,6 +197,6 @@ export default function About() {
                 </div>
             </div>
         </section>
-    )   
+    )
 
 }

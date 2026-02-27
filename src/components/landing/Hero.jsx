@@ -144,13 +144,7 @@ export default function Hero() {
             </div>
 
             <div className="absolute inset-0 z-10">
-                <nav
-                    ref={navRef}
-                    className="fixed top-0 flex w-full items-center justify-between p-4 sm:p-6 md:p-8 text-xl sm:text-2xl md:text-3xl uppercase text-cyan-400"
-                >
-                    <div>Logo</div>
-                    <div>Menu</div>
-                </nav>
+
 
                 <div
                     ref={headerRef}

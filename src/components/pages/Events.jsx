@@ -1,168 +1,87 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedBackground from "../AnimatedBackground";
+import { sanityClient } from "../../lib/sanityClient";
+import { urlFor } from "../../lib/sanityImage";
 
-import va1 from "../../assets/EVENT-PHOTOS/va1.jpg";
-import va2 from "../../assets/EVENT-PHOTOS/va2.jpg";
-import va3 from "../../assets/EVENT-PHOTOS/va3.jpg";
-import va4 from "../../assets/EVENT-PHOTOS/va4.jpg";
-import va5 from "../../assets/EVENT-PHOTOS/va5.jpg";
+// ─────────────────────────────────────────
+// SANITY QUERIES
+// ─────────────────────────────────────────
+//
+// ⚠️  ROOT CAUSE FIX:
+//  'date' is a GROQ built-in function name. Using it as a field name
+//  inside a GROQ filter (date < $today) is ambiguous — GROQ silently
+//  treats it as the cast function, not the document field, causing the
+//  filter to always return nothing.
+//
+//  FIX: Fetch ALL events in one query (no date filter in GROQ),
+//  then split upcoming vs. past client-side using JS Date, which is
+//  100% reliable regardless of timezone/format edge-cases.
+//
+const ALL_EVENTS_QUERY = `*[_type=="event"] | order(date asc) {
+  _id, title, date, time, venue, description,
+  poster, gallery, registrationLink
+}`;
 
-import env1 from "../../assets/EVENT-PHOTOS/env1.jpg";
-import env2 from "../../assets/EVENT-PHOTOS/env2.jpg";
-import env3 from "../../assets/EVENT-PHOTOS/env3.jpg";
-import env4 from "../../assets/EVENT-PHOTOS/env4.jpg";
-import env5 from "../../assets/EVENT-PHOTOS/env5.jpg";
+// ─────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────
+const formatDate = (dateStr) => {
+    if (!dateStr) return "TBA";
+    return new Date(dateStr).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+    });
+};
 
-import cu1 from "../../assets/EVENT-PHOTOS/cu1.jpg";
-import cu2 from "../../assets/EVENT-PHOTOS/cu2.jpg";
-import cu3 from "../../assets/EVENT-PHOTOS/cu3.jpg";
-import cu4 from "../../assets/EVENT-PHOTOS/cu4.jpg";
-import cu5 from "../../assets/EVENT-PHOTOS/cu5.jpg";
-import cu6 from "../../assets/EVENT-PHOTOS/cu6.jpg";
-import cu7 from "../../assets/EVENT-PHOTOS/cu7.jpg";
+// Resolve a Sanity image to a usable URL string, with optional width
+const imgUrl = (ref, width = 800) => {
+    if (!ref) return null;
+    return urlFor(ref).width(width).url();
+};
 
-import oe1 from "../../assets/EVENT-PHOTOS/oe1.jpg";
-import oe2 from "../../assets/EVENT-PHOTOS/oe2.jpg";
-import oe3 from "../../assets/EVENT-PHOTOS/oe3.jpg";
-import oe4 from "../../assets/EVENT-PHOTOS/oe4.jpg";
-import oe5 from "../../assets/EVENT-PHOTOS/oe5.jpg";
-import oe6 from "../../assets/EVENT-PHOTOS/oe6.jpg";
+// ─────────────────────────────────────────
+// LOADING SPINNER
+// ─────────────────────────────────────────
+const Spinner = () => (
+    <div className="flex justify-center items-center py-20">
+        <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            className="w-10 h-10 border-2 border-cyan-400 border-t-transparent rounded-full"
+        />
+    </div>
+);
 
-import mm1 from "../../assets/EVENT-PHOTOS/mm1.jpg";
-import mm2 from "../../assets/EVENT-PHOTOS/mm2.jpg";
-import mm3 from "../../assets/EVENT-PHOTOS/mm3.jpg";
-import mm4 from "../../assets/EVENT-PHOTOS/mm4.jpg";
-import mm5 from "../../assets/EVENT-PHOTOS/mm5.jpg";
-import mm6 from "../../assets/EVENT-PHOTOS/mm6.jpg";
-
-import pd1 from "../../assets/EVENT-PHOTOS/pd1.jpg";
-import pd2 from "../../assets/EVENT-PHOTOS/pd2.jpg";
-import pd3 from "../../assets/EVENT-PHOTOS/pd3.jpg";
-import pd4 from "../../assets/EVENT-PHOTOS/pd4.jpg";
-import pd5 from "../../assets/EVENT-PHOTOS/pd5.jpg";
-
-import ai1 from "../../assets/EVENT-PHOTOS/ai1.jpeg";
-import ai2 from "../../assets/EVENT-PHOTOS/ai2.JPG";
-import ai3 from "../../assets/EVENT-PHOTOS/ai3.jpg";
-import ai4 from "../../assets/EVENT-PHOTOS/ai4.jpg";
-
-import cwc1 from "../../assets/EVENT-PHOTOS/cwc1.jpg";
-import cwc2 from "../../assets/EVENT-PHOTOS/cwc2.jpg";
-import cwc3 from "../../assets/EVENT-PHOTOS/cwc3.jpg";
-import cwc4 from "../../assets/EVENT-PHOTOS/cwc4.jpg";
-
-import aimazing from "../../assets/posters/aimazing.png";
-import plantation from "../../assets/posters/plantation.png";
-import codewithcis from "../../assets/posters/codewithcis.png";
-import blanket from "../../assets/posters/blanket.png";
-import donation from "../../assets/posters/donation.png";
-import mysterymania from "../../assets/posters/mysterymania.png";
-import oceanexp from "../../assets/posters/oceanexp.png";
-import envisage from "../../assets/posters/envisage.png";
-import cyberunmasked from "../../assets/posters/cyberunmasked.png";
-import videoalchemy from "../../assets/posters/videoalchemy.png";
-import comingsoon from "../../assets/posters/comingsoon.png";
-
-const upcomingEvents = [
-    {
-        title: "COMING SOON",
-        image: comingsoon,
-        description: "The next one’s a secret (for now).",
-    },
-];
-
-export const pastEvents = [
-    {
-        title: "VIDEO ALCHEMY",
-        images: [videoalchemy, va1, va2, va3, va4, va5],
-        description: "Video Alchemy was a vibrant and hands-on event that introduced students to the art of video editing and digital storytelling. Participants learned how to transform simple ideas into impactful visual content through scripting, editing techniques, transitions, and sound design. The practical approach allowed students to experiment with tools and express their creativity freely. The sessions encouraged originality and effective communication through multimedia platforms. From raw clips to polished videos, participants experienced the complete creative process. Video Alchemy not only enhanced technical skills but also boosted confidence, inspiring students to explore content creation with creativity and passion.",
-        date: "15 Feb 2025",
-        time: "10:00 AM",
-        venue: "SU KNOWLEDGE HUB"
-    },
-    {
-        title: "CYBER UNMASKED",
-        images: [cyberunmasked, cu1, cu2, cu3, cu4, cu5, cu6, cu7],
-        description: "Cyber Unmasked was an informative and engaging event that highlighted the importance of cybersecurity in today’s digital age. Participants learned about common online threats such as phishing, malware, and data breaches, along with practical ways to stay safe online. Real-world examples and interactive explanations made the sessions relatable and easy to understand. The event emphasized the need for digital awareness and responsible internet usage. Students actively participated in discussions, gaining confidence in identifying and preventing cyber risks. Cyber Unmasked successfully equipped attendees with essential knowledge while sparking interest in cybersecurity as a vital and growing field.",
-        date: "10 Jan 2025",
-        time: "11:00 AM",
-        venue: "CIC LAB, BLOCK 2"
-    },
-    {
-        title: "ENVISAGE",
-        images: [envisage, env1, env2, env3, env4, env5],
-        description: "Envisage was a creative and forward-looking event that encouraged students to think beyond boundaries and present innovative ideas. It provided a supportive platform where participants could share solutions to real-world problems and receive valuable feedback. The event promoted confidence, communication skills, and critical thinking through interactive discussions and idea presentations. Students were inspired to transform their imagination into practical concepts and explore new perspectives. The collaborative atmosphere fostered creativity and mutual learning. Envisage ultimately empowered participants to believe in their ideas, think strategically, and take meaningful steps toward their academic and professional aspirations.",
-        date: "5 July 2025",
-        time: "9:00 AM",
-        venue: "GHULAM AHMED HALL"
-    },
-    {
-        title: "OCEAN EXPEDITION",
-        images: [oceanexp, oe1, oe2, oe3, oe4, oe5, oe6],
-        description: "Ocean Expedition was an eye-opening event that focused on raising awareness about marine life and environmental conservation. Through engaging presentations and interactive discussions, students learned about ocean biodiversity, pollution, and the urgent need to protect aquatic ecosystems. The event encouraged participants to reflect on how daily habits, such as plastic usage, impact marine life. Students actively shared ideas on sustainable practices and climate action. The sessions were both informative and inspiring, promoting responsibility toward the environment. Ocean Expedition not only expanded participants’ knowledge but also motivated them to adopt eco-friendly habits and become more conscious global citizens.",
-        date: "2 May 2025",
-        time: "8:00 AM",
-        venue: "INCOIS Hyderabad"
-    },
-    {
-        title: "MYSTERY MANIA",
-        images: [mysterymania, mm1, mm2, mm3, mm4, mm5, mm6],
-        description: "Mystery Mania was a lively and exciting event that brought out the problem-solver in every participant. Filled with puzzles, riddles, and clue-based challenges, the event tested analytical thinking, teamwork, and quick decision-making. Teams worked together under time pressure, creating an atmosphere of suspense and friendly competition. The energy in the room was contagious as participants eagerly decoded clues and solved tricky problems. Beyond the fun, the event helped sharpen critical thinking skills and encouraged collaboration. Mystery Mania successfully combined learning with entertainment, leaving students with a sense of achievement and plenty of memorable moments.",
-        date: "20 March 2025",
-        time: "2:00 PM",
-        venue: "GHULAM AHMED HALL"
-    },
-    {
-        title: "DONATION DRIVE",
-        images: [donation, donation],
-        description: "The Ramadan Donation Drive was a thoughtful and compassionate effort to support underprivileged families during the holy month of Ramadan. Students and volunteers united to collect groceries, essential food items, and funds to prepare donation kits for those facing financial difficulties. The initiative reflected the true spirit of Ramadan; generosity, gratitude, and community service. Volunteers carefully organized and distributed the kits to ensure families could observe the month with dignity and comfort. The drive fostered unity and empathy among participants, creating a strong sense of purpose. It was a meaningful experience that not only helped many families but also reinforced the importance of giving back to society.",
-        date: "12 April 2025",
-        time: "10:30 AM",
-        venue: "MJCET"
-    },
-    {
-        title: "CODE WITH CIS",
-        images: [codewithcis, cwc1, cwc2, cwc3, cwc4],
-        description: "Code with CIS was an enriching five-day online workshop designed to strengthen students’ programming foundations, particularly in the C language. The sessions covered everything from basic algorithms and flowcharts to advanced topics like pointers and file handling. Each class combined clear explanations with practical coding exercises, helping participants apply what they learned in real time. The speakers focused on building logical thinking and problem-solving skills, making the learning process interactive and engaging. Students actively participated in discussions and hands-on tasks, which boosted their confidence in coding. Overall, Code with CIS created a supportive learning environment that empowered beginners to take their first strong steps into the world of programming..",
-        date: "18 Feb 2025",
-        time: "1:00 PM",
-        venue: "ONLINE"
-    },
-    {
-        title: "PLANTATION DRIVE",
-        images: [plantation, pd1, pd2, pd3, pd4, pd5],
-        description: "The Plantation Drive was a meaningful initiative that brought students together for a greener cause. With the aim of promoting environmental awareness and sustainability, volunteers planted saplings around the campus as a step toward increasing green cover. The activity symbolized hope, responsibility, and a shared commitment to protecting nature. Along with planting trees, participants learned about the importance of maintaining ecological balance and combating climate change. The drive created a sense of teamwork and collective action, as everyone contributed enthusiastically. More than just planting saplings, the event planted a sense of environmental responsibility in the hearts of students, encouraging them to care for the planet long term",
-        date: "22 Aug 2024",
-        time: "9:30 AM",
-        venue: "MJCET"
-    },
-    {
-        title: "AI AMAZING",
-        images: [aimazing, ai1, ai2, ai3, ai4],
-        description: "AI Mazing was an engaging and inspiring technical event that introduced students to the fascinating world of Artificial Intelligence. Through interactive sessions and real-life examples, participants explored how AI and machine learning are shaping industries such as healthcare, automation, and cybersecurity. The speakers broke down complex concepts into simple, easy-to-understand explanations, making the sessions accessible even for beginners. Live demonstrations and practical insights kept the audience actively involved and curious throughout. The event not only enhanced technical understanding but also encouraged students to think innovatively and ethically about AI’s future. Overall, Ai mazing sparked interest, boosted confidence, and motivated participants to explore opportunities in this rapidly growing field.",
-        date: "15 Sept 2024",
-        time: "10:00 AM",
-        venue: "CIC LAB, BLOCK 2"
-    }
-];
-
+// ─────────────────────────────────────────
+// PAST EVENT CARD
+// ─────────────────────────────────────────
 const PastEventCard = ({ event, onRecapClick }) => {
+    const posterSrc = imgUrl(event.poster, 600);
+
     return (
         <div
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="group relative hover:translate-y-[-10px] transition-all duration-500 hover:shadow-black bg-gradient-to-br from-blue-50 to-white rounded-[2rem] p-4 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] border border-cyan-400/10 flex flex-col h-full"
         >
             {/* Poster Wrapper */}
             <div className="relative aspect-[3/4] rounded-[1.5rem] bg-white overflow-hidden flex items-center justify-center p-6 transition-colors duration-500">
-                <img
-                    src={event.images?.[0]}
-                    alt={event.title}
-                    className="w-full h-full object-contain rounded-bl-3xl rounded-tl-3xl group:hover-scale:1.05 transition-all duration-500 rounded-xl shadow-[0_12px_40px_-8px_rgba(0,0,0,0.15)] z-10"
-                />
+                {posterSrc ? (
+                    <img
+                        src={posterSrc}
+                        alt={event.title}
+                        className="w-full h-full object-contain rounded-bl-3xl rounded-tl-3xl group:hover-scale:1.05 transition-all duration-500 rounded-xl shadow-[0_12px_40px_-8px_rgba(0,0,0,0.15)] z-10"
+                    />
+                ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-cyan-100 to-blue-100 rounded-xl flex items-center justify-center">
+                        <span className="text-cyan-400/40 text-4xl font-black uppercase tracking-widest">
+                            {event.title?.slice(0, 2)}
+                        </span>
+                    </div>
+                )}
 
                 <div className="absolute top-4 right-4 z-20">
-                    <div className="px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-xl guration-500 transition-colors border  border-white/40 group-hover:border-red-500 shadow-sm flex items-center gap-1.5">
+                    <div className="px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-xl transition-colors border border-white/40 group-hover:border-red-500 shadow-sm flex items-center gap-1.5">
                         <div className="w-1.5 h-1.5 rounded-full bg-neutral-400 group-hover:bg-red-500"></div>
                         <span className="text-[10px] font-bold tracking-widest text-neutral-600 group-hover:text-red-500 uppercase font-inter">
                             Concluded
@@ -187,7 +106,7 @@ const PastEventCard = ({ event, onRecapClick }) => {
                     whileTap={{ scale: 0.98 }}
                     className="relative w-full py-3.5 rounded-xl border border-neutral-200 bg-transparent text-neutral-900 font-black text-[11px] uppercase tracking-widest font-inter overflow-hidden transition-colors duration-300 group/btn hover:bg-black hover:text-white mb-2"
                 >
-                    <span className="relative z-10 flex items-center justify-center gap-2">
+                    <span className="relative z-10 font-russo text-cyan-500 flex items-center justify-center gap-2">
                         View Recap
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover/btn:translate-x-1">
                             <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -199,73 +118,355 @@ const PastEventCard = ({ event, onRecapClick }) => {
     );
 };
 
+// ─────────────────────────────────────────
+// UNIFIED EVENT MODAL
+// Opens for both upcoming (no gallery) and past events (with gallery)
+// ─────────────────────────────────────────
+const EventModal = ({ event, onClose, isUpcoming = false }) => {
+    if (!event) return null;
+
+    const posterSrc = imgUrl(event.poster, 800);
+    const galleryImages = (event.gallery || [])
+        .map((img) => imgUrl(img, 400))
+        .filter(Boolean);
+    const showGallery = !isUpcoming && galleryImages.length > 0;
+
+    return (
+        <AnimatePresence>
+            <motion.div
+                key="modal-backdrop"
+                className={
+                    isUpcoming
+                        ? "fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50 p-4 md:p-10"
+                        : "fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50"
+                }
+                onClick={onClose}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: isUpcoming ? 0.3 : 0.25, ease: "easeInOut" }}
+            >
+                {isUpcoming ? (
+                    /* ── Upcoming modal: dark split-layout ── */
+                    <motion.div
+                        key="upcoming-modal-box"
+                        className="group relative bg-neutral-900 rounded-[2.5rem] w-full max-w-5xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] border border-neutral-200/20"
+                        onClick={(e) => e.stopPropagation()}
+                        initial={{ opacity: 0, scale: 0.93, y: 24 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.93, y: 24 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                        {/* Close */}
+                        <button
+                            onClick={onClose}
+                            className="group absolute top-6 right-6 z-50 w-10 h-10 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-cyan-500 hover:border-cyan-500 transition-all duration-300"
+                            aria-label="Close"
+                        >
+                            <span className="text-lg leading-none font-bold transition-all duration-300 group-hover:rotate-180 inline-block">✕</span>
+                        </button>
+
+                        <div className="grid md:grid-cols-[0.8fr,1.2fr] items-stretch min-h-[400px] md:min-h-[500px]">
+                            {/* Left: image */}
+                            <div className="relative bg-black flex items-center justify-center overflow-hidden p-8 md:p-12 md:rounded-l-[2.5rem]">
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 blur-[80px] rounded-full pointer-events-none transition-all duration-1000 group-hover:bg-cyan-500/20"></div>
+                                {posterSrc ? (
+                                    <img
+                                        src={posterSrc}
+                                        alt={event.title || "Coming Soon"}
+                                        className="w-full h-full object-contain relative z-10 transition-transform duration-1000 group-hover:scale-105 rounded-tl-3xl rounded-bl-3xl md:rounded-tl-[2.5rem] md:rounded-bl-[2.5rem]"
+                                    />
+                                ) : (
+                                    <div className="w-full h-64 flex items-center justify-center">
+                                        <span className="text-cyan-400/30 text-6xl font-black">?</span>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Right: content */}
+                            <div className="p-10 md:p-16 flex flex-col justify-center relative z-10 border-l border-white/5 bg-neutral-900">
+                                <h2 className="text-4xl md:text-5xl font-black text-white mb-4 font-russo uppercase leading-none tracking-tight">
+                                    {event.title || "COMING SOON..."}
+                                </h2>
+
+                                <div className="w-16 h-1 bg-cyan-500 mb-12 rounded-full group-hover:w-32 transition-all duration-500"></div>
+
+                                <p className="text-white text-md md:text-xl tracking-[0.2em] font-bold uppercase mb-10 font-inter">
+                                    {event.description || "Something's cooking"}
+                                </p>
+
+                                {/* Date / Time / Venue */}
+                                <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10 mt-auto">
+                                    <div>
+                                        <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">DATE</p>
+                                        <p className="font-semibold text-white font-inter">{event.date ? formatDate(event.date) : "TBA"}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">TIME</p>
+                                        <p className="font-semibold text-white font-inter">{event.time || "TBA"}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">VENUE</p>
+                                        <p className="font-semibold text-white font-inter">{event.venue || "TBA"}</p>
+                                    </div>
+                                </div>
+
+                                {/* REGISTER NOW — only shown if registrationLink exists */}
+                                {event.registrationLink && (
+                                    <motion.a
+                                        href={event.registrationLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileHover={{ scale: 1.04 }}
+                                        whileTap={{ scale: 0.97 }}
+                                        className="group/reg mt-8 inline-flex items-center gap-3 px-10 py-5 bg-cyan-500 text-black text-sm uppercase font-black rounded-2xl font-inter transition-all duration-300 hover:bg-white hover:text-black"
+                                    >
+                                        Register Now
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover/reg:translate-x-1">
+                                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                    </motion.a>
+                                )}
+                            </div>
+                        </div>
+                    </motion.div>
+                ) : (
+                    /* ── Past event modal: white scrollable ── */
+                    <>
+                        <style>{`
+              .event-modal-scroll {
+                scrollbar-width: thin;
+                scrollbar-color: #22d4f5 transparent;
+              }
+              .event-modal-scroll::-webkit-scrollbar { width: 5px; }
+              .event-modal-scroll::-webkit-scrollbar-track { background: transparent; }
+              .event-modal-scroll::-webkit-scrollbar-thumb {
+                background-color: #22d4f5;
+                border-radius: 999px;
+              }
+            `}</style>
+                        <motion.div
+                            key="modal-box"
+                            className="event-modal-scroll relative bg-white text-gray-900 rounded-2xl p-8 w-[90%] max-w-4xl max-h-[85vh] overflow-y-auto shadow-2xl border border-cyan-400/30"
+                            onClick={(e) => e.stopPropagation()}
+                            initial={{ opacity: 0, scale: 0.93, y: 24 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.93, y: 24 }}
+                            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                            {/* Close */}
+                            <button
+                                onClick={onClose}
+                                className="group absolute top-4 right-5 w-9 h-9 flex items-center justify-center rounded-full bg-white border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 transition-colors duration-300"
+                                aria-label="Close"
+                            >
+                                <span className="text-base leading-none font-bold transition-all duration-300 group-hover:rotate-180 group-hover:text-white inline-block" style={{ display: "inline-block" }}>
+                                    ✕
+                                </span>
+                            </button>
+
+                            {/* Title */}
+                            <h2 className="text-3xl font-russo font-black text-center mb-8 text-gray-900 tracking-normal uppercase">
+                                {event.title}
+                            </h2>
+
+                            {/* Gallery slider — only if gallery images exist */}
+                            {showGallery && (
+                                <div className="relative w-full mb-10 overflow-hidden">
+                                    <motion.div
+                                        className="flex gap-6 w-max"
+                                        animate={{ x: [0, -((160 + 24) * galleryImages.length)] }}
+                                        transition={{
+                                            duration: galleryImages.length * 4,
+                                            ease: "linear",
+                                            repeat: Infinity,
+                                        }}
+                                    >
+                                        {[...galleryImages, ...galleryImages].map((src, i) => (
+                                            <div
+                                                key={i}
+                                                className="w-40 h-40 flex-shrink-0 rounded-xl overflow-hidden border border-cyan-400/20"
+                                            >
+                                                <img
+                                                    src={src}
+                                                    alt=""
+                                                    className="w-full h-full object-cover pointer-events-none"
+                                                />
+                                            </div>
+                                        ))}
+                                    </motion.div>
+                                </div>
+                            )}
+
+                            {/* About Event */}
+                            <div className="text-center mb-12">
+                                <h3 className="font-inter text-cyan-400 text-sm md:text-base tracking-[0.35em] uppercase text-center mb-4">
+                                    • ABOUT EVENT •
+                                </h3>
+                                <p className="text-gray-600 max-w-2xl mx-auto">{event.description}</p>
+                            </div>
+
+                            {/* Date / Time / Venue */}
+                            <div className="grid grid-cols-3 text-center gap-6">
+                                <div>
+                                    <p className="text-xs text-cyan-400 tracking-widest">DATE</p>
+                                    <p className="font-semibold text-gray-800">{formatDate(event.date)}</p>
+                                </div>
+                                <div>
+                                    <p className="text-xs text-cyan-400 tracking-widest">TIME</p>
+                                    <p className="font-semibold text-gray-800">{event.time || "—"}</p>
+                                </div>
+                                <div>
+                                    <p className="text-xs text-cyan-400 tracking-widest">VENUE</p>
+                                    <p className="font-semibold text-gray-800">{event.venue || "—"}</p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </motion.div>
+        </AnimatePresence>
+    );
+};
+
+// ─────────────────────────────────────────
+// MAIN PAGE
+// ─────────────────────────────────────────
 export default function Events() {
-    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [upcomingEvent, setUpcomingEvent] = useState(null);
+    const [pastEvents, setPastEvents] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    // Modal state — one modal for both upcoming + past
+    const [activeEvent, setActiveEvent] = useState(null);   // the event object
+    const [activeIsUpcoming, setActiveIsUpcoming] = useState(false);
+
+    const openUpcoming = (event) => {
+        setActiveEvent(event);
+        setActiveIsUpcoming(true);
+    };
+    const openPast = (event) => {
+        setActiveEvent(event);
+        setActiveIsUpcoming(false);
+    };
+    const closeModal = () => {
+        setActiveEvent(null);
+        setActiveIsUpcoming(false);
+    };
+
+    useEffect(() => {
+        console.log("[Events] Fetching all events from Sanity...");
+
+        sanityClient.fetch(ALL_EVENTS_QUERY)
+            .then((allEvents) => {
+                console.log("[Events] Raw Sanity response:", allEvents);
+                console.log("[Events] Total events fetched:", allEvents?.length ?? 0);
+
+                if (!allEvents || allEvents.length === 0) {
+                    console.warn("[Events] No events returned from Sanity. Check _type=='event' documents are published.");
+                    setLoading(false);
+                    return;
+                }
+
+                // Client-side date split — compare "YYYY-MM-DD" strings directly.
+                // Sanity's date field stores "YYYY-MM-DD", which sorts lexicographically
+                // exactly like a calendar date, so string comparison is perfectly safe.
+                const todayStr = new Date().toISOString().split("T")[0]; // "YYYY-MM-DD"
+                console.log("[Events] Today's date string for comparison:", todayStr);
+
+                const past = [];
+                const upcoming = [];
+
+                allEvents.forEach((ev) => {
+                    console.log(`[Events] Event: "${ev.title}" | date field: "${ev.date}" | isPast: ${ev.date < todayStr}`);
+                    if (!ev.date) {
+                        console.warn(`[Events] Event "${ev.title}" has no date field — skipping`);
+                        return;
+                    }
+                    if (ev.date < todayStr) {
+                        past.push(ev);
+                    } else {
+                        upcoming.push(ev);
+                    }
+                });
+
+                // Past: newest first
+                past.sort((a, b) => b.date.localeCompare(a.date));
+                // Upcoming: nearest first → take only first
+                upcoming.sort((a, b) => a.date.localeCompare(b.date));
+
+                console.log("[Events] Past events:", past.length, past.map(e => e.title));
+                console.log("[Events] Upcoming events:", upcoming.length, upcoming.map(e => e.title));
+
+                setPastEvents(past);
+                setUpcomingEvent(upcoming[0] || null);
+            })
+            .catch((err) => {
+                console.error("[Events] Sanity fetch error:", err);
+            })
+            .finally(() => setLoading(false));
+    }, []);
 
     return (
         <div className="relative bg-white min-h-screen overflow-hidden">
 
-            {/* Stain-like Background Shapes */}
+            {/* Background blobs */}
             <div className="fixed inset-0 -z-10 overflow-hidden">
-                {/* Top-right blobs */}
                 <div className="absolute top-0 right-0 w-72 h-72 bg-cyan-400 opacity-20 blur-3xl rounded-[50%_30%_60%_40%] rotate-12"></div>
                 <div className="absolute top-16 right-24 w-56 h-56 bg-cyan-400 opacity-15 blur-3xl rounded-[60%_40%_50%_70%] rotate-45"></div>
-
-                {/* Bottom-left blobs */}
                 <div className="absolute bottom-0 left-0 w-80 h-80 bg-cyan-400 opacity-20 blur-3xl rounded-[70%_30%_60%_50%] rotate-6"></div>
                 <div className="absolute bottom-20 left-16 w-48 h-48 bg-cyan-400 opacity-15 blur-3xl rounded-[60%_50%_30%_70%] rotate-30"></div>
-
-                {/* Center blobs */}
                 <div className="absolute top-1/3 left-1/3 w-64 h-64 bg-cyan-400 opacity-15 blur-3xl rounded-[50%_60%_40%_50%] rotate-12"></div>
                 <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-cyan-400 opacity-10 blur-3xl rounded-[60%_50%_50%_60%] rotate-25"></div>
-
-                {/* Extra small blobs for depth */}
                 <div className="absolute top-1/4 left-3/4 w-24 h-24 bg-cyan-400 opacity-15 blur-3xl rounded-[50%_70%_40%_60%] rotate-10"></div>
                 <div className="absolute bottom-1/3 right-1/2 w-20 h-20 bg-cyan-400 opacity-10 blur-3xl rounded-[60%_50%_70%_40%] rotate-20"></div>
             </div>
 
-            <div className="relative z-10 px-10 py-12">
+            <div className="relative z-10 py-12">
 
-                {/* Header */}
-                <section className="text-center py-16">
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="text-cyan-400 text-xs md:text-sm font-bold tracking-[0.4em] uppercase mb-4"
-                    >
-                        IEEE Computational Intelligence Society · MJCET
-                    </motion.p>
+                {/* ── Header ── */}
+                <section className="relative text-center py-16 px-6 md:px-10 overflow-hidden">
+                    <AnimatedBackground />
+                    <div className="relative z-10">
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="text-cyan-400 text-xs md:text-sm font-bold tracking-[0.4em] uppercase mb-4"
+                        >
+                            IEEE Computational Intelligence Society · MJCET
+                        </motion.p>
 
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.1 }}
-                        className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase leading-relaxed tracking-normal text-black mb-6 font-russo"
-                    >
-                        <span className="block text-black">OUR</span>
-                        <span className="block text-cyan-400 tracking-normal">EVENTS</span>
-                    </motion.h1>
+                        <motion.h1
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.1 }}
+                            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase leading-relaxed tracking-normal text-black mb-6 font-russo"
+                        >
+                            <span className="block text-black">OUR</span>
+                            <span className="block text-cyan-400 tracking-normal">EVENTS</span>
+                        </motion.h1>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                        className="mt-6 text-gray-500 max-w-2xl mx-auto text-lg"
-                    >
-                        Explore our upcoming and past events.
-                    </motion.p>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                            className="mt-6 text-gray-500 max-w-2xl mx-auto text-lg"
+                        >
+                            Explore our upcoming and past events.
+                        </motion.p>
+                    </div>
                 </section>
 
 
-                {/* UPCOMING EVENTS */}
+                {/* ── UPCOMING EVENTS ── */}
                 <section className="relative mb-32 px-6 md:px-10">
                     <AnimatedBackground />
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-20">
                             <motion.p
-                                initial={{ opacity: 0, tracking: '0.1em' }}
-                                whileInView={{ opacity: 1, tracking: '0.3em' }}
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
                                 viewport={{ once: true }}
                                 className="text-cyan-400 text-sm font-bold uppercase mb-4 font-inter"
                             >
@@ -277,10 +478,11 @@ export default function Events() {
                             <div className="mt-6 w-24 h-1 bg-cyan-400 mx-auto rounded-full"></div>
                         </div>
 
-                        <div className="space-y-16">
-                            {upcomingEvents.map((event, index) => (
+                        {loading ? (
+                            <Spinner />
+                        ) : upcomingEvent ? (
+                            <div className="space-y-16">
                                 <motion.div
-                                    key={index}
                                     initial={{ opacity: 0, y: 60 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, margin: "-100px" }}
@@ -290,36 +492,44 @@ export default function Events() {
                                     <div className="absolute inset-0 bg-gradient-to-br from-neutral-800/50 to-transparent pointer-events-none"></div>
                                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 blur-[120px] rounded-full pointer-events-none transition-all duration-1000 group-hover:bg-cyan-500/10"></div>
 
-                                    <div className="grid md:grid-cols-[0.8fr,1.2fr] items-stretch min-h-[500px]">
-                                        <div className="relative bg-black flex items-center justify-center overflow-hidden">
-                                            <div className="w-full aspect-[1/1.414]">
-                                                <img
-                                                    src={event.image}
-                                                    alt={event.title}
-                                                    className="w-full h-full object-cover p-6 md:p-10 transition-transform duration-1000 group-hover:scale-105"
-                                                />
+                                    <div className="grid grid-cols-1 md:grid-cols-[0.8fr,1.2fr] items-stretch min-h-[500px]">
+                                        {/* Image column */}
+                                        <div className="relative bg-black flex items-center justify-center overflow-hidden rounded-t-[2.5rem] md:rounded-t-none md:rounded-l-[2.5rem]">
+                                            <div className="w-full aspect-[1/1.414] p-6 sm:p-8 md:p-10">
+                                                {imgUrl(upcomingEvent.poster) ? (
+                                                    <img
+                                                        src={imgUrl(upcomingEvent.poster)}
+                                                        alt={upcomingEvent.title}
+                                                        className="w-full h-full object-contain transition-transform duration-1000 group-hover:scale-105 rounded-xl md:rounded-none"
+                                                    />
+                                                ) : (
+                                                    <div className="w-full h-full flex items-center justify-center">
+                                                        <span className="text-cyan-400/30 text-7xl font-black">?</span>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
 
-                                        {/* Right Column: Content */}
-                                        <div className="p-10 md:p-16 lg:p-20 flex flex-col justify-center relative z-10 border-l border-white/5">
+                                        {/* Content column */}
+                                        <div className="p-8 md:p-16 lg:p-20 flex flex-col justify-center relative z-10 md:border-l md:border-white/5 border-t border-white/5 md:border-t-0">
                                             <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 font-russo uppercase leading-none tracking-tight">
-                                                {event.title}
+                                                {upcomingEvent.title}
                                             </h3>
 
                                             <div className="w-16 h-1 bg-cyan-500 mb-10 rounded-full group-hover:w-32 transition-all duration-500"></div>
 
                                             <p className="text-neutral-400 text-lg md:text-xl lg:text-2xl leading-relaxed mb-12 font-inter font-light">
-                                                {event.description}
+                                                {upcomingEvent.description}
                                             </p>
 
                                             <div>
                                                 <motion.button
+                                                    onClick={() => openUpcoming(upcomingEvent)}
                                                     whileHover={{ scale: 1.05 }}
                                                     whileTap={{ scale: 0.98 }}
                                                     className="group/btn relative px-10 py-5 bg-white text-black text-sm uppercase font-black rounded-2xl font-inter transition-all duration-300 hover:bg-cyan-400 hover:text-white flex items-center gap-3"
                                                 >
-                                                    Learn More
+                                                    View More
                                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover/btn:translate-x-1">
                                                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                                                     </svg>
@@ -328,19 +538,51 @@ export default function Events() {
                                         </div>
                                     </div>
                                 </motion.div>
-                            ))}
-                        </div>
+                            </div>
+                        ) : (
+                            /* No upcoming event in Sanity → show a "coming soon" placeholder */
+                            <div className="space-y-16">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 60 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                    className="relative group rounded-[2.5rem] border border-neutral-200/50 bg-neutral-900 overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)]"
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-br from-neutral-800/50 to-transparent pointer-events-none"></div>
+                                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 blur-[120px] rounded-full pointer-events-none transition-all duration-1000 group-hover:bg-cyan-500/10"></div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-[0.8fr,1.2fr] items-stretch min-h-[500px]">
+                                        <div className="relative bg-black flex items-center justify-center overflow-hidden rounded-t-[2.5rem] md:rounded-t-none md:rounded-l-[2.5rem]">
+                                            <div className="w-full aspect-[1/1.414] p-6 sm:p-8 md:p-10 flex items-center justify-center">
+                                                <span className="text-cyan-400/20 text-8xl font-black">?</span>
+                                            </div>
+                                        </div>
+                                        <div className="p-8 md:p-16 lg:p-20 flex flex-col justify-center relative z-10 md:border-l md:border-white/5 border-t border-white/5 md:border-t-0">
+                                            <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 font-russo uppercase leading-none tracking-tight">
+                                                COMING SOON
+                                            </h3>
+                                            <div className="w-16 h-1 bg-cyan-500 mb-10 rounded-full group-hover:w-32 transition-all duration-500"></div>
+                                            <p className="text-neutral-400 text-lg md:text-xl lg:text-2xl leading-relaxed mb-12 font-inter font-light">
+                                                The next one's a secret (for now).
+                                            </p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        )}
                     </div>
                 </section>
 
-                {/* PAST EVENTS */}
+
+                {/* ── PAST EVENTS ── */}
                 <section className="relative px-6 md:px-10 mb-20">
                     <AnimatedBackground />
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-16 mt-24">
                             <motion.p
-                                initial={{ opacity: 0, tracking: '0.1em' }}
-                                whileInView={{ opacity: 1, tracking: '0.3em' }}
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
                                 viewport={{ once: true }}
                                 className="text-cyan-400 tracking-[0.35em] text-xs font-bold uppercase mb-4 font-inter"
                             >
@@ -351,148 +593,36 @@ export default function Events() {
                             </h2>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-                            {pastEvents.map((event, index) => (
-                                <PastEventCard
-                                    key={index}
-                                    event={event}
-                                    onRecapClick={setSelectedEvent}
-                                />
-                            ))}
-                        </div>
+                        {loading ? (
+                            <Spinner />
+                        ) : pastEvents.length === 0 ? (
+                            <p className="text-center text-neutral-400 py-16 tracking-widest uppercase text-sm">
+                                No past events yet.
+                            </p>
+                        ) : (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                                {pastEvents.map((event) => (
+                                    <PastEventCard
+                                        key={event._id}
+                                        event={event}
+                                        onRecapClick={openPast}
+                                    />
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </section>
             </div>
 
-
+            {/* ── UNIFIED MODAL ── */}
             <AnimatePresence>
-                {selectedEvent && (
-                    <motion.div
-                        key="modal-backdrop"
-                        className="fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50"
-                        onClick={() => setSelectedEvent(null)}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                    >
-                        {/* MODAL BOX */}
-                        <style>{`
-      .event-modal-scroll {
-        scrollbar-width: thin;
-        scrollbar-color: #22d4f5 transparent;
-      }
-      .event-modal-scroll::-webkit-scrollbar {
-        width: 5px;
-      }
-      .event-modal-scroll::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      .event-modal-scroll::-webkit-scrollbar-thumb {
-        background-color: #22d4f5;
-        border-radius: 999px;
-      }
-    `}</style>
-                        <motion.div
-                            key="modal-box"
-                            className="event-modal-scroll relative bg-white text-gray-900 rounded-2xl p-8 w-[90%] max-w-4xl max-h-[85vh] overflow-y-auto shadow-2xl border border-cyan-400/30"
-                            onClick={(e) => e.stopPropagation()}
-                            initial={{ opacity: 0, scale: 0.93, y: 24 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.93, y: 24 }}
-                            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                        >
-
-                            {/* CLOSE BUTTON */}
-                            <button
-                                onClick={() => setSelectedEvent(null)}
-                                className="group absolute top-4 right-5 w-9 h-9 flex items-center justify-center rounded-full bg-white border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 transition-colors duration-300"
-                                aria-label="Close"
-                            >
-                                <span
-                                    className="text-base leading-none font-bold transition-all duration-300 group-hover:rotate-180 group-hover:text-white inline-block"
-                                    style={{ display: 'inline-block' }}
-                                >
-                                    ✕
-                                </span>
-                            </button>
-
-                            {/* EVENT TITLE */}
-                            <h2 className="text-3xl font-russo font-black text-center mb-8 text-gray-900 tracking-normal uppercase">
-                                {selectedEvent.title}
-                            </h2>
-
-
-                            <div className="relative w-full mb-10 overflow-hidden">
-                                {selectedEvent?.images && selectedEvent.images.length > 0 && (
-                                    <motion.div
-                                        className="flex gap-6 w-max"
-                                        animate={{
-                                            x: [0, -((160 + 24) * selectedEvent.images.length)],
-                                        }}
-                                        transition={{
-                                            duration: selectedEvent.images.length * 4,
-                                            ease: "linear",
-                                            repeat: Infinity,
-                                        }}
-                                    >
-                                        {/* Double duplication for seamless infinite loop */}
-                                        {[...selectedEvent.images, ...selectedEvent.images].map(
-                                            (img, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="w-40 h-40 flex-shrink-0 rounded-xl overflow-hidden border border-cyan-400/20"
-                                                >
-                                                    <img
-                                                        src={img}
-                                                        alt=""
-                                                        className="w-full h-full object-cover pointer-events-none"
-                                                    />
-                                                </div>
-                                            )
-                                        )}
-                                    </motion.div>
-                                )}
-                            </div>
-
-                            {/* ABOUT EVENT */}
-                            <div className="text-center mb-12">
-                                <h3 className="font-inter text-cyan-400 text-sm md:text-base tracking-[0.35em] uppercase text-center mb-4">
-                                    • ABOUT EVENT •
-                                </h3>
-
-                                <p className="text-gray-600 max-w-2xl mx-auto">
-                                    {selectedEvent.description}
-                                </p>
-                            </div>
-
-                            {/* DATE TIMEs ITEM VEENUE */}
-                            <div className="grid grid-cols-3 text-center gap-6">
-
-                                <div>
-                                    <p className="text-xs text-cyan-400 tracking-widest">DATE</p>
-                                    <p className="font-semibold text-gray">
-                                        {selectedEvent.date}
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <p className="text-xs text-cyan-400 tracking-widest">TIME</p>
-                                    <p className="font-semibold text-gray">
-                                        {selectedEvent.time}
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <p className="text-xs text-cyan-400 tracking-widest">VENUE</p>
-                                    <p className="font-semibold text-gray">
-                                        {selectedEvent.venue}
-                                    </p>
-                                </div>
-
-                            </div>
-                        </motion.div>
-                    </motion.div>
+                {activeEvent && (
+                    <EventModal
+                        key={activeEvent._id}
+                        event={activeEvent}
+                        onClose={closeModal}
+                        isUpcoming={activeIsUpcoming}
+                    />
                 )}
             </AnimatePresence>
 

@@ -151,6 +151,15 @@ export default function HorizontalScroll() {
                                 </div>
                             </div>
                         ))}
+
+                        {/*
+                          Trailing spacer — mobile only (md:hidden).
+                          Gives the GSAP scroll track the extra width it needs so the
+                          last card can fully scroll into view before the animation ends.
+                          On desktop the px-12/px-24 card padding already provides
+                          enough clearance, so no spacer is needed there.
+                        */}
+                        <div className="shrink-0 w-6 md:hidden" aria-hidden="true" />
                     </div>
                 </div>
             </div>

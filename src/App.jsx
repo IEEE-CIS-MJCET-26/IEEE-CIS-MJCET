@@ -6,6 +6,8 @@ import Navbar from './components/global/Navbar'
 import Team from './components/pages/Team'
 import Events from './components/pages/Events'
 import Contact from './components/pages/Contact'
+import Blogs from './components/pages/Blogs'
+import BlogDetail from './components/pages/BlogDetail'
 import Footer from './components/global/Footer'
 import NotFound from './components/NotFound'
 import Cursor from './components/Cursor'
@@ -26,6 +28,8 @@ function App() {
             <Route path="/team" element={<Team />} />
             <Route path="/events" element={<Events />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/blogs/:slug" element={<BlogDetail />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />

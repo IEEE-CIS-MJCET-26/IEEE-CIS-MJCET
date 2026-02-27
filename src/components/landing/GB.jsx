@@ -39,7 +39,7 @@ const Marquee = () => {
             const unitWidth = marquee.children[0].offsetWidth;
             animation = gsap.to(marquee, {
                 x: -unitWidth,
-                duration: 25,
+                duration: 20,
                 ease: 'none',
                 repeat: -1,
                 modifiers: {
