@@ -61,29 +61,38 @@ const PastEventCard = ({ event, onRecapClick }) => {
     const posterSrc = imgUrl(event.poster, 600);
 
     return (
-        <div
-            className="group relative hover:translate-y-[-10px] transition-all duration-500 hover:shadow-black bg-gradient-to-br from-blue-50 to-white rounded-[2rem] p-4 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] border border-cyan-400/10 flex flex-col h-full"
-        >
+        <div className="group relative flex flex-col h-full rounded-[1.75rem] overflow-hidden bg-white border border-neutral-200/80 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.08)] hover:shadow-[0_0_0_1.5px_rgba(34,211,238,0.6),0_24px_60px_-8px_rgba(34,211,238,0.2)] hover:-translate-y-2 transition-all duration-500">
+
             {/* Poster Wrapper */}
-            <div className="relative aspect-[3/4] rounded-[1.5rem] bg-white overflow-hidden flex items-center justify-center p-6 transition-colors duration-500">
+            <div className="relative aspect-[3/4] bg-neutral-100 overflow-hidden">
                 {posterSrc ? (
                     <img
                         src={posterSrc}
                         alt={event.title}
-                        className="w-full h-full object-contain rounded-bl-3xl rounded-tl-3xl group:hover-scale:1.05 transition-all duration-500 rounded-xl shadow-[0_12px_40px_-8px_rgba(0,0,0,0.15)] z-10"
+                        className="w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-700 ease-out"
                     />
                 ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-cyan-100 to-blue-100 rounded-xl flex items-center justify-center">
+                    <div className="w-full h-full bg-gradient-to-br from-cyan-100 to-blue-100 flex items-center justify-center">
                         <span className="text-cyan-400/40 text-4xl font-black uppercase tracking-widest">
                             {event.title?.slice(0, 2)}
                         </span>
                     </div>
                 )}
 
-                <div className="absolute top-4 right-4 z-20">
-                    <div className="px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-xl transition-colors border border-white/40 group-hover:border-red-500 shadow-sm flex items-center gap-1.5">
-                        <div className="w-1.5 h-1.5 rounded-full bg-neutral-400 group-hover:bg-red-500"></div>
-                        <span className="text-[10px] font-bold tracking-widest text-neutral-600 group-hover:text-red-500 uppercase font-inter">
+                {/* Dark bottom gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
+
+                {/* Shimmer sweep on hover */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-[900ms] ease-in-out bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none z-10" />
+
+                {/* Concluded badge */}
+                <div className="absolute top-3 right-3 z-20">
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 shadow-lg">
+                        <span className="relative flex h-1.5 w-1.5">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-60"></span>
+                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-400"></span>
+                        </span>
+                        <span className="text-[10px] font-bold tracking-widest text-white/80 uppercase">
                             Concluded
                         </span>
                     </div>
@@ -91,24 +100,30 @@ const PastEventCard = ({ event, onRecapClick }) => {
             </div>
 
             {/* Content Area */}
-            <div className="px-4 pt-6 pb-2 flex flex-col flex-grow bg-white rounded-[1.5rem] mt-3">
-                <h3 className="text-xl font-black text-neutral-900 font-russo uppercase tracking-tight mb-2 leading-tight">
+            <div className="flex flex-col flex-grow px-5 pt-5 pb-5 bg-white relative">
+
+                {/* Cyan accent bar — animated expand */}
+                <div className="w-7 h-[2.5px] bg-gradient-to-r from-cyan-400 to-cyan-300 rounded-full mb-3 group-hover:w-16 transition-all duration-500 ease-out" />
+
+                <h3 className="text-lg font-black text-neutral-900 uppercase tracking-tight leading-snug mb-2 line-clamp-2">
                     {event.title}
                 </h3>
 
-                <p className="text-sm text-neutral-500 font-inter leading-relaxed mb-6 flex-grow line-clamp-2">
+                <p className="text-sm text-neutral-400 leading-relaxed mb-5 flex-grow line-clamp-2">
                     {event.description}
                 </p>
 
+                {/* Sliding fill button */}
                 <motion.button
                     onClick={() => onRecapClick(event)}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="relative w-full py-3.5 rounded-xl border border-neutral-200 bg-transparent text-neutral-900 font-black text-[11px] uppercase tracking-widest font-inter overflow-hidden transition-colors duration-300 group/btn hover:bg-black hover:text-white mb-2"
+                    whileTap={{ scale: 0.97 }}
+                    className="relative w-full py-3 rounded-xl border border-neutral-200 overflow-hidden text-[10px] font-black uppercase tracking-widest transition-all duration-300 group/btn hover:border-cyan-400 flex items-center justify-center gap-2"
                 >
-                    <span className="relative z-10 font-russo text-cyan-500 flex items-center justify-center gap-2">
+                    {/* Sliding background fill */}
+                    <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-cyan-500 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 ease-out rounded-xl" />
+                    <span className="relative z-10 text-neutral-500 group-hover/btn:text-white transition-colors duration-300 flex items-center gap-2">
                         View Recap
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover/btn:translate-x-1">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover/btn:translate-x-1">
                             <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </span>
@@ -117,6 +132,8 @@ const PastEventCard = ({ event, onRecapClick }) => {
         </div>
     );
 };
+
+
 
 // ─────────────────────────────────────────
 // UNIFIED EVENT MODAL
@@ -245,82 +262,111 @@ const EventModal = ({ event, onClose, isUpcoming = false }) => {
                 border-radius: 999px;
               }
             `}</style>
+                        {/* Outer shell: clips rounded corners so scrollbar stays inside */}
                         <motion.div
                             key="modal-box"
-                            className="event-modal-scroll relative bg-white text-gray-900 rounded-2xl p-8 w-[90%] max-w-4xl max-h-[85vh] overflow-y-auto shadow-2xl border border-cyan-400/30"
+                            className="relative w-[92%] max-w-4xl max-h-[88vh] rounded-3xl overflow-hidden shadow-[0_0_0_1px_rgba(34,211,238,0.2),0_32px_80px_-16px_rgba(0,0,0,0.2)] border border-cyan-400/20"
                             onClick={(e) => e.stopPropagation()}
                             initial={{ opacity: 0, scale: 0.93, y: 24 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.93, y: 24 }}
                             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         >
-                            {/* Close */}
-                            <button
-                                onClick={onClose}
-                                className="group absolute top-4 right-5 w-9 h-9 flex items-center justify-center rounded-full bg-white border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 transition-colors duration-300"
-                                aria-label="Close"
-                            >
-                                <span className="text-base leading-none font-bold transition-all duration-300 group-hover:rotate-180 group-hover:text-white inline-block" style={{ display: "inline-block" }}>
-                                    ✕
-                                </span>
-                            </button>
+                            {/* Inner scrollable area */}
+                            <div className="event-modal-scroll bg-white text-gray-900 overflow-y-auto max-h-[88vh] p-8 md:p-10">
 
-                            {/* Title */}
-                            <h2 className="text-3xl font-russo font-black text-center mb-8 text-gray-900 tracking-normal uppercase">
-                                {event.title}
-                            </h2>
+                                {/* Close */}
+                                <button
+                                    onClick={onClose}
+                                    className="group absolute top-5 right-5 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-neutral-100 border border-neutral-200 text-neutral-500 hover:bg-cyan-400 hover:border-cyan-400 hover:text-white transition-all duration-300"
+                                    aria-label="Close"
+                                >
+                                    <span className="text-sm leading-none font-bold transition-all duration-300 group-hover:rotate-90 inline-block">
+                                        ✕
+                                    </span>
+                                </button>
 
-                            {/* Gallery slider — only if gallery images exist */}
-                            {showGallery && (
-                                <div className="relative w-full mb-10 overflow-hidden">
-                                    <motion.div
-                                        className="flex gap-6 w-max"
-                                        animate={{ x: [0, -((160 + 24) * galleryImages.length)] }}
-                                        transition={{
-                                            duration: galleryImages.length * 4,
-                                            ease: "linear",
-                                            repeat: Infinity,
-                                        }}
-                                    >
-                                        {[...galleryImages, ...galleryImages].map((src, i) => (
-                                            <div
-                                                key={i}
-                                                className="w-40 h-40 flex-shrink-0 rounded-xl overflow-hidden border border-cyan-400/20"
-                                            >
-                                                <img
-                                                    src={src}
-                                                    alt=""
-                                                    className="w-full h-full object-cover pointer-events-none"
-                                                />
+                                {/* Title */}
+                                <div className="text-center mb-8">
+                                    <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight leading-tight mb-3" style={{ background: 'linear-gradient(135deg, #111827 40%, #22d3ee)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                                        {event.title}
+                                    </h2>
+                                    <div className="flex items-center justify-center gap-3">
+                                        <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-cyan-400" />
+                                        <div className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
+                                        <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-cyan-400" />
+                                    </div>
+                                </div>
+
+                                {/* Gallery slider — only if gallery images exist */}
+                                {showGallery && (
+                                    <div className="mb-10">
+                                        {/* Gallery label */}
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <div className="h-[1.5px] flex-1 bg-gradient-to-r from-transparent to-cyan-400/30" />
+                                            <span className="text-[11px] font-black tracking-[0.4em] text-cyan-400 uppercase">Gallery</span>
+                                            <div className="h-[1.5px] flex-1 bg-gradient-to-l from-transparent to-cyan-400/30" />
+                                        </div>
+
+                                        {/* Gallery container — no fade edges */}
+                                        <div className="rounded-2xl border border-cyan-400/10 bg-neutral-50 py-4 overflow-hidden">
+                                            {/* ── INFINITE LOOP — DO NOT TOUCH ── */}
+                                            <div className="relative w-full overflow-hidden">
+                                                <motion.div
+                                                    className="flex gap-6 w-max"
+                                                    animate={{ x: [0, -((160 + 24) * galleryImages.length)] }}
+                                                    transition={{
+                                                        duration: galleryImages.length * 4,
+                                                        ease: "linear",
+                                                        repeat: Infinity,
+                                                    }}
+                                                >
+                                                    {[...galleryImages, ...galleryImages].map((src, i) => (
+                                                        <div
+                                                            key={i}
+                                                            className="w-40 h-40 flex-shrink-0 rounded-xl overflow-hidden border border-cyan-400/20"
+                                                        >
+                                                            <img
+                                                                src={src}
+                                                                alt=""
+                                                                className="w-full h-full object-cover pointer-events-none"
+                                                            />
+                                                        </div>
+                                                    ))}
+                                                </motion.div>
                                             </div>
-                                        ))}
-                                    </motion.div>
-                                </div>
-                            )}
+                                            {/* ── END INFINITE LOOP ── */}
+                                        </div>
+                                    </div>
+                                )}
 
-                            {/* About Event */}
-                            <div className="text-center mb-12">
-                                <h3 className="font-inter text-cyan-400 text-sm md:text-base tracking-[0.35em] uppercase text-center mb-4">
-                                    • ABOUT EVENT •
-                                </h3>
-                                <p className="text-gray-600 max-w-2xl mx-auto">{event.description}</p>
-                            </div>
+                                {/* About Event */}
+                                <div className="mb-10">
+                                    <div className="flex items-center gap-3 mb-5">
+                                        <div className="h-[1.5px] flex-1 bg-gradient-to-r from-transparent to-cyan-400/40" />
+                                        <span className="text-[11px] font-black tracking-[0.4em] text-cyan-400 uppercase">About Event</span>
+                                        <div className="h-[1.5px] flex-1 bg-gradient-to-l from-transparent to-cyan-400/40" />
+                                    </div>
+                                    <p className="text-gray-500 text-sm md:text-[15px] leading-[1.9] text-center max-w-2xl mx-auto font-medium tracking-wide">{event.description}</p>
+                                </div>
 
-                            {/* Date / Time / Venue */}
-                            <div className="grid grid-cols-3 text-center gap-6">
-                                <div>
-                                    <p className="text-xs text-cyan-400 tracking-widest">DATE</p>
-                                    <p className="font-semibold text-gray-800">{formatDate(event.date)}</p>
+                                {/* Date / Time / Venue */}
+                                <div className="grid grid-cols-3 gap-4 mt-8">
+                                    <div className="flex flex-col items-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm">
+                                        <p className="text-[9px] font-black tracking-[0.35em] text-cyan-500 uppercase mb-2">Date</p>
+                                        <p className="font-black text-gray-900 text-sm text-center leading-snug">{formatDate(event.date)}</p>
+                                    </div>
+                                    <div className="flex flex-col items-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm">
+                                        <p className="text-[9px] font-black tracking-[0.35em] text-cyan-500 uppercase mb-2">Time</p>
+                                        <p className="font-black text-gray-900 text-sm text-center leading-snug">{event.time || "—"}</p>
+                                    </div>
+                                    <div className="flex flex-col items-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm">
+                                        <p className="text-[9px] font-black tracking-[0.35em] text-cyan-500 uppercase mb-2">Venue</p>
+                                        <p className="font-black text-gray-900 text-sm text-center leading-snug">{event.venue || "—"}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p className="text-xs text-cyan-400 tracking-widest">TIME</p>
-                                    <p className="font-semibold text-gray-800">{event.time || "—"}</p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-cyan-400 tracking-widest">VENUE</p>
-                                    <p className="font-semibold text-gray-800">{event.venue || "—"}</p>
-                                </div>
-                            </div>
+
+                            </div>{/* end inner scroll */}
                         </motion.div>
                     </>
                 )}

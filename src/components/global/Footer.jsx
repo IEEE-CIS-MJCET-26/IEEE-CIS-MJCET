@@ -34,7 +34,7 @@ export default function Footer() {
     const developers = [
         { name: 'Mohammed Nouman', role: 'Web Master', initials: 'MN', color: '#22d3ee', image: noumanImg, imageStyle: { scale: '1.75', objectPosition: 'center 15%' } },
         { name: 'Abdul Hafeez', role: 'Chairman', initials: 'AH', color: '#2481fb', image: hafeezImg, imageStyle: { scale: '1.5', objectPosition: 'center 0%' } },
-        { name: 'Mohammed Arfan', role: 'Tech Head', initials: 'MA', color: '#818cf8', image: arfanImg, imageStyle: { scale: '1.75', objectPosition: 'center 15%' } },
+        { name: 'Mohammed Arfan', role: 'Tech Head', initials: 'MA', color: '#818cf8', image: arfanImg, imageStyle: { scale: '1.3', objectPosition: 'center center' } },
         { name: 'Abdullah Quadri', role: 'Associate Tech Head', initials: 'AQ', color: '#34d399', image: '/assets/team/execom/Abdullah.jpg', imageStyle: { scale: '1.1', objectPosition: 'center 10%' } },
         { name: 'Mohammed Ozier Nawaz', role: 'Tech Core', initials: 'ON', color: '#f472b6', image: '/assets/team/core/ozier.jpeg', imageStyle: { scale: '1.1', objectPosition: 'center top' } },
         { name: 'Zaina Tahniyat', role: 'Tech Core', initials: 'ZT', color: '#fb923c', image: '/assets/team/core/ZAINA TAHNIYATH.jpg', imageStyle: { scale: '1.1', objectPosition: 'center top' } },
