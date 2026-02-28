@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/assets/Blue_BlackLogo - Transparent BG.png" width="220px" alt="IEEE CIS MJCET Logo" />
+<img src="public/assets/readme-logo.jpg" width="220px" alt="IEEE CIS MJCET Logo" />
 
 <br/>
 <br/>
