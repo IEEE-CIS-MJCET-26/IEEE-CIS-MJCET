@@ -1,41 +1,48 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet"></link>
+
 
 const Marque = () => {
-    // Repeat text enough times to ensure no gaps on any screen size
-    const text = "BUILD.CREATE.INNOVATE.".repeat(20);
+    const text = "  BUILD.CREATE.INNOVATE. ".repeat(20);
 
     return (
         <div className="w-full overflow-hidden">
-            {/* Top Row - Right to Left */}
             <MarqueeRow text={text} direction="left" />
-
-            {/* Bottom Row - Left to Right */}
             <MarqueeRow text={text} direction="right" />
         </div>
     );
 };
 
 const MarqueeRow = ({ text, direction }) => {
-    // Animation duration - adjust for speed (lower = faster)
     const duration = 10;
 
     return (
-        <div className="relative bg-cyan-400 border-t border-b border-white py-1 md:py-2 lg:py-2 overflow-hidden">
+        <div className="relative bg-black py-3 overflow-hidden">
             <motion.div
                 className="flex whitespace-nowrap"
                 animate={{
                     x: direction === "left" ? [0, "-50%"] : ["-50%", 0]
                 }}
                 transition={{
-                    duration: duration,
+                    duration,
                     repeat: Infinity,
                     ease: "linear"
                 }}
             >
-                {/* Duplicate text twice for seamless loop */}
-                <span className="marquee-text text-xl md:text-2xl lg:text-3xl leading-none font-stalinist ">{text}</span>
-                <span className="marquee-text text-xl md:text-2xl lg:text-3xl leading-none font-stalinist ">{text}</span>
+                <span
+                    className="text-cyan-400 text-2xl md:text-3xl lg:text-4xl leading-none tracking-widest uppercase not-italic font-bold"
+                    style={{ fontFamily: "Orbitron, sans-serif", fontStyle: "normal" }}
+                >
+                    {text}
+                </span>
+
+                <span
+                    className="text-cyan-400 text-2xl md:text-3xl lg:text-4xl leading-none tracking-widest uppercase not-italic font-bold"
+                    style={{ fontFamily: "Orbitron, sans-serif", fontStyle: "normal" }}
+                >
+                    {text}
+                </span>
             </motion.div>
         </div>
     );

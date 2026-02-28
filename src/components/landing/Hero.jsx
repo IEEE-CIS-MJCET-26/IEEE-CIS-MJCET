@@ -29,9 +29,9 @@ export default function Hero() {
     const desktopImages = [
         'football.jpeg',
         'fwf.jpg',
-        'joy.jpg',
-        'oldays.jpg',
         'main5.JPG',
+        'oldays.jpg',
+        'main1.png',
     ]
 
     // Mobile images
@@ -42,7 +42,8 @@ export default function Hero() {
         'video alchemy.jpg',
         'pressL.jpg',
         'ismail.JPG',
-        'teams.jpeg',
+        'main3.png'
+//'teams.jpeg',
     ]
 
     // Select the appropriate image set

@@ -105,10 +105,10 @@ export default function Footer() {
                             <div>
                                 <h4 className="font-semibold cursor-pointer mb-1">WORK WITH US</h4>
                                 <a
-                                    href="mailto:ieeecis@gmail.com"
+                                    href="mailto:ieeecismjcet@gmail.com"
                                     className="text-gray-300 text-sm hover:text-cyan-400 transition-colors duration-300 cursor-pointer"
                                 >
-                                    Email: ieeecis@gmail.com
+                                    Email: ieeecismjcet@gmail.com
                                 </a>
                             </div>
                         </div>

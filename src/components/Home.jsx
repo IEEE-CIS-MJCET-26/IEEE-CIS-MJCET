@@ -5,13 +5,15 @@ import FacultyAdvisor from './landing/FacultyAdvisor'
 import GB from './landing/GB'
 import FAQs from './landing/FAQs'
 import Marque from './landing/marque'
+import Carousel from './landing/Carousel'
 
 export default function Home() {
     return (
         <>
             <Hero />
             <About />
-            <HorizontalScroll />
+            <Carousel/>
+            {/*<HorizontalScroll />*/}
             <FacultyAdvisor />
             <GB />
             <FAQs />

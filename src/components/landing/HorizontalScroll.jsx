@@ -53,6 +53,7 @@ const activities = [
     }
 ]
 
+
 export default function HorizontalScroll() {
     const sectionRef = useRef(null)
     const pinRef = useRef(null)
@@ -166,3 +167,4 @@ export default function HorizontalScroll() {
         </section>
     )
 }
+
