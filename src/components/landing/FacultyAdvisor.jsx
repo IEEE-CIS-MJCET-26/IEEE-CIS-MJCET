@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion'
-import { Linkedin, Mail } from 'lucide-react';
+import { Linkedin, Mail, GraduationCap, Scroll } from 'lucide-react';
 const FacultyAdvisor = () => {
     return (
         <section className="relative py-20 px-6 md:px-12">
@@ -103,15 +103,15 @@ const FacultyAdvisor = () => {
                                     Ms. Sayyeda Hajera Begum
                                 </h3>
                                 <i className="text-neutral-400 font-italic text-base md:text-lg mb-4  tracking-widest">
-                                    (Associate Professor, Department of Information Technology)
+                                    (Assistant Professor, Department of Information Technology)
                                 </i>
 
                                 <div className="w-16 h-1 bg-neutral-700 mb-4"></div>
 
                                 <p className="text-neutral-900 text-sm md:text-base leading-relaxed font-medium mb-6">
-                                    Ms. Sayyeda Hajera Begum is an Associate Professor in the Department of Information Technology at Muffakham Jah College of Engineering and Technology (MJCET), Hyderabad, India. She has over 15 years of academic experience in teaching and mentoring undergraduate students.
+                                    Ms. Hajera has been serving as an Assistant Professor at Muffakham Jah College of Engineering and Technology since 2007, bringing over 18 years of academic experience and more than 10 years of research expertise. Her research interests span Artificial Intelligence and Machine Learning (AIML), Deep Learning, Medical Data Research, Computer Vision, and Big Data Analytics, with a focus on applying advanced AI techniques to real-world problems — particularly in medical and healthcare domains.
                                     <br /> <br />
-                                    She is currently pursuing her Ph.D. at KL University, Vijayawada. She serves as the Faculty Advisor for the IEEE Computational Intelligence Society (IEEE-CIS) Student Branch at MJCET. In addition, she is the Faculty Facilitator for WE-HUB, a Government of Telangana initiative aimed at supporting and promoting women entrepreneurs.
+                                    She holds a Master's degree in Software Engineering from JNTU, Hyderabad, and a Ph.D. from KL University, Vijayawada. She serves as the Faculty Advisor for IEEE CIS, organizing technical workshops, expert talks, and research-oriented initiatives for students. She is also the Faculty Facilitator for WE Hub under the Government of Telangana's WE-Enable Program, empowering women entrepreneurs. She has published over 20 research papers in reputed national and international journals and conferences.
                                 </p>
 
                                 {/* Action Buttons */}
@@ -122,7 +122,7 @@ const FacultyAdvisor = () => {
                                         rel="noopener noreferrer"
                                         className="flex items-center gap-2 px-4 py-1 border border-neutral-700 rounded-xl text-neutral-300 font-bold hover:bg-white hover:text-black hover:border-cyan-400 transition-all duration-300 group"
                                     >
-                                        <Linkedin size={20} className="text-neutral-500  group-hover:text-black transition-colors" />
+                                        <Linkedin size={20} className="text-neutral-500 group-hover:text-black transition-colors" />
                                         LinkedIn
                                     </a>
                                     <a
@@ -131,6 +131,24 @@ const FacultyAdvisor = () => {
                                     >
                                         <Mail size={20} className="text-neutral-500 group-hover:text-black transition-colors" />
                                         Email
+                                    </a>
+                                    <a
+                                        href="https://scholar.google.com/citations?user=Rdaz5ssAAAAJ&hl=en&authuser=1"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-2 px-4 py-1 border border-neutral-700 rounded-xl text-neutral-300 font-bold hover:bg-white hover:text-black hover:border-cyan-400 transition-all duration-300 group"
+                                    >
+                                        <GraduationCap size={20} className="text-neutral-500 group-hover:text-black transition-colors" />
+                                        Google Scholar
+                                    </a>
+                                    <a
+                                        href="https://www.scopus.com/authid/detail.uri?authorId=57226058502"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-2 px-4 py-1 border border-neutral-700 rounded-xl text-neutral-300 font-bold hover:bg-white hover:text-black hover:border-cyan-400 transition-all duration-300 group"
+                                    >
+                                        <Scroll size={20} className="text-neutral-500 group-hover:text-black transition-colors" />
+                                        Scopus
                                     </a>
                                 </div>
                             </div>
