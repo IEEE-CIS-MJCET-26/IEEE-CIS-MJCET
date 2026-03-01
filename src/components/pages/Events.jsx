@@ -109,7 +109,7 @@ const PastEventCard = ({ event, onRecapClick }) => {
                     {event.title}
                 </h3>
 
-                <p className="text-sm text-neutral-400 leading-relaxed mb-5 flex-grow line-clamp-2">
+                <p className="text-sm text-neutral-700 leading-relaxed mb-5 flex-grow line-clamp-2">
                     {event.description}
                 </p>
 
