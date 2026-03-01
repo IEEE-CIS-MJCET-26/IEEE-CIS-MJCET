@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet"></link>
 
 
 const Marque = () => {
@@ -32,14 +31,14 @@ const MarqueeRow = ({ text, direction }) => {
             >
                 <span
                     className="text-cyan-400 text-2xl md:text-3xl lg:text-4xl leading-none tracking-widest uppercase not-italic font-bold"
-                    style={{ fontFamily: "Orbitron, sans-serif", fontStyle: "normal" }}
+                    style={{ fontFamily: "'Zen Dots', sans-serif", fontStyle: "normal" }}
                 >
                     {text}
                 </span>
 
                 <span
                     className="text-cyan-400 text-2xl md:text-3xl lg:text-4xl leading-none tracking-widest uppercase not-italic font-bold"
-                    style={{ fontFamily: "Orbitron, sans-serif", fontStyle: "normal" }}
+                    style={{ fontFamily: "'Zen Dots', sans-serif", fontStyle: "normal" }}
                 >
                     {text}
                 </span>
