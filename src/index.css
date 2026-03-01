@@ -107,4 +107,54 @@
   .z-footer {
     z-index: 2;
   }
+
+  /* ── Stat card futuristic animations ─────────────────────────── */
+  @keyframes stat-glow-pulse {
+
+    0%,
+    100% {
+      opacity: 0.55;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .animate-stat-glow-pulse {
+    animation: stat-glow-pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes stat-shimmer {
+    0% {
+      transform: translateX(-100%) skewX(-12deg);
+    }
+
+    100% {
+      transform: translateX(220%) skewX(-12deg);
+    }
+  }
+
+  .animate-stat-shimmer {
+    animation: stat-shimmer 1.8s ease-in-out;
+  }
+
+  @keyframes stat-border-spin {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-stat-border-spin {
+    background-size: 200% 200%;
+    animation: stat-border-spin 3s linear infinite;
+  }
 }

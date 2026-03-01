@@ -97,7 +97,7 @@ export default function HorizontalScroll() {
   const infiniteCards = [...activities, ...activities];
 
   return (
-    <section className="w-full overflow-hidden py-16">
+    <section className="w-full md:mt-6 mt-2 overflow-hidden py-16">
       <div
         ref={trackRef}
         onMouseEnter={slowDown}

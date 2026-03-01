@@ -86,7 +86,7 @@ const FacultyAdvisor = () => {
                              bg-neutral-900/20 
                              flex items-center justify-center">
 
-                            <div className="relative w-full h-[300px] md:h-auto md:self-stretch md:min-h-[340px] overflow-hidden">
+                            <div className="relative w-full h-[260px] md:h-auto md:self-stretch md:min-h-[260px] overflow-hidden">
                                 <img
                                     src="/HSImages/Madam.png"
                                     alt="Ms. Sayyeda Hajera Begum"
@@ -97,18 +97,18 @@ const FacultyAdvisor = () => {
                         </div>
 
                         {/* Right: Content Section */}
-                        <div className="w-full md:w-[55%] lg:w-[58%] p-5 md:p-6 lg:p-8 flex flex-col justify-center">
+                        <div className="w-full md:w-[55%] lg:w-[58%] p-4 md:p-5 lg:p-6 flex flex-col justify-center">
                             <div>
-                                <h3 className="text-2xl md:text-3xl lg:text-4xl font-black mb-2 tracking-tight">
+                                <h3 className="text-xl md:text-2xl lg:text-3xl font-black mb-1 tracking-tight">
                                     Ms. Sayyeda Hajera Begum
                                 </h3>
-                                <i className="text-neutral-400 font-italic text-base md:text-lg mb-4  tracking-widest">
+                                <i className="text-neutral-400 font-italic text-sm md:text-base mb-3 tracking-widest">
                                     (Assistant Professor, Department of Information Technology)
                                 </i>
 
-                                <div className="w-16 h-1 bg-neutral-700 mb-4"></div>
+                                <div className="w-16 h-1 bg-neutral-700 mb-3"></div>
 
-                                <p className="text-neutral-900 text-sm md:text-base leading-relaxed font-medium mb-6">
+                                <p className="text-neutral-900 text-xs md:text-sm leading-snug font-medium mb-4">
                                     Ms. Hajera has been serving as an Assistant Professor at Muffakham Jah College of Engineering and Technology since 2007, bringing over 18 years of academic experience and more than 10 years of research expertise. Her research interests span Artificial Intelligence and Machine Learning (AIML), Deep Learning, Medical Data Research, Computer Vision, and Big Data Analytics, with a focus on applying advanced AI techniques to real-world problems — particularly in medical and healthcare domains.
                                     <br /> <br />
                                     She holds a Master's degree in Software Engineering from JNTU, Hyderabad, and a Ph.D. from KL University, Vijayawada. She serves as the Faculty Advisor for IEEE CIS, organizing technical workshops, expert talks, and research-oriented initiatives for students. She is also the Faculty Facilitator for WE Hub under the Government of Telangana's WE-Enable Program, empowering women entrepreneurs. She has published over 20 research papers in reputed national and international journals and conferences.
