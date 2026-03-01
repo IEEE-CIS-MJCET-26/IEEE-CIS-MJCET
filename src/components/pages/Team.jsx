@@ -606,7 +606,7 @@ const SectionHeading = ({ eyebrow, title, subtitle }) => {
 // PAGE HERO
 // ─────────────────────────────────────────
 const TeamHero = () => (
-    <section className="relative min-h-[60vh] md:mt-16 mt-2 flex flex-col items-center justify-center px-6 bg-white overflow-hidden">
+    <section className="relative min-h-[60vh] md:mt-20 mt-2 flex flex-col items-center justify-center px-6 bg-white overflow-hidden">
         <AnimatedBackground />
 
         <div className="relative z-10 text-center max-w-4xl mx-auto">

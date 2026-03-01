@@ -161,7 +161,7 @@ export default function About() {
     return (
         <section
             ref={sectionRef}
-            className="relative bg-white text-black overflow-hidden"
+            className="relative z-10 bg-white text-black"
         >
             <div
                 ref={pinWrapperRef}

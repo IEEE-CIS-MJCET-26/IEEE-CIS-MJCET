@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Mail, Phone, Linkedin, Instagram, X, CheckCircle } from 'lucide-react';
+import { MapPin, Mail, Phone, Linkedin, Instagram, Github, X, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import DotGrid from './DotGrid';
@@ -296,6 +296,14 @@ const Contact = () => {
                                     className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-cyan-400 hover:text-white transition-all duration-300"
                                 >
                                     <Instagram size={20} />
+                                </a>
+                                <a
+                                    href="https://github.com/IEEE-CIS-MJCET-26"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-cyan-400 hover:text-white transition-all duration-300"
+                                >
+                                    <Github size={20} />
                                 </a>
                             </div>
                         </div>

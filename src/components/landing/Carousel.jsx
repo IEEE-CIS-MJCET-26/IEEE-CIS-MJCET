@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 const activities = [
-  
+
   {
     title: "TECHNICAL WORKSHOPS",
     description:
@@ -28,31 +28,31 @@ const activities = [
     image: "/HSImages/Hackathons.png",
   },
   {
-        title: "INTERNAL TEAM BONDING SESSIONS",
-        description: "We build team spirit through football, iftars, lunches, and fun internal games.",
-        image: "/HSImages/Internal.png"
-    },
-    {
-        title: "INDUSTRIAL TRIPS",
-        description: "We organize industry and company visits to explore real-world technologies.",
-        image: "/HSImages/Field Trips.png"
-    },
-    {
-        title: "PRESS SEGMENTS",
-        description: "We host interviews and press segments to share inspiring real-world stories.",
-        image: "/HSImages/press.jpg"
-    },
-    {
-        title: "DONATION DRIVES",
-        description: "We run winter and Ramadan donation drives supporting underprivileged communities.",
-        image: "/HSImages/Drives.png"
-    },
-    {
-        title: "inCISive",
-        description: "Our first magazine showcases achievements and key moments of our journey.",
-        image: "/HSImages/incisive.png",
-        link: "https://heyzine.com/flip-book/15d3f672a5.html#page/1"
-    },
+    title: "INTERNAL TEAM BONDING SESSIONS",
+    description: "We build team spirit through football, iftars, lunches, and fun internal games.",
+    image: "/HSImages/Internal.png"
+  },
+  {
+    title: "INDUSTRIAL TRIPS",
+    description: "We organize industry and company visits to explore real-world technologies.",
+    image: "/HSImages/Field Trips.png"
+  },
+  {
+    title: "PRESS SEGMENTS",
+    description: "We host interviews and press segments to share inspiring real-world stories.",
+    image: "/HSImages/press.jpg"
+  },
+  {
+    title: "DONATION DRIVES",
+    description: "We run winter and Ramadan donation drives supporting underprivileged communities.",
+    image: "/HSImages/Drives.png"
+  },
+  {
+    title: "inCISive",
+    description: "Our first magazine showcases achievements and key moments of our journey.",
+    image: "/HSImages/incisive.png",
+    link: "https://heyzine.com/flip-book/15d3f672a5.html#page/1"
+  },
 ];
 
 export default function HorizontalScroll() {
@@ -97,7 +97,7 @@ export default function HorizontalScroll() {
   const infiniteCards = [...activities, ...activities];
 
   return (
-    <section className="w-full md:mt-6 mt-2 overflow-hidden py-16">
+    <section className="relative z-0 w-full md:mt-6 mt-2 overflow-hidden py-16">
       <div
         ref={trackRef}
         onMouseEnter={slowDown}
@@ -147,8 +147,8 @@ export default function HorizontalScroll() {
 
             {/* Content */}
             <div className="absolute bottom-10 left-10 right-10 text-white space-y-4">
-              
-                <h3 className="
+
+              <h3 className="
                 text-2xl
                 sm:text-3xl
                 lg:text-4xl
@@ -157,7 +157,7 @@ export default function HorizontalScroll() {
                 {item.title}
               </h3>
 
-            <p className="
+              <p className="
             text-sm
             sm:text-base
             lg:text-lg

@@ -14,6 +14,37 @@ export default {
         { name: 'time', title: 'Time', type: 'string' },
         { name: 'venue', title: 'Venue', type: 'string' },
         {
+            name: 'tenure',
+            title: 'Tenure',
+            type: 'string',
+            description: 'Which academic year did this event belong to?',
+            options: {
+                list: [
+                    { title: '2025–26', value: '2025-26' },
+                    { title: '2024–25', value: '2024-25' },
+                    { title: '2023–24', value: '2023-24' },
+                    { title: '2022–23', value: '2022-23' },
+                ],
+                layout: 'radio',
+            },
+        },
+        {
+            name: 'category',
+            title: 'Category',
+            type: 'string',
+            description: 'What type of event is this?',
+            options: {
+                list: [
+                    { title: 'Technical', value: 'Technical' },
+                    { title: 'Fun', value: 'Fun' },
+                    { title: 'Humanitarian Drive / Initiative', value: 'Humanitarian' },
+                    { title: 'Annual Day', value: 'Annual Day' },
+                    { title: 'Industrial / Outreach Trip', value: 'Industrial' },
+                ],
+                layout: 'radio',
+            },
+        },
+        {
             name: 'poster',
             title: 'Poster (A3)',
             type: 'image',
@@ -42,6 +73,14 @@ export default {
             title: 'Date, Newest First',
             name: 'dateDesc',
             by: [{ field: 'date', direction: 'desc' }]
+        },
+        {
+            title: 'Tenure, then Date (Newest First)',
+            name: 'tenureDateDesc',
+            by: [
+                { field: 'tenure', direction: 'desc' },
+                { field: 'date', direction: 'desc' }
+            ]
         }
     ]
 }

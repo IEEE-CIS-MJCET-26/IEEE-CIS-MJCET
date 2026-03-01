@@ -247,7 +247,7 @@ export default function Blogs() {
         <div className="bg-white min-h-screen text-white">
 
             {/* ── Hero ── */}
-            <section className="relative min-h-[50vh] md:mt-12 mt-4 flex flex-col items-center justify-center px-6 overflow-hidden">
+            <section className="relative min-h-[50vh] md:mt-14 mt-4 flex flex-col items-center justify-center px-6 overflow-hidden">
                 <AnimatedBackground />
 
                 <div className="relative z-10 text-center max-w-4xl mx-auto">

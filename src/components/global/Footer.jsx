@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Linkedin, Instagram, ArrowUpRight } from 'lucide-react'
+import { Linkedin, Instagram, Github, ArrowUpRight } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import noumanImg from '../../assets/GB PICS/WEB MASTER.png'
 import hafeezImg from '../../assets/GB PICS/Abdul Hafeez.png'
@@ -73,6 +73,14 @@ export default function Footer() {
                                 className="text-gray-400 hover:text-cyan-400 transition-colors duration-300 cursor-pointer"
                             >
                                 <Instagram size={24} />
+                            </a>
+                            <a
+                                href="https://github.com/IEEE-CIS-MJCET-26"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-400 hover:text-cyan-400 transition-colors duration-300 cursor-pointer"
+                            >
+                                <Github size={24} />
                             </a>
                         </div>
                     </div>

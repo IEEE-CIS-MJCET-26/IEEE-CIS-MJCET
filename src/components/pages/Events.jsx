@@ -20,7 +20,7 @@ import { urlFor } from "../../lib/sanityImage";
 //
 const ALL_EVENTS_QUERY = `*[_type=="event"] | order(date asc) {
   _id, title, date, time, venue, description,
-  poster, gallery, registrationLink
+  poster, gallery, registrationLink, tenure, category
 }`;
 
 // ─────────────────────────────────────────
@@ -154,7 +154,7 @@ const EventModal = ({ event, onClose, isUpcoming = false }) => {
                 key="modal-backdrop"
                 className={
                     isUpcoming
-                        ? "fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50 p-4 md:p-10"
+                        ? "fixed inset-0 bg-black/60 backdrop-blur-md flex items-start justify-center z-50 p-4 md:p-10 overflow-y-auto"
                         : "fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50"
                 }
                 onClick={onClose}
@@ -163,94 +163,8 @@ const EventModal = ({ event, onClose, isUpcoming = false }) => {
                 exit={{ opacity: 0 }}
                 transition={{ duration: isUpcoming ? 0.3 : 0.25, ease: "easeInOut" }}
             >
-                {isUpcoming ? (
-                    /* ── Upcoming modal: dark split-layout ── */
-                    <motion.div
-                        key="upcoming-modal-box"
-                        className="group relative bg-neutral-900 rounded-[2.5rem] w-full max-w-5xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] border border-neutral-200/20"
-                        onClick={(e) => e.stopPropagation()}
-                        initial={{ opacity: 0, scale: 0.93, y: 24 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.93, y: 24 }}
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                        {/* Close */}
-                        <button
-                            onClick={onClose}
-                            className="group absolute top-6 right-6 z-50 w-10 h-10 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-cyan-500 hover:border-cyan-500 transition-all duration-300"
-                            aria-label="Close"
-                        >
-                            <span className="text-lg leading-none font-bold transition-all duration-300 group-hover:rotate-180 inline-block">✕</span>
-                        </button>
-
-                        <div className="grid md:grid-cols-[0.8fr,1.2fr] items-stretch min-h-[400px] md:min-h-[500px]">
-                            {/* Left: image */}
-                            <div className="relative bg-black flex items-center justify-center overflow-hidden p-8 md:p-12 md:rounded-l-[2.5rem]">
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 blur-[80px] rounded-full pointer-events-none transition-all duration-1000 group-hover:bg-cyan-500/20"></div>
-                                {posterSrc ? (
-                                    <img
-                                        src={posterSrc}
-                                        alt={event.title || "Coming Soon"}
-                                        className="w-full h-full object-contain relative z-10 transition-transform duration-1000 group-hover:scale-105 rounded-tl-3xl rounded-bl-3xl md:rounded-tl-[2.5rem] md:rounded-bl-[2.5rem]"
-                                    />
-                                ) : (
-                                    <div className="w-full h-64 flex items-center justify-center">
-                                        <span className="text-cyan-400/30 text-6xl font-black">?</span>
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Right: content */}
-                            <div className="p-10 md:p-16 flex flex-col justify-center relative z-10 border-l border-white/5 bg-neutral-900">
-                                <h2 className="text-4xl md:text-5xl font-black text-white mb-4 font-russo uppercase leading-none tracking-tight">
-                                    {event.title || "COMING SOON..."}
-                                </h2>
-
-                                <div className="w-16 h-1 bg-cyan-500 mb-12 rounded-full group-hover:w-32 transition-all duration-500"></div>
-
-                                <p className="text-white text-md md:text-xl tracking-[0.2em] font-bold uppercase mb-10 font-inter">
-                                    {event.description || "Something's cooking"}
-                                </p>
-
-                                {/* Date / Time / Venue */}
-                                <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10 mt-auto">
-                                    <div>
-                                        <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">DATE</p>
-                                        <p className="font-semibold text-white font-inter">{event.date ? formatDate(event.date) : "TBA"}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">TIME</p>
-                                        <p className="font-semibold text-white font-inter">{event.time || "TBA"}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">VENUE</p>
-                                        <p className="font-semibold text-white font-inter">{event.venue || "TBA"}</p>
-                                    </div>
-                                </div>
-
-                                {/* REGISTER NOW — only shown if registrationLink exists */}
-                                {event.registrationLink && (
-                                    <motion.a
-                                        href={event.registrationLink}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        whileHover={{ scale: 1.04 }}
-                                        whileTap={{ scale: 0.97 }}
-                                        className="group/reg mt-8 inline-flex items-center gap-3 px-10 py-5 bg-cyan-500 text-black text-sm uppercase font-black rounded-2xl font-inter transition-all duration-300 hover:bg-white hover:text-black"
-                                    >
-                                        Register Now
-                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover/reg:translate-x-1">
-                                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
-                                    </motion.a>
-                                )}
-                            </div>
-                        </div>
-                    </motion.div>
-                ) : (
-                    /* ── Past event modal: white scrollable ── */
-                    <>
-                        <style>{`
+                {/* Always-mounted scrollbar styles for both modal variants */}
+                <style>{`
               .event-modal-scroll {
                 scrollbar-width: thin;
                 scrollbar-color: #22d4f5 transparent;
@@ -261,7 +175,115 @@ const EventModal = ({ event, onClose, isUpcoming = false }) => {
                 background-color: #22d4f5;
                 border-radius: 999px;
               }
+              .upcoming-modal-scroll {
+                scrollbar-width: thin;
+                scrollbar-color: rgba(34,211,238,0.4) transparent;
+              }
+              .upcoming-modal-scroll::-webkit-scrollbar {
+                width: 3px;
+              }
+              .upcoming-modal-scroll::-webkit-scrollbar-track {
+                background: transparent;
+              }
+              .upcoming-modal-scroll::-webkit-scrollbar-thumb {
+                background: rgba(34,211,238,0.4);
+                border-radius: 3px;
+              }
             `}</style>
+                {isUpcoming ? (
+                    /* ── Upcoming modal: dark split-layout ── */
+                    <motion.div
+                        key="upcoming-modal-box"
+                        className="group relative rounded-[2.5rem] overflow-clip w-full max-w-5xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] border border-neutral-200/20 my-auto"
+                        onClick={(e) => e.stopPropagation()}
+                        initial={{ opacity: 0, scale: 0.93, y: 24 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.93, y: 24 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                        {/* Inner scrollable area — scrollbar is visually clipped by outer overflow-hidden */}
+                        <div className="upcoming-modal-scroll relative bg-neutral-900 overflow-y-auto max-h-[90vh]">
+
+                            {/* Close — sticky so it stays visible while scrolling */}
+                            <button
+                                onClick={onClose}
+                                className="group sticky top-6 left-[calc(100%-3.5rem)] z-50 w-10 h-10 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-cyan-500 hover:border-cyan-500 transition-all duration-300"
+                                aria-label="Close"
+                            >
+                                <span className="text-lg leading-none font-bold transition-all duration-300 group-hover:rotate-180 inline-block">✕</span>
+                            </button>
+
+                            <div className="grid md:grid-cols-[0.8fr,1.2fr] items-stretch min-h-[400px] md:min-h-[500px] -mt-10">
+                                {/* Left: image */}
+                                <div className="relative bg-black flex items-center justify-center overflow-hidden p-8 md:p-12">
+                                    <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 blur-[80px] rounded-full pointer-events-none transition-all duration-1000 group-hover:bg-cyan-500/20"></div>
+                                    {posterSrc ? (
+                                        <img
+                                            src={posterSrc}
+                                            alt={event.title || "Coming Soon"}
+                                            className="w-full h-full object-contain relative z-10 transition-transform duration-1000 group-hover:scale-105"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-64 flex items-center justify-center">
+                                            <span className="text-cyan-400/30 text-6xl font-black">?</span>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Right: content */}
+                                <div className="p-10 md:p-16 flex flex-col justify-center relative z-10 border-l border-white/5 bg-neutral-900">
+                                    <h2 className="text-4xl md:text-5xl font-black text-white mb-4 font-russo uppercase leading-none tracking-tight">
+                                        {event.title || "COMING SOON..."}
+                                    </h2>
+
+                                    <div className="w-16 h-1 bg-cyan-500 mb-8 rounded-full group-hover:w-32 transition-all duration-500"></div>
+
+                                    <p className="text-neutral-300 text-base md:text-lg leading-relaxed font-normal mb-10 font-inter">
+                                        {event.description || "Something's cooking"}
+                                    </p>
+
+                                    {/* REGISTER NOW — above date/time/venue, only shown if registrationLink exists */}
+                                    {event.registrationLink && (
+                                        <motion.a
+                                            href={event.registrationLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            whileTap={{ scale: 0.97 }}
+                                            className="group/reg relative mb-8 inline-flex items-center gap-3 px-10 py-5 border border-white/30 text-white text-sm uppercase font-black rounded-2xl font-inter overflow-hidden transition-colors duration-300"
+                                        >
+                                            <span className="absolute inset-0 bg-cyan-400 translate-x-[-101%] group-hover/reg:translate-x-0 transition-transform duration-300 ease-out rounded-2xl" />
+                                            <span className="relative z-10 flex items-center gap-3 group-hover/reg:text-black transition-colors duration-300">
+                                                Register Now
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover/reg:translate-x-1">
+                                                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            </span>
+                                        </motion.a>
+                                    )}
+
+                                    {/* Date / Time / Venue */}
+                                    <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10">
+                                        <div>
+                                            <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">DATE</p>
+                                            <p className="font-semibold text-white font-inter">{event.date ? formatDate(event.date) : "TBA"}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">TIME</p>
+                                            <p className="font-semibold text-white font-inter">{event.time || "TBA"}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">VENUE</p>
+                                            <p className="font-semibold text-white font-inter">{event.venue || "TBA"}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>{/* end inner scroll */}
+                    </motion.div>
+                ) : (
+                    /* ── Past event modal: white scrollable ── */
+                    <>
                         {/* Outer shell: clips rounded corners so scrollbar stays inside */}
                         <motion.div
                             key="modal-box"
@@ -371,7 +393,7 @@ const EventModal = ({ event, onClose, isUpcoming = false }) => {
                     </>
                 )}
             </motion.div>
-        </AnimatePresence>
+        </AnimatePresence >
     );
 };
 
@@ -380,8 +402,28 @@ const EventModal = ({ event, onClose, isUpcoming = false }) => {
 // ─────────────────────────────────────────
 export default function Events() {
     const [upcomingEvent, setUpcomingEvent] = useState(null);
-    const [pastEvents, setPastEvents] = useState([]);
+    const [pastEvents, setPastEvents] = useState([]);   // flat, pre-sorted
+    const [pastByTenure, setPastByTenure] = useState([]); // [{tenure, events}] latest first
     const [loading, setLoading] = useState(true);
+    const [categoryFilter, setCategoryFilter] = useState('All');
+
+    const CATEGORY_OPTIONS = ['All', 'Technical', 'Fun', 'Humanitarian', 'Annual Day', 'Industrial'];
+    const CATEGORY_LABELS = {
+        'All': 'All',
+        'Technical': 'Technical',
+        'Fun': 'Fun',
+        'Humanitarian': 'Humanitarian Drive',
+        'Annual Day': 'Annual Day',
+        'Industrial': 'Industrial / Outreach',
+    };
+    // Tenure order — newest year listed first
+    const TENURE_ORDER = ['2025-26', '2024-25', '2023-24', '2022-23'];
+    const TENURE_LABELS = {
+        '2025-26': '2025–26',
+        '2024-25': '2024–25',
+        '2023-24': '2023–24',
+        '2022-23': '2022–23',
+    };
 
     // Modal state — one modal for both upcoming + past
     const [activeEvent, setActiveEvent] = useState(null);   // the event object
@@ -436,8 +478,27 @@ export default function Events() {
                     }
                 });
 
-                // Past: newest first
-                past.sort((a, b) => b.date.localeCompare(a.date));
+                // Past: sort by tenure desc, then date desc within tenure
+                past.sort((a, b) => {
+                    const tA = TENURE_ORDER.indexOf(a.tenure ?? '');
+                    const tB = TENURE_ORDER.indexOf(b.tenure ?? '');
+                    // Events with no tenure go last
+                    const tCmp = (tA === -1 ? 99 : tA) - (tB === -1 ? 99 : tB);
+                    if (tCmp !== 0) return tCmp;
+                    return b.date.localeCompare(a.date);
+                });
+
+                // Build grouped structure for rendering
+                const grouped = [];
+                const seenTenures = new Set();
+                past.forEach(ev => {
+                    const key = ev.tenure ?? 'uncategorised';
+                    if (!seenTenures.has(key)) {
+                        seenTenures.add(key);
+                        grouped.push({ tenure: key, events: [] });
+                    }
+                    grouped[grouped.length - 1].events.push(ev);
+                });
                 // Upcoming: nearest first → take only first
                 upcoming.sort((a, b) => a.date.localeCompare(b.date));
 
@@ -445,6 +506,7 @@ export default function Events() {
                 console.log("[Events] Upcoming events:", upcoming.length, upcoming.map(e => e.title));
 
                 setPastEvents(past);
+                setPastByTenure(grouped);
                 setUpcomingEvent(upcoming[0] || null);
             })
             .catch((err) => {
@@ -471,7 +533,7 @@ export default function Events() {
             <div className="relative z-10 py-12">
 
                 {/* ── Header ── */}
-                <section className="relative text-center py-16 px-6 md:px-10 overflow-hidden">
+                <section className="relative text-center pt-32 pb-16 md:pt-28 md:pb-20 px-6 md:px-10 overflow-hidden">
                     <AnimatedBackground />
                     <div className="relative z-10">
                         <motion.p
@@ -519,7 +581,7 @@ export default function Events() {
                                 Discover
                             </motion.p>
                             <h2 className="text-5xl md:text-7xl font-black text-black font-russo uppercase tracking-tighter">
-                                UPCOMING EVENTS
+                                ONGOING / UPCOMING EVENTS
                             </h2>
                             <div className="mt-6 w-24 h-1 bg-cyan-400 mx-auto rounded-full"></div>
                         </div>
@@ -625,7 +687,7 @@ export default function Events() {
                 <section className="relative px-6 md:px-10 mb-20">
                     <AnimatedBackground />
                     <div className="max-w-7xl mx-auto">
-                        <div className="text-center mb-16 mt-24">
+                        <div className="text-center mb-10 mt-24">
                             <motion.p
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
@@ -639,6 +701,26 @@ export default function Events() {
                             </h2>
                         </div>
 
+                        {/* ── Category filter bar ── */}
+                        {!loading && pastEvents.length > 0 && (
+                            <div className="flex flex-wrap justify-center gap-2 mb-12">
+                                {CATEGORY_OPTIONS.map(opt => (
+                                    <button
+                                        key={opt}
+                                        onClick={() => setCategoryFilter(opt)}
+                                        className={[
+                                            'px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border transition-all duration-200',
+                                            categoryFilter === opt
+                                                ? 'bg-cyan-400 border-cyan-400 text-black'
+                                                : 'bg-white border-neutral-200 text-neutral-500 hover:border-cyan-400 hover:text-cyan-500',
+                                        ].join(' ')}
+                                    >
+                                        {CATEGORY_LABELS[opt]}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+
                         {loading ? (
                             <Spinner />
                         ) : pastEvents.length === 0 ? (
@@ -646,15 +728,51 @@ export default function Events() {
                                 No past events yet.
                             </p>
                         ) : (
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-                                {pastEvents.map((event) => (
-                                    <PastEventCard
-                                        key={event._id}
-                                        event={event}
-                                        onRecapClick={openPast}
-                                    />
-                                ))}
-                            </div>
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={categoryFilter}
+                                    initial={{ opacity: 0, y: 8 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -8 }}
+                                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                                >
+                                    {pastByTenure.map(({ tenure, events }) => {
+                                        const filtered = categoryFilter === 'All'
+                                            ? events
+                                            : events.filter(e => e.category === categoryFilter);
+                                        if (filtered.length === 0) return null;
+
+                                        return (
+                                            <div key={tenure} className="mb-16">
+                                                {/* Tenure heading — centered with decorative lines */}
+                                                <div className="flex items-center gap-4 py-6 mb-10">
+                                                    <div className="flex-1 h-px bg-gradient-to-r from-transparent to-cyan-400/40" />
+                                                    <span className="text-xs font-black tracking-[0.4em] text-cyan-400 uppercase px-4">
+                                                        {TENURE_LABELS[tenure] ?? tenure}
+                                                    </span>
+                                                    <div className="flex-1 h-px bg-gradient-to-l from-transparent to-cyan-400/40" />
+                                                </div>
+
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                                                    {filtered.map((event, i) => (
+                                                        <motion.div
+                                                            key={event._id}
+                                                            initial={{ opacity: 0, y: 16 }}
+                                                            animate={{ opacity: 1, y: 0 }}
+                                                            transition={{ duration: 0.25, delay: i * 0.05, ease: 'easeOut' }}
+                                                        >
+                                                            <PastEventCard
+                                                                event={event}
+                                                                onRecapClick={openPast}
+                                                            />
+                                                        </motion.div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </motion.div>
+                            </AnimatePresence>
                         )}
                     </div>
                 </section>
