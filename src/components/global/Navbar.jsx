@@ -60,13 +60,15 @@ export default function Navbar() {
 
                         {/* Logo */}
                         <div className="flex items-center py-2">
-                            <motion.img
-                                src="/assets/White Logo.png"
-                                alt="IEEE CIS"
-                                className="h-16 md:h-28 w-auto object-contain -my-2 md:-my-4 cursor-pointer"
-                                whileHover={{ scale: 1.05 }}
-                                transition={{ duration: 0.2, ease: 'easeOut' }}
-                            />
+                            <Link to="/">
+                                <motion.img
+                                    src="/assets/White Logo.png"
+                                    alt="IEEE CIS"
+                                    className="h-16 md:h-28 w-auto object-contain -my-2 md:-my-4 cursor-pointer"
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                                />
+                            </Link>
                         </div>
 
                         {/* Desktop Links */}
@@ -185,11 +187,13 @@ export default function Navbar() {
 
                             {/* Logo at Bottom */}
                             <motion.div variants={navLinkVariants} className="flex justify-center pb-12">
-                                <img
-                                    src="/assets/White Logo.png"
-                                    alt="IEEE CIS"
-                                    className="h-20 w-auto opacity-100"
-                                />
+                                <Link to="/" onClick={() => setIsMenuOpen(false)}>
+                                    <img
+                                        src="/assets/White Logo.png"
+                                        alt="IEEE CIS"
+                                        className="h-20 w-auto opacity-100 cursor-pointer"
+                                    />
+                                </Link>
                             </motion.div>
                         </motion.div>
                     </motion.div>

@@ -244,8 +244,8 @@ const Contact = () => {
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-800 mb-2">Work With Us</h3>
                                     <p className="text-gray-600">
-                                        <a href="mailto:ieee.cis@mjcollege.ac.in" className="hover:text-cyan-500 transition-colors">
-                                            ieee.cis@mjcollege.ac.in
+                                        <a href="mailto:ieeecismjcet@gmail.com" className="hover:text-cyan-500 transition-colors">
+                                            ieeecismjcet@gmail.com
                                         </a>
                                     </p>
                                 </div>

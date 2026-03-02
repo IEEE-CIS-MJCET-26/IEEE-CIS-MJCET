@@ -49,11 +49,13 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {/* Left Section - Logo & Description */}
                     <div className="space-y-6">
-                        <img
-                            src="/assets/White Logo.png"
-                            alt="IEEE CIS"
-                            className="h-28 w-auto object-contain"
-                        />
+                        <Link to="/">
+                            <img
+                                src="/assets/White Logo.png"
+                                alt="IEEE CIS"
+                                className="h-28 w-auto object-contain cursor-pointer"
+                            />
+                        </Link>
                         <p className="text-gray-300 text-sm leading-relaxed cursor-pointer">
                             IEEE CIS MJCET — empowering students through computational intelligence, innovation, and hands-on learning.
                         </p>

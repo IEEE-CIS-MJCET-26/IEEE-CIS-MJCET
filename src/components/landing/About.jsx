@@ -16,7 +16,7 @@ export default function About() {
     const stats = [
         {
             icon: ScrollText,
-            value: 20,
+            value: 7,
             suffix: '+',
             title: 'Research Papers',
             subtitle: 'Published in recognized journals and conferences',
@@ -35,7 +35,7 @@ export default function About() {
         },
         {
             icon: Cpu,
-            value: 100,
+            value: 35,
             suffix: '+',
             title: 'Technical Workshops',
             subtitle: 'Successfully conducted across diverse domains',
