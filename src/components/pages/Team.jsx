@@ -180,7 +180,7 @@ const CORE_MEMBERS_2025 = [
 
     // MEDIA
     mk('Harun', 'Core — Media', 'MEDIA', coreImg('HARUN SOHEB MOHIUDDIN.jpeg'), {}),
-    mk('Mehwish', 'Core — Media', 'MEDIA', coreImg('Mehwish.jpeg'), {}),
+    mk('Mariya Anjum', 'Core — Media', 'MEDIA', coreImg('Mehwish.jpeg'), {}),
     mk('Mohammed Rayyan', 'Core — Media', 'MEDIA', coreImg('Mohammed Rayyan.jpg'), { github: 'https://github.com/r7yn' }),
     mk('Mohammed Saleh Bawazir', 'Core — Media', 'MEDIA', coreImg('MOHAMMED SALEH BAWAZIR.jpeg'), { linkedin: 'https://www.linkedin.com/in/mohammed-saleh-bawazir-912434338', github: 'https://github.com/MohammedBawazir25' }),
 
