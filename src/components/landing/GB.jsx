@@ -54,7 +54,7 @@ const Marquee = () => {
             if (animation) animation.kill();
             window.removeEventListener('resize', initAnimation);
             clearTimeout(timer);
-        };  
+        };
     }, []);
 
     const TextItem = ({ isOutlined }) => (
@@ -103,10 +103,10 @@ const MemberCard = ({ member, isHoverEnabled, hoveredMember, onMouseEnter, onMou
 
             {/* Tooltip */}
             <div
-                className={`absolute -top-20 left-1/2 -translate-x-1/2 w-max bg-black text-white px-4 py-2 rounded-lg text-center transition-all duration-300 pointer-events-none z-20 ${isSelfHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                className={`absolute -top-20 left-1/2 -translate-x-1/2 w-max bg-black text-white px-1 md:px-2 py-2 rounded-lg text-center transition-all duration-300 pointer-events-none z-20 ${isSelfHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                     }`}
             >
-                <p className="font-bold text-sm md:text-base">{member.name}</p>
+                <p className="font-bold text-xs md:text-base">{member.name}</p>
                 <p className="text-xs md:text-sm text-cyan-400">{member.designation}</p>
                 {/* Arrow */}
                 <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-black" />
@@ -127,7 +127,7 @@ const MemberCard = ({ member, isHoverEnabled, hoveredMember, onMouseEnter, onMou
                 />
 
                 {/* White fade at bottom */}
-                 <div className="pointer-events-none absolute bottom-0 left-0 w-full h-1/4 
+                <div className="pointer-events-none absolute bottom-0 left-0 w-full h-1/4 
                 bg-gradient-to-t from-white/90 via-white/40 to-transparent" />
             </div>
         </div>
@@ -195,23 +195,23 @@ const GB = () => {
         >
             <div className="bg-decorations" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0 }}>
                 <motion.div className=" hidden md:block " style={{
-                        position:'absolute',
-                        top:'55px',
-                        right:'40px',
-                        width: '256px',
-                        height: '256px',
-                        borderRadius:'50%',
-                        backgroundColor: 'rgba(34, 211, 238, 0.2)'
+                    position: 'absolute',
+                    top: '55px',
+                    right: '40px',
+                    width: '256px',
+                    height: '256px',
+                    borderRadius: '50%',
+                    backgroundColor: 'rgba(34, 211, 238, 0.2)'
                 }}
-                 animate={{
+                    animate={{
                         y: [0, -20, 0],
                         rotate: -360
                     }}
                     transition={{
                         y: { duration: 8, repeat: Infinity, ease: 'easeInOut' },
                         rotate: { duration: 40, repeat: Infinity, ease: 'linear' }
-                    }}                
-            />
+                    }}
+                />
                 <motion.div
                     style={{
                         position: 'absolute',
@@ -245,7 +245,7 @@ const GB = () => {
                         ease: 'linear'
                     }}
                 />
-                
+
             </div>
             <Marquee />
             <div className="relative z-content max-w-6xl w-full mx-auto space-y-1">
@@ -253,7 +253,7 @@ const GB = () => {
                 {/* Row 1: 4 Members */}
                 <div
                     ref={row1Ref}
-                    className="flex justify-center items-center gap-3 md:gap-8 px-4"
+                    className="flex justify-center items-center gap-1 sm:gap-1 md:gap-8 px-2 sm:px-4"
                 >
                     {GB_DATA.row1.map((member, i) => (
                         <MemberCard
@@ -270,7 +270,7 @@ const GB = () => {
                 {/* Row 2: 3 Members */}
                 <div
                     ref={row2Ref}
-                    className="flex justify-center items-center gap-3 md:gap-8 px-4"
+                    className="flex justify-center items-center gap-1 sm:gap-2 md:gap-8 px-2 sm:px-4"
                 >
                     {GB_DATA.row2.map((member, i) => (
                         <MemberCard
