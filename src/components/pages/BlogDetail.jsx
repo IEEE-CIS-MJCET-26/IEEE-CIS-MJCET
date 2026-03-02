@@ -265,6 +265,24 @@ export default function BlogDetail() {
                     </span>
                 </div>
 
+                {/* Quick Summary */}
+                {blog.shortDescription && (
+                    <div className="mb-10 p-6 rounded-xl bg-neutral-50 border border-neutral-100">
+                        <h3
+                            className="text-lg md:text-xl text-neutral-900 font-bold mb-3"
+                            style={{ fontFamily: "'DM Serif Text', serif" }}
+                        >
+                            Quick Summary
+                        </h3>
+                        <p
+                            className="text-neutral-600 text-base leading-relaxed"
+                            style={{ fontFamily: "'Inter', sans-serif" }}
+                        >
+                            {blog.shortDescription}
+                        </p>
+                    </div>
+                )}
+
                 {/* Article body — Portable Text */}
                 <div className="space-y-6">
                     {blog.body && (
