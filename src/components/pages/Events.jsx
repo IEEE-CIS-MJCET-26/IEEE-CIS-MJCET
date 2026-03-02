@@ -140,31 +140,28 @@ const PastEventCard = ({ event, onRecapClick }) => {
 // Opens for both upcoming (no gallery) and past events (with gallery)
 // ─────────────────────────────────────────
 const EventModal = ({ event, onClose, isUpcoming = false }) => {
-    if (!event) return null;
-
-    const posterSrc = imgUrl(event.poster, 800);
-    const galleryImages = (event.gallery || [])
+    const posterSrc = imgUrl(event?.poster, 800);
+    const galleryImages = (event?.gallery || [])
         .map((img) => imgUrl(img, 400))
         .filter(Boolean);
     const showGallery = !isUpcoming && galleryImages.length > 0;
 
     return (
-        <AnimatePresence>
-            <motion.div
-                key="modal-backdrop"
-                className={
-                    isUpcoming
-                        ? "fixed inset-0 bg-black/60 backdrop-blur-md flex items-start justify-center z-50 p-4 md:p-10 overflow-y-auto"
-                        : "fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50"
-                }
-                onClick={onClose}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: isUpcoming ? 0.3 : 0.25, ease: "easeInOut" }}
-            >
-                {/* Always-mounted scrollbar styles for both modal variants */}
-                <style>{`
+        <motion.div
+            key="modal-backdrop"
+            className={
+                isUpcoming
+                    ? "fixed inset-0 bg-black/60 backdrop-blur-md flex items-start justify-center z-50 p-4 md:p-10 overflow-y-auto"
+                    : "fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50"
+            }
+            onClick={onClose}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+            {/* Always-mounted scrollbar styles for both modal variants */}
+            <style>{`
               .event-modal-scroll {
                 scrollbar-width: thin;
                 scrollbar-color: #22d4f5 transparent;
@@ -190,210 +187,209 @@ const EventModal = ({ event, onClose, isUpcoming = false }) => {
                 border-radius: 3px;
               }
             `}</style>
-                {isUpcoming ? (
-                    /* ── Upcoming modal: dark split-layout ── */
+            {isUpcoming ? (
+                /* ── Upcoming modal: dark split-layout ── */
+                <motion.div
+                    key="upcoming-modal-box"
+                    className="group relative rounded-[2.5rem] overflow-clip w-full max-w-5xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] border border-neutral-200/20 my-auto"
+                    onClick={(e) => e.stopPropagation()}
+                    initial={{ opacity: 0, scale: 0.93, y: 24 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.93, y: 24 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    {/* Inner scrollable area — scrollbar is visually clipped by outer overflow-hidden */}
+                    <div className="upcoming-modal-scroll relative bg-neutral-900 overflow-y-auto max-h-[90vh]">
+
+                        {/* Close — sticky so it stays visible while scrolling */}
+                        <button
+                            onClick={onClose}
+                            className="group sticky top-6 left-[calc(100%-3.5rem)] z-50 w-10 h-10 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-cyan-500 hover:border-cyan-500 transition-all duration-300"
+                            aria-label="Close"
+                        >
+                            <span className="text-lg leading-none font-bold transition-all duration-300 group-hover:rotate-180 inline-block">✕</span>
+                        </button>
+
+                        <div className="grid md:grid-cols-[0.8fr,1.2fr] items-stretch min-h-[400px] md:min-h-[500px] -mt-10">
+                            {/* Left: image */}
+                            <div className="relative bg-black flex items-center justify-center overflow-hidden p-8 md:p-12">
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 blur-[80px] rounded-full pointer-events-none transition-all duration-1000 group-hover:bg-cyan-500/20"></div>
+                                {posterSrc ? (
+                                    <img
+                                        src={posterSrc}
+                                        alt={event.title || "Coming Soon"}
+                                        className="w-full h-full object-contain relative z-10 transition-transform duration-1000 group-hover:scale-105"
+                                    />
+                                ) : (
+                                    <div className="w-full h-64 flex items-center justify-center">
+                                        <span className="text-cyan-400/30 text-6xl font-black">?</span>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Right: content */}
+                            <div className="p-10 md:p-16 flex flex-col justify-center relative z-10 border-l border-white/5 bg-neutral-900">
+                                <h2 className="text-4xl md:text-5xl font-black text-white mb-4 font-russo uppercase leading-none tracking-tight">
+                                    {event.title || "COMING SOON..."}
+                                </h2>
+
+                                <div className="w-16 h-1 bg-cyan-500 mb-8 rounded-full group-hover:w-32 transition-all duration-500"></div>
+
+                                <p className="text-neutral-300 text-base md:text-lg leading-relaxed font-normal mb-10 font-inter">
+                                    {event.description || "Something's cooking"}
+                                </p>
+
+                                {/* REGISTER NOW — above date/time/venue, only shown if registrationLink exists */}
+                                {event.registrationLink && (
+                                    <motion.a
+                                        href={event.registrationLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileTap={{ scale: 0.97 }}
+                                        className="group/reg relative mb-8 inline-flex items-center gap-3 px-10 py-5 bg-white text-black text-sm uppercase font-black rounded-2xl font-inter overflow-hidden transition-colors duration-300"
+                                    >
+                                        <span className="absolute inset-0 bg-cyan-400 translate-x-[-101%] group-hover/reg:translate-x-0 transition-transform duration-300 ease-out rounded-2xl" />
+                                        <span className="relative z-10 flex items-center gap-3 group-hover/reg:text-black transition-colors duration-300">
+                                            Register Now
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover/reg:translate-x-1">
+                                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                                            </svg>
+                                        </span>
+                                    </motion.a>
+                                )}
+
+                                {/* Date / Time / Venue */}
+                                <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10">
+                                    <div>
+                                        <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">DATE</p>
+                                        <p className="font-semibold text-white font-inter">{event.date ? formatDate(event.date) : "TBA"}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">TIME</p>
+                                        <p className="font-semibold text-white font-inter">{event.time || "TBA"}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">VENUE</p>
+                                        <p className="font-semibold text-white font-inter">{event.venue || "TBA"}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>{/* end inner scroll */}
+                </motion.div>
+            ) : (
+                /* ── Past event modal: white scrollable ── */
+                <>
+                    {/* Outer shell: clips rounded corners so scrollbar stays inside */}
                     <motion.div
-                        key="upcoming-modal-box"
-                        className="group relative rounded-[2.5rem] overflow-clip w-full max-w-5xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] border border-neutral-200/20 my-auto"
+                        key="modal-box"
+                        className="relative w-[92%] max-w-4xl max-h-[88vh] rounded-3xl overflow-hidden shadow-[0_0_0_1px_rgba(34,211,238,0.2),0_32px_80px_-16px_rgba(0,0,0,0.2)] border border-cyan-400/20"
                         onClick={(e) => e.stopPropagation()}
                         initial={{ opacity: 0, scale: 0.93, y: 24 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.93, y: 24 }}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        {/* Inner scrollable area — scrollbar is visually clipped by outer overflow-hidden */}
-                        <div className="upcoming-modal-scroll relative bg-neutral-900 overflow-y-auto max-h-[90vh]">
+                        {/* Inner scrollable area */}
+                        <div className="event-modal-scroll bg-white text-gray-900 overflow-y-auto max-h-[88vh] p-8 md:p-10">
 
-                            {/* Close — sticky so it stays visible while scrolling */}
+                            {/* Close */}
                             <button
                                 onClick={onClose}
-                                className="group sticky top-6 left-[calc(100%-3.5rem)] z-50 w-10 h-10 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-cyan-500 hover:border-cyan-500 transition-all duration-300"
+                                className="group absolute top-5 right-5 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-neutral-100 border border-neutral-200 text-neutral-500 hover:bg-cyan-400 hover:border-cyan-400 hover:text-white transition-all duration-300"
                                 aria-label="Close"
                             >
-                                <span className="text-lg leading-none font-bold transition-all duration-300 group-hover:rotate-180 inline-block">✕</span>
+                                <span className="text-sm leading-none font-bold transition-all duration-300 group-hover:rotate-90 inline-block">
+                                    ✕
+                                </span>
                             </button>
 
-                            <div className="grid md:grid-cols-[0.8fr,1.2fr] items-stretch min-h-[400px] md:min-h-[500px] -mt-10">
-                                {/* Left: image */}
-                                <div className="relative bg-black flex items-center justify-center overflow-hidden p-8 md:p-12">
-                                    <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 blur-[80px] rounded-full pointer-events-none transition-all duration-1000 group-hover:bg-cyan-500/20"></div>
-                                    {posterSrc ? (
-                                        <img
-                                            src={posterSrc}
-                                            alt={event.title || "Coming Soon"}
-                                            className="w-full h-full object-contain relative z-10 transition-transform duration-1000 group-hover:scale-105"
-                                        />
-                                    ) : (
-                                        <div className="w-full h-64 flex items-center justify-center">
-                                            <span className="text-cyan-400/30 text-6xl font-black">?</span>
-                                        </div>
-                                    )}
+                            {/* Title */}
+                            <div className="text-center mb-8">
+                                <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight leading-tight mb-3" style={{ background: 'linear-gradient(135deg, #111827 40%, #22d3ee)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                                    {event.title}
+                                </h2>
+                                <div className="flex items-center justify-center gap-3">
+                                    <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-cyan-400" />
+                                    <div className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
+                                    <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-cyan-400" />
                                 </div>
+                            </div>
 
-                                {/* Right: content */}
-                                <div className="p-10 md:p-16 flex flex-col justify-center relative z-10 border-l border-white/5 bg-neutral-900">
-                                    <h2 className="text-4xl md:text-5xl font-black text-white mb-4 font-russo uppercase leading-none tracking-tight">
-                                        {event.title || "COMING SOON..."}
-                                    </h2>
-
-                                    <div className="w-16 h-1 bg-cyan-500 mb-8 rounded-full group-hover:w-32 transition-all duration-500"></div>
-
-                                    <p className="text-neutral-300 text-base md:text-lg leading-relaxed font-normal mb-10 font-inter">
-                                        {event.description || "Something's cooking"}
-                                    </p>
-
-                                    {/* REGISTER NOW — above date/time/venue, only shown if registrationLink exists */}
-                                    {event.registrationLink && (
-                                        <motion.a
-                                            href={event.registrationLink}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            whileTap={{ scale: 0.97 }}
-                                            className="group/reg relative mb-8 inline-flex items-center gap-3 px-10 py-5 border border-white/30 text-white text-sm uppercase font-black rounded-2xl font-inter overflow-hidden transition-colors duration-300"
-                                        >
-                                            <span className="absolute inset-0 bg-cyan-400 translate-x-[-101%] group-hover/reg:translate-x-0 transition-transform duration-300 ease-out rounded-2xl" />
-                                            <span className="relative z-10 flex items-center gap-3 group-hover/reg:text-black transition-colors duration-300">
-                                                Register Now
-                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover/reg:translate-x-1">
-                                                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                                                </svg>
-                                            </span>
-                                        </motion.a>
-                                    )}
-
-                                    {/* Date / Time / Venue */}
-                                    <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10">
-                                        <div>
-                                            <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">DATE</p>
-                                            <p className="font-semibold text-white font-inter">{event.date ? formatDate(event.date) : "TBA"}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">TIME</p>
-                                            <p className="font-semibold text-white font-inter">{event.time || "TBA"}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">VENUE</p>
-                                            <p className="font-semibold text-white font-inter">{event.venue || "TBA"}</p>
-                                        </div>
+                            {/* Gallery slider — only if gallery images exist */}
+                            {showGallery && (
+                                <div className="mb-10">
+                                    {/* Gallery label */}
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="h-[1.5px] flex-1 bg-gradient-to-r from-transparent to-cyan-400/30" />
+                                        <span className="text-[11px] font-black tracking-[0.4em] text-cyan-400 uppercase">Gallery</span>
+                                        <div className="h-[1.5px] flex-1 bg-gradient-to-l from-transparent to-cyan-400/30" />
                                     </div>
+
+                                    {/* Gallery container — no fade edges */}
+                                    <div className="rounded-2xl border border-cyan-400/10 bg-neutral-50 py-4 overflow-hidden">
+                                        {/* ── INFINITE LOOP — DO NOT TOUCH ── */}
+                                        <div className="relative w-full overflow-hidden">
+                                            <motion.div
+                                                className="flex gap-6 w-max"
+                                                animate={{ x: [0, -((160 + 24) * galleryImages.length)] }}
+                                                transition={{
+                                                    duration: galleryImages.length * 4,
+                                                    ease: "linear",
+                                                    repeat: Infinity,
+                                                }}
+                                            >
+                                                {[...galleryImages, ...galleryImages].map((src, i) => (
+                                                    <div
+                                                        key={i}
+                                                        className="w-40 h-40 flex-shrink-0 rounded-xl overflow-hidden border border-cyan-400/20"
+                                                    >
+                                                        <img
+                                                            src={src}
+                                                            alt=""
+                                                            className="w-full h-full object-cover pointer-events-none"
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </motion.div>
+                                        </div>
+                                        {/* ── END INFINITE LOOP ── */}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* About Event */}
+                            <div className="mb-10">
+                                <div className="flex items-center gap-3 mb-5">
+                                    <div className="h-[1.5px] flex-1 bg-gradient-to-r from-transparent to-cyan-400/40" />
+                                    <span className="text-[11px] font-black tracking-[0.4em] text-cyan-400 uppercase">About Event</span>
+                                    <div className="h-[1.5px] flex-1 bg-gradient-to-l from-transparent to-cyan-400/40" />
+                                </div>
+                                <p className="text-gray-500 text-sm md:text-[15px] leading-[1.9] text-center max-w-2xl mx-auto font-medium tracking-wide">{event.description}</p>
+                            </div>
+
+                            {/* Date / Time / Venue */}
+                            <div className="grid grid-cols-3 gap-4 mt-8">
+                                <div className="flex flex-col items-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm">
+                                    <p className="text-[9px] font-black tracking-[0.35em] text-cyan-500 uppercase mb-2">Date</p>
+                                    <p className="font-black text-gray-900 text-sm text-center leading-snug">{formatDate(event.date)}</p>
+                                </div>
+                                <div className="flex flex-col items-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm">
+                                    <p className="text-[9px] font-black tracking-[0.35em] text-cyan-500 uppercase mb-2">Time</p>
+                                    <p className="font-black text-gray-900 text-sm text-center leading-snug">{event.time || "—"}</p>
+                                </div>
+                                <div className="flex flex-col items-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm">
+                                    <p className="text-[9px] font-black tracking-[0.35em] text-cyan-500 uppercase mb-2">Venue</p>
+                                    <p className="font-black text-gray-900 text-sm text-center leading-snug">{event.venue || "—"}</p>
                                 </div>
                             </div>
 
                         </div>{/* end inner scroll */}
                     </motion.div>
-                ) : (
-                    /* ── Past event modal: white scrollable ── */
-                    <>
-                        {/* Outer shell: clips rounded corners so scrollbar stays inside */}
-                        <motion.div
-                            key="modal-box"
-                            className="relative w-[92%] max-w-4xl max-h-[88vh] rounded-3xl overflow-hidden shadow-[0_0_0_1px_rgba(34,211,238,0.2),0_32px_80px_-16px_rgba(0,0,0,0.2)] border border-cyan-400/20"
-                            onClick={(e) => e.stopPropagation()}
-                            initial={{ opacity: 0, scale: 0.93, y: 24 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.93, y: 24 }}
-                            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            {/* Inner scrollable area */}
-                            <div className="event-modal-scroll bg-white text-gray-900 overflow-y-auto max-h-[88vh] p-8 md:p-10">
-
-                                {/* Close */}
-                                <button
-                                    onClick={onClose}
-                                    className="group absolute top-5 right-5 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-neutral-100 border border-neutral-200 text-neutral-500 hover:bg-cyan-400 hover:border-cyan-400 hover:text-white transition-all duration-300"
-                                    aria-label="Close"
-                                >
-                                    <span className="text-sm leading-none font-bold transition-all duration-300 group-hover:rotate-90 inline-block">
-                                        ✕
-                                    </span>
-                                </button>
-
-                                {/* Title */}
-                                <div className="text-center mb-8">
-                                    <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight leading-tight mb-3" style={{ background: 'linear-gradient(135deg, #111827 40%, #22d3ee)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                                        {event.title}
-                                    </h2>
-                                    <div className="flex items-center justify-center gap-3">
-                                        <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-cyan-400" />
-                                        <div className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
-                                        <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-cyan-400" />
-                                    </div>
-                                </div>
-
-                                {/* Gallery slider — only if gallery images exist */}
-                                {showGallery && (
-                                    <div className="mb-10">
-                                        {/* Gallery label */}
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="h-[1.5px] flex-1 bg-gradient-to-r from-transparent to-cyan-400/30" />
-                                            <span className="text-[11px] font-black tracking-[0.4em] text-cyan-400 uppercase">Gallery</span>
-                                            <div className="h-[1.5px] flex-1 bg-gradient-to-l from-transparent to-cyan-400/30" />
-                                        </div>
-
-                                        {/* Gallery container — no fade edges */}
-                                        <div className="rounded-2xl border border-cyan-400/10 bg-neutral-50 py-4 overflow-hidden">
-                                            {/* ── INFINITE LOOP — DO NOT TOUCH ── */}
-                                            <div className="relative w-full overflow-hidden">
-                                                <motion.div
-                                                    className="flex gap-6 w-max"
-                                                    animate={{ x: [0, -((160 + 24) * galleryImages.length)] }}
-                                                    transition={{
-                                                        duration: galleryImages.length * 4,
-                                                        ease: "linear",
-                                                        repeat: Infinity,
-                                                    }}
-                                                >
-                                                    {[...galleryImages, ...galleryImages].map((src, i) => (
-                                                        <div
-                                                            key={i}
-                                                            className="w-40 h-40 flex-shrink-0 rounded-xl overflow-hidden border border-cyan-400/20"
-                                                        >
-                                                            <img
-                                                                src={src}
-                                                                alt=""
-                                                                className="w-full h-full object-cover pointer-events-none"
-                                                            />
-                                                        </div>
-                                                    ))}
-                                                </motion.div>
-                                            </div>
-                                            {/* ── END INFINITE LOOP ── */}
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* About Event */}
-                                <div className="mb-10">
-                                    <div className="flex items-center gap-3 mb-5">
-                                        <div className="h-[1.5px] flex-1 bg-gradient-to-r from-transparent to-cyan-400/40" />
-                                        <span className="text-[11px] font-black tracking-[0.4em] text-cyan-400 uppercase">About Event</span>
-                                        <div className="h-[1.5px] flex-1 bg-gradient-to-l from-transparent to-cyan-400/40" />
-                                    </div>
-                                    <p className="text-gray-500 text-sm md:text-[15px] leading-[1.9] text-center max-w-2xl mx-auto font-medium tracking-wide">{event.description}</p>
-                                </div>
-
-                                {/* Date / Time / Venue */}
-                                <div className="grid grid-cols-3 gap-4 mt-8">
-                                    <div className="flex flex-col items-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm">
-                                        <p className="text-[9px] font-black tracking-[0.35em] text-cyan-500 uppercase mb-2">Date</p>
-                                        <p className="font-black text-gray-900 text-sm text-center leading-snug">{formatDate(event.date)}</p>
-                                    </div>
-                                    <div className="flex flex-col items-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm">
-                                        <p className="text-[9px] font-black tracking-[0.35em] text-cyan-500 uppercase mb-2">Time</p>
-                                        <p className="font-black text-gray-900 text-sm text-center leading-snug">{event.time || "—"}</p>
-                                    </div>
-                                    <div className="flex flex-col items-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm">
-                                        <p className="text-[9px] font-black tracking-[0.35em] text-cyan-500 uppercase mb-2">Venue</p>
-                                        <p className="font-black text-gray-900 text-sm text-center leading-snug">{event.venue || "—"}</p>
-                                    </div>
-                                </div>
-
-                            </div>{/* end inner scroll */}
-                        </motion.div>
-                    </>
-                )}
-            </motion.div>
-        </AnimatePresence >
+                </>
+            )}
+        </motion.div>
     );
 };
 

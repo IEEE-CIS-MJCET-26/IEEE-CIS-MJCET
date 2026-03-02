@@ -174,18 +174,26 @@ export default function HorizontalScroll() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
-                    inline-block
+                    group/vm
+                    relative
+                    inline-flex items-center gap-2
                     mt-3
                     px-6 py-3
                     rounded-xl
-                    bg-white/90
+                    bg-white
                     text-black
-                    font-medium
-                    transition
-                    hover:bg-white
+                    text-sm font-black uppercase tracking-wider
+                    overflow-hidden
+                    transition-colors duration-300
                   "
                 >
-                  View More →
+                  <span className="absolute inset-0 bg-cyan-400 translate-x-[-101%] group-hover/vm:translate-x-0 transition-transform duration-300 ease-out rounded-xl" />
+                  <span className="relative z-10 flex items-center gap-2 group-hover/vm:text-black transition-colors duration-300">
+                    View More
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover/vm:translate-x-1">
+                      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
                 </a>
               )}
 

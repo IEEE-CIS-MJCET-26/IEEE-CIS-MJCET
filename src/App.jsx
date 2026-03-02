@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import Loader from './components/Loader'
 import Home from './components/Home'
 import Navbar from './components/global/Navbar'
@@ -13,6 +13,15 @@ import NotFound from './components/NotFound'
 import Cursor from './components/Cursor'
 
 
+// Scroll to top on every route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
+  return null;
+}
+
 function App() {
   const [loaded, setLoaded] = useState(false)
 
@@ -22,6 +31,7 @@ function App() {
       {!loaded && <Cursor onComplete={() => setLoaded(true)} />}
       {loaded && (
         <Router>
+          <ScrollToTop />
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
