@@ -259,16 +259,16 @@ const EventModal = ({ event, onClose, isUpcoming = false }) => {
                                 )}
 
                                 {/* Date / Time / Venue */}
-                                <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10">
-                                    <div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-8 border-t border-white/10">
+                                    <div className="h-full flex flex-col justify-center">
                                         <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">DATE</p>
                                         <p className="font-semibold text-white font-inter">{event.date ? formatDate(event.date) : "TBA"}</p>
                                     </div>
-                                    <div>
+                                    <div className="h-full flex flex-col justify-center">
                                         <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">TIME</p>
                                         <p className="font-semibold text-white font-inter">{event.time || "TBA"}</p>
                                     </div>
-                                    <div>
+                                    <div className="h-full flex flex-col justify-center sm:col-span-2 lg:col-span-1">
                                         <p className="text-xs text-neutral-400 tracking-widest mb-2 font-inter">VENUE</p>
                                         <p className="font-semibold text-white font-inter">{event.venue || "TBA"}</p>
                                     </div>
@@ -370,16 +370,16 @@ const EventModal = ({ event, onClose, isUpcoming = false }) => {
                             </div>
 
                             {/* Date / Time / Venue */}
-                            <div className="grid grid-cols-3 gap-4 mt-8">
-                                <div className="flex flex-col items-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+                                <div className="h-full flex flex-col items-center justify-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm">
                                     <p className="text-[9px] font-black tracking-[0.35em] text-cyan-500 uppercase mb-2">Date</p>
                                     <p className="font-black text-gray-900 text-sm text-center leading-snug">{formatDate(event.date)}</p>
                                 </div>
-                                <div className="flex flex-col items-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm">
+                                <div className="h-full flex flex-col items-center justify-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm">
                                     <p className="text-[9px] font-black tracking-[0.35em] text-cyan-500 uppercase mb-2">Time</p>
                                     <p className="font-black text-gray-900 text-sm text-center leading-snug">{event.time || "—"}</p>
                                 </div>
-                                <div className="flex flex-col items-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm">
+                                <div className="h-full flex flex-col items-center justify-center py-5 rounded-2xl bg-gradient-to-b from-cyan-50 to-white border border-cyan-400/20 shadow-sm sm:col-span-2 lg:col-span-1">
                                     <p className="text-[9px] font-black tracking-[0.35em] text-cyan-500 uppercase mb-2">Venue</p>
                                     <p className="font-black text-gray-900 text-sm text-center leading-snug">{event.venue || "—"}</p>
                                 </div>
