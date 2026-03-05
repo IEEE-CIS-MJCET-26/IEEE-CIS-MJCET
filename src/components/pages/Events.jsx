@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import AnimatedBackground from "../AnimatedBackground";
 import { sanityClient } from "../../lib/sanityClient";
 import { urlFor } from "../../lib/sanityImage";
+import PageSEO from "../PageSEO";
 
 // ─────────────────────────────────────────
 // SANITY QUERIES
@@ -513,6 +514,7 @@ export default function Events() {
 
     return (
         <div className="relative bg-white min-h-screen overflow-hidden">
+            <PageSEO title="Events" />
 
             {/* Background blobs */}
             <div className="fixed inset-0 -z-10 overflow-hidden">

@@ -6,13 +6,15 @@ import GB from './landing/GB'
 import FAQs from './landing/FAQs'
 import Marque from './landing/marque'
 import Carousel from './landing/Carousel'
+import PageSEO from './PageSEO'
 
 export default function Home() {
     return (
         <>
+            <PageSEO title="IEEE CIS MJCET" />
             <Hero />
             <About />
-            <Carousel/>
+            <Carousel />
             {/*<HorizontalScroll />*/}
             <FacultyAdvisor />
             <GB />

@@ -5,6 +5,7 @@ import { User, Calendar, ArrowRight } from 'lucide-react';
 import AnimatedBackground from '../AnimatedBackground';
 import { sanityClient } from '../../lib/sanityClient';
 import { urlFor } from '../../lib/sanityImage';
+import PageSEO from '../PageSEO';
 
 /* ─────────────────────────────────────────
    SANITY QUERIES
@@ -245,6 +246,7 @@ export default function Blogs() {
 
     return (
         <div className="bg-white min-h-screen text-white">
+            <PageSEO title="Blogs" />
 
             {/* ── Hero ── */}
             <section className="relative min-h-[50vh] md:mt-14 mt-4 flex flex-col items-center justify-center px-6 overflow-hidden">

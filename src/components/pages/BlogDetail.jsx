@@ -5,6 +5,7 @@ import { User, Calendar, Clock, ArrowLeft, ArrowRight } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
 import { sanityClient } from '../../lib/sanityClient';
 import { urlFor } from '../../lib/sanityImage';
+import PageSEO from '../PageSEO';
 
 /* ─────────────────────────────────────────
    SANITY QUERY
@@ -196,6 +197,7 @@ export default function BlogDetail() {
 
     return (
         <div className="bg-white min-h-screen">
+            <PageSEO title={blog.title} description={blog.shortDescription} />
 
             {/* ── Back Button ── */}
             <div className="max-w-5xl mx-auto px-6 pt-24 md:pt-28 pb-4">

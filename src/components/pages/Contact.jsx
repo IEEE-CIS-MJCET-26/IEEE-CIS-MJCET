@@ -3,7 +3,7 @@ import { MapPin, Mail, Phone, Linkedin, Instagram, Github, X, CheckCircle } from
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import DotGrid from './DotGrid';
-
+import PageSEO from '../PageSEO';
 /* ─── Success Modal ─────────────────────────────────────────── */
 const SuccessModal = ({ onClose }) => (
     <AnimatePresence>
@@ -112,6 +112,7 @@ const Contact = () => {
 
     return (
         <div className="relative bg-white min-h-screen">
+            <PageSEO title="Contact Us" />
             {/* Success Modal */}
             {isSubmitted && <SuccessModal onClose={() => setIsSubmitted(false)} />}
 
