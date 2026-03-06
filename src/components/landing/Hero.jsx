@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -25,10 +25,10 @@ const mobileImages = [
 ]
 
 export default function Hero() {
-    const heroRef     = useRef(null)
-    const navRef      = useRef(null)
-    const headerRef   = useRef(null)
-    const imageRefs   = useRef([])
+    const heroRef = useRef(null)
+    const navRef = useRef(null)
+    const headerRef = useRef(null)
+    const imageRefs = useRef([])
     const vignetteRef = useRef(null)
 
     // FIX: Image set frozen once at mount via useRef — resize never triggers re-init
@@ -39,19 +39,23 @@ export default function Hero() {
     )
     const images = imagesRef.current
 
-    // FIX: useLayoutEffect (not useEffect) — GSAP runs before browser paint
-    // FIX: [] dependency — animation setup runs exactly once on mount
-    useLayoutEffect(() => {
-        // FIX: Guard all required refs before doing anything
+    // useEffect (NOT useLayoutEffect) — runs after the browser has painted the
+    // first frame. This is intentional: it lets Framer Motion's nav-pill
+    // FLIP animation get its first paint when navigating to HOME, rather than
+    // being blocked by synchronous GSAP setup.
+    // FOUC prevention: the header is already hidden via `opacity-0` CSS class
+    // in JSX, so we don't need a blocking gsap.set() call.
+    useEffect(() => {
+        // Guard all required refs before doing anything
         if (!heroRef.current || !headerRef.current) return
 
         // Snapshot ref values into local variables for a stable closure
-        const hero     = heroRef.current
-        const header   = headerRef.current
+        const hero = heroRef.current
+        const header = headerRef.current
         const vignette = vignetteRef.current
-        const nav      = navRef.current   // may be null — guarded on every use
+        const nav = navRef.current   // may be null — guarded on every use
 
-        // FIX: Filter null entries before passing any array to GSAP
+        // Filter null entries before passing any array to GSAP
         const validRefs = imageRefs.current.filter(Boolean)
         if (validRefs.length === 0) return
 
@@ -59,9 +63,8 @@ export default function Hero() {
         const ctx = gsap.context(() => {
             const tl = gsap.timeline()
 
-            // FIX: Guard navRef — it is not attached to any JSX element by default
+            // Guard navRef — not attached to any JSX element by default
             if (nav) gsap.set(nav, { y: -150 })
-            gsap.set(header, { opacity: 0 })
 
             // Reveal images one by one
             tl.to(validRefs, {
@@ -93,7 +96,7 @@ export default function Hero() {
                 })
             }
 
-            // Fade in header logo
+            // Fade in header logo — GSAP will override the CSS opacity-0
             tl.to(header, { opacity: 1, duration: 1, ease: 'power2.out' })
 
             // Vignette scroll effect (guarded)
@@ -123,15 +126,15 @@ export default function Hero() {
                 })
             }
 
-            // FIX: Refresh after full setup so ScrollTrigger measures correctly
+            // Refresh after full setup so ScrollTrigger measures correctly
             ScrollTrigger.refresh()
 
         }, heroRef) // scope to heroRef container
 
-        // FIX: ctx.revert() tears down all tweens + ScrollTriggers on unmount
+        // ctx.revert() tears down all tweens + ScrollTriggers on unmount
         return () => ctx.revert()
 
-    }, []) // FIX: empty array — runs once, never on resize
+    }, []) // empty array — runs once, never on resize
 
     return (
         // FIX: h-[100svh] — stable height on mobile (svh ignores URL bar changes)
@@ -161,7 +164,7 @@ export default function Hero() {
             <div className="absolute inset-0 z-10">
                 <div
                     ref={headerRef}
-                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-4"
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-4 opacity-0"
                 >
                     <img
                         src="/assets/White Logo.png"

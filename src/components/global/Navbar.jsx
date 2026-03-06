@@ -72,12 +72,12 @@ export default function Navbar() {
                         </div>
 
                         {/* Desktop Links */}
-                        <div className="hidden md:flex items-center gap-8">
+                        <div className="hidden md:flex items-center gap-1 relative">
                             {navLinks.map((link) => {
                                 const active = isActive(link.href)
                                 const contact = isContact(link.href)
 
-                                /* CONTACT US → pill CTA style */
+                                /* CONTACT US → bordered pill CTA (unchanged) */
                                 if (contact) {
                                     return (
                                         <Link
@@ -85,7 +85,7 @@ export default function Navbar() {
                                             to={link.href}
                                             className={`
                                                 relative px-4 py-1.5 rounded-full text-sm font-semibold
-                                                tracking-wider border transition-all duration-300
+                                                tracking-wider border transition-all duration-300 ml-6
                                                 ${active
                                                     ? 'border-cyan-400 bg-cyan-400/15 text-cyan-400'
                                                     : 'border-cyan-400/40 text-white/70 hover:bg-cyan-400/10 hover:text-cyan-400 hover:border-cyan-400'
@@ -97,33 +97,32 @@ export default function Navbar() {
                                     )
                                 }
 
-                                /* Regular links with animated underline */
+                                
                                 return (
                                     <Link
                                         key={link.name}
                                         to={link.href}
                                         className={`
-                                            group relative flex flex-col items-center gap-0.5
-                                            text-sm font-medium tracking-wider
-                                            transition-colors duration-300
-                                            ${active ? 'text-cyan-400' : 'text-white/70 hover:text-white'}
+                                            relative px-4 py-2 text-sm font-medium tracking-wider
+                                            rounded-full select-none
+                                            ${active ? 'text-black font-semibold' : 'text-white/70 hover:text-white'}
                                         `}
                                     >
-                                        {link.name}
-
-                                        {/* Animated underline */}
-                                        {active ? (
-                                            <motion.span
-                                                layoutId="nav-underline"
-                                                className="absolute -bottom-1 left-0 right-0 h-[2px] rounded-full bg-cyan-400"
-                                            />
-                                        ) : (
-                                            <span
-                                                className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full
-                                                           bg-cyan-400 transition-all duration-300
-                                                           group-hover:w-full"
+                                        {active && (
+                                            <motion.div
+                                                layoutId="activePill"
+                                                className="absolute inset-0 rounded-full bg-cyan-400"
+                                                style={{ zIndex: -1 }}
+                                                transition={{
+                                                    type: 'spring',
+                                                    bounce: 0.2,
+                                                    duration: 0.6,
+                                                }}
                                             />
                                         )}
+                                        <span className="relative" style={{ zIndex: 10 }}>
+                                            {link.name}
+                                        </span>
                                     </Link>
                                 )
                             })}
