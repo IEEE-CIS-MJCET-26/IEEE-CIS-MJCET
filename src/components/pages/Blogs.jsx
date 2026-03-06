@@ -249,7 +249,7 @@ export default function Blogs() {
             <PageSEO title="Blogs" />
 
             {/* ── Hero ── */}
-            <section className="relative min-h-[50vh] md:mt-14 mt-4 flex flex-col items-center justify-center px-6 overflow-hidden">
+            <section className="relative min-h-[50vh] pt-24 pb-16 md:pt-32 md:pb-20 flex flex-col items-center justify-center px-6 overflow-hidden">
                 <AnimatedBackground />
 
                 <div className="relative z-10 text-center max-w-4xl mx-auto">
