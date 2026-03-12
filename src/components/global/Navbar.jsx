@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
@@ -6,6 +6,11 @@ import { Menu, X } from 'lucide-react'
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const { pathname } = useLocation()
+
+    // Refs for pill measurement
+    const containerRef = useRef(null)
+    const linkRefs = useRef({})
+    const [pillStyle, setPillStyle] = useState(null)
 
     const navLinks = [
         { name: 'HOME', href: '/' },
@@ -15,7 +20,30 @@ export default function Navbar() {
         { name: 'CONTACT US', href: '/contact' },
     ]
 
-    /* ── Mobile menu variants (unchanged logic) ─── */
+    const isContact = (href) => href === '/contact'
+    const isActive = (href) =>
+        href === '/' ? pathname === '/' : pathname.startsWith(href)
+
+    /* ── Measure the active nav link and position the pill ── */
+    useLayoutEffect(() => {
+        const activeLink = navLinks.find(
+            (l) => !isContact(l.href) && isActive(l.href)
+        )
+        if (!activeLink || !linkRefs.current[activeLink.name] || !containerRef.current) {
+            setPillStyle(null)
+            return
+        }
+        const containerRect = containerRef.current.getBoundingClientRect()
+        const linkRect = linkRefs.current[activeLink.name].getBoundingClientRect()
+        setPillStyle({
+            left: linkRect.left - containerRect.left,
+            top: linkRect.top - containerRect.top,
+            width: linkRect.width,
+            height: linkRect.height,
+        })
+    }, [pathname])
+
+    /* ── Mobile menu variants ─── */
     const menuVariants = {
         hidden: {
             scaleY: 0,
@@ -38,10 +66,6 @@ export default function Navbar() {
         visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] } },
         exit: { y: 50, opacity: 0, transition: { duration: 0.3, ease: [0.76, 0, 0.24, 1] } },
     }
-
-    const isContact = (href) => href === '/contact'
-    const isActive = (href) =>
-        href === '/' ? pathname === '/' : pathname.startsWith(href)
 
     return (
         <>
@@ -72,12 +96,31 @@ export default function Navbar() {
                         </div>
 
                         {/* Desktop Links */}
-                        <div className="hidden md:flex items-center gap-1 relative">
+                        <div
+                            ref={containerRef}
+                            className="hidden md:flex items-center gap-1 relative"
+                        >
+                            {/* Single animated pill — driven by measured DOM bounds */}
+                            {pillStyle && (
+                                <motion.div
+                                    className="absolute rounded-full bg-cyan-400 pointer-events-none"
+                                    initial={false}
+                                    animate={{
+                                        left: pillStyle.left,
+                                        top: pillStyle.top,
+                                        width: pillStyle.width,
+                                        height: pillStyle.height,
+                                    }}
+                                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                                    style={{ zIndex: 0 }}
+                                />
+                            )}
+
                             {navLinks.map((link) => {
                                 const active = isActive(link.href)
                                 const contact = isContact(link.href)
 
-                                /* CONTACT US → bordered pill CTA (unchanged) */
+                                /* CONTACT US → bordered pill CTA */
                                 if (contact) {
                                     return (
                                         <Link
@@ -97,32 +140,19 @@ export default function Navbar() {
                                     )
                                 }
 
-                                
                                 return (
                                     <Link
                                         key={link.name}
+                                        ref={(el) => { linkRefs.current[link.name] = el }}
                                         to={link.href}
                                         className={`
                                             relative px-4 py-2 text-sm font-medium tracking-wider
                                             rounded-full select-none
                                             ${active ? 'text-black font-semibold' : 'text-white/70 hover:text-white'}
                                         `}
+                                        style={{ zIndex: 1 }}
                                     >
-                                        {active && (
-                                            <motion.div
-                                                layoutId="activePill"
-                                                className="absolute inset-0 rounded-full bg-cyan-400"
-                                                style={{ zIndex: -1 }}
-                                                transition={{
-                                                    type: 'spring',
-                                                    bounce: 0.2,
-                                                    duration: 0.6,
-                                                }}
-                                            />
-                                        )}
-                                        <span className="relative" style={{ zIndex: 10 }}>
-                                            {link.name}
-                                        </span>
+                                        {link.name}
                                     </Link>
                                 )
                             })}
@@ -140,7 +170,7 @@ export default function Navbar() {
                 </div>
             </motion.nav>
 
-            {/* ── Mobile Full-Screen Menu (logic & variants unchanged) ── */}
+            {/* ── Mobile Full-Screen Menu ── */}
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div
