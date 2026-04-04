@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { PortableText } from "@portabletext/react";
 import AnimatedBackground from "../AnimatedBackground";
 import { sanityClient } from "../../lib/sanityClient";
 import { urlFor } from "../../lib/sanityImage";
@@ -21,7 +22,7 @@ import PageSEO from "../PageSEO";
 //
 const ALL_EVENTS_QUERY = `*[_type=="event"] | order(date asc) {
   _id, title, date, time, venue, description,
-  poster, gallery, registrationLink, tenure, category
+  poster, gallery, registrationLink, registrationLinks[] { name, url }, tenure, category
 }`;
 
 // ─────────────────────────────────────────
@@ -40,6 +41,35 @@ const formatDate = (dateStr) => {
 const imgUrl = (ref, width = 800) => {
     if (!ref) return null;
     return urlFor(ref).width(width).url();
+};
+
+const renderText = (content) => {
+    try {
+        if (!content) return "";
+        if (typeof content === 'string') return content;
+        if (Array.isArray(content)) {
+            return content.map(block => {
+                if (block.children && Array.isArray(block.children)) {
+                    return block.children.map(c => c.text || '').join('');
+                }
+                return '';
+            }).join(' ');
+        }
+        return "";
+    } catch(e) {
+        return "";
+    }
+};
+
+const renderRichText = (content, defaultText) => {
+    try {
+        if (!content) return <p>{defaultText}</p>;
+        if (typeof content === 'string') return <p>{content}</p>;
+        if (Array.isArray(content)) return <PortableText value={content} />;
+        return <p>{defaultText}</p>;
+    } catch(e) {
+        return <p>{defaultText}</p>;
+    }
 };
 
 // ─────────────────────────────────────────
@@ -111,7 +141,7 @@ const PastEventCard = ({ event, onRecapClick }) => {
                 </h3>
 
                 <p className="text-sm text-neutral-700 leading-relaxed mb-5 flex-grow line-clamp-2">
-                    {event.description}
+                    {renderText(event.description)}
                 </p>
 
                 {/* Sliding fill button */}
@@ -236,27 +266,41 @@ const EventModal = ({ event, onClose, isUpcoming = false }) => {
 
                                 <div className="w-16 h-1 bg-cyan-500 mb-8 rounded-full group-hover:w-32 transition-all duration-500"></div>
 
-                                <p className="text-neutral-300 text-base md:text-lg leading-relaxed font-normal mb-10 font-inter">
-                                    {event.description || "Something's cooking"}
-                                </p>
+                                <div className="text-neutral-300 text-base md:text-lg leading-relaxed font-normal mb-10 font-inter space-y-4">
+                                    {renderRichText(event.description, "Something's cooking")}
+                                </div>
 
-                                {/* REGISTER NOW — above date/time/venue, only shown if registrationLink exists */}
-                                {event.registrationLink && (
-                                    <motion.a
-                                        href={event.registrationLink}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        whileTap={{ scale: 0.97 }}
-                                        className="group/reg relative mb-8 inline-flex items-center gap-3 px-10 py-5 bg-white text-black text-sm uppercase font-black rounded-2xl font-inter overflow-hidden transition-colors duration-300"
-                                    >
-                                        <span className="absolute inset-0 bg-cyan-400 translate-x-[-101%] group-hover/reg:translate-x-0 transition-transform duration-300 ease-out rounded-2xl" />
-                                        <span className="relative z-10 flex items-center gap-3 group-hover/reg:text-black transition-colors duration-300">
-                                            Register Now
-                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover/reg:translate-x-1">
-                                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                                            </svg>
-                                        </span>
-                                    </motion.a>
+                                {/* REGISTER — above date/time/venue */}
+                                {/* Priority: registrationLinks[] array  →  legacy registrationLink string */}
+                                {(
+                                    (event.registrationLinks && event.registrationLinks.length > 0)
+                                        ? event.registrationLinks
+                                        : (event.registrationLink ? [{ name: 'Register Now', url: event.registrationLink }] : [])
+                                ).length > 0 && (
+                                    <div className="flex flex-wrap gap-3 mb-8">
+                                        {(
+                                            (event.registrationLinks && event.registrationLinks.length > 0)
+                                                ? event.registrationLinks
+                                                : [{ name: 'Register Now', url: event.registrationLink }]
+                                        ).map((link, idx) => (
+                                            <motion.a
+                                                key={idx}
+                                                href={link.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                whileTap={{ scale: 0.97 }}
+                                                className="group/reg relative inline-flex items-center gap-3 px-8 py-4 bg-white text-black text-sm uppercase font-black rounded-2xl font-inter overflow-hidden transition-colors duration-300"
+                                            >
+                                                <span className="absolute inset-0 bg-cyan-400 translate-x-[-101%] group-hover/reg:translate-x-0 transition-transform duration-300 ease-out rounded-2xl" />
+                                                <span className="relative z-10 flex items-center gap-3 group-hover/reg:text-black transition-colors duration-300">
+                                                    {link.name || 'Register Now'}
+                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover/reg:translate-x-1">
+                                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                </span>
+                                            </motion.a>
+                                        ))}
+                                    </div>
                                 )}
 
                                 {/* Date / Time / Venue */}
@@ -367,7 +411,9 @@ const EventModal = ({ event, onClose, isUpcoming = false }) => {
                                     <span className="text-[11px] font-black tracking-[0.4em] text-cyan-400 uppercase">About Event</span>
                                     <div className="h-[1.5px] flex-1 bg-gradient-to-l from-transparent to-cyan-400/40" />
                                 </div>
-                                <p className="text-gray-500 text-sm md:text-[15px] leading-[1.9] text-center max-w-2xl mx-auto font-medium tracking-wide">{event.description}</p>
+                                <div className="text-gray-500 text-sm md:text-[15px] leading-[1.9] text-center max-w-2xl mx-auto font-medium tracking-wide space-y-4">
+                                    {renderRichText(event.description, "")}
+                                </div>
                             </div>
 
                             {/* Date / Time / Venue */}
@@ -624,9 +670,9 @@ export default function Events() {
 
                                             <div className="w-16 h-1 bg-cyan-500 mb-10 rounded-full group-hover:w-32 transition-all duration-500"></div>
 
-                                            <p className="text-neutral-400 text-lg md:text-xl lg:text-2xl leading-relaxed mb-12 font-inter font-light">
-                                                {upcomingEvent.description}
-                                            </p>
+                                            <div className="text-neutral-400 text-lg md:text-xl lg:text-2xl leading-relaxed mb-12 font-inter font-light space-y-6">
+                                                {renderRichText(upcomingEvent.description, "")}
+                                            </div>
 
                                             <div>
                                                 <motion.button

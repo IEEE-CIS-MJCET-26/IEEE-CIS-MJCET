@@ -53,13 +53,41 @@ export default {
         {
             name: 'description',
             title: 'Description',
-            type: 'text'
+            type: 'array',
+            of: [{ type: 'block' }]
         },
         {
             name: 'registrationLink',
-            title: 'Registration Link (optional)',
+            title: 'Registration Link (optional) [Legacy]',
             type: 'url',
-            description: 'If provided, a "Register Now" button will appear in the upcoming event modal.'
+            description: 'If provided, a "Register Now" button will appear in the upcoming event modal. Note: Prefer using "Multiple Registration Links" below instead.'
+        },
+        {
+            name: 'registrationLinks',
+            title: 'Multiple Registration Links',
+            type: 'array',
+            description: 'Add one or more registration links with custom button names.',
+            of: [
+                {
+                    type: 'object',
+                    title: 'Registration Link',
+                    fields: [
+                        {
+                            name: 'name',
+                            title: 'Button Name',
+                            type: 'string',
+                            description: 'E.g., "Register for Hackathon", "Join Event", "Day 1 Registration"',
+                            validation: (Rule) => Rule.required()
+                        },
+                        {
+                            name: 'url',
+                            title: 'Link URL',
+                            type: 'url',
+                            validation: (Rule) => Rule.required()
+                        }
+                    ]
+                }
+            ]
         },
         {
             name: 'gallery',
