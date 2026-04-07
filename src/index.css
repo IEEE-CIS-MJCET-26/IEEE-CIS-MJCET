@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -157,5 +158,14 @@
   .animate-stat-border-spin {
     background-size: 200% 200%;
     animation: stat-border-spin 3s linear infinite;
+  }
+
+  /* Hide scrollbar for horizontal scroll containers */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -4,7 +4,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// ── Image lists defined at module level (never recreated) ──────────────────
 const desktopImages = [
     'football.jpeg',
     'fwf.jpg',
@@ -31,7 +30,6 @@ export default function Hero() {
     const imageRefs = useRef([])
     const vignetteRef = useRef(null)
 
-    // FIX: Image set frozen once at mount via useRef — resize never triggers re-init
     const imagesRef = useRef(
         typeof window !== 'undefined' && window.innerWidth < 640
             ? mobileImages
@@ -39,34 +37,23 @@ export default function Hero() {
     )
     const images = imagesRef.current
 
-    // useEffect (NOT useLayoutEffect) — runs after the browser has painted the
-    // first frame. This is intentional: it lets Framer Motion's nav-pill
-    // FLIP animation get its first paint when navigating to HOME, rather than
-    // being blocked by synchronous GSAP setup.
-    // FOUC prevention: the header is already hidden via `opacity-0` CSS class
-    // in JSX, so we don't need a blocking gsap.set() call.
+
     useEffect(() => {
-        // Guard all required refs before doing anything
         if (!heroRef.current || !headerRef.current) return
 
-        // Snapshot ref values into local variables for a stable closure
         const hero = heroRef.current
         const header = headerRef.current
         const vignette = vignetteRef.current
-        const nav = navRef.current   // may be null — guarded on every use
+        const nav = navRef.current
 
-        // Filter null entries before passing any array to GSAP
         const validRefs = imageRefs.current.filter(Boolean)
         if (validRefs.length === 0) return
 
-        // gsap.context() scopes all tweens/ScrollTriggers for clean ctx.revert()
         const ctx = gsap.context(() => {
             const tl = gsap.timeline()
 
-            // Guard navRef — not attached to any JSX element by default
             if (nav) gsap.set(nav, { y: -150 })
 
-            // Reveal images one by one
             tl.to(validRefs, {
                 clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
                 duration: 1.2,
@@ -74,17 +61,14 @@ export default function Hero() {
                 ease: 'power3.inOut',
             })
 
-            // Scale-up the hero wrapper simultaneously
             tl.to(hero, {
                 scale: 1.25,
                 duration: 3,
                 ease: 'power3.inOut',
             }, 0)
 
-            // Slide nav down (guarded)
             if (nav) tl.to(nav, { y: 0, duration: 1 }, 0.8)
 
-            // Pin the last image fully visible
             const lastImageIndex = validRefs.length - 1
             if (validRefs[lastImageIndex]) {
                 tl.set(validRefs[lastImageIndex], {
@@ -96,10 +80,8 @@ export default function Hero() {
                 })
             }
 
-            // Fade in header logo — GSAP will override the CSS opacity-0
             tl.to(header, { opacity: 1, duration: 1, ease: 'power2.out' })
 
-            // Vignette scroll effect (guarded)
             if (vignette) {
                 gsap.to(vignette, {
                     opacity: 0.6,
@@ -112,7 +94,6 @@ export default function Hero() {
                 })
             }
 
-            // Blur effect on final image (guarded)
             if (validRefs[lastImageIndex]) {
                 gsap.to(validRefs[lastImageIndex], {
                     filter: 'blur(10px)',
@@ -126,18 +107,14 @@ export default function Hero() {
                 })
             }
 
-            // Refresh after full setup so ScrollTrigger measures correctly
             ScrollTrigger.refresh()
 
-        }, heroRef) // scope to heroRef container
-
-        // ctx.revert() tears down all tweens + ScrollTriggers on unmount
+        }, heroRef) 
         return () => ctx.revert()
 
-    }, []) // empty array — runs once, never on resize
+    }, []) 
 
     return (
-        // FIX: h-[100svh] — stable height on mobile (svh ignores URL bar changes)
         <section className="relative h-[100svh] w-screen overflow-hidden p-4 sm:p-8 md:p-12">
             <div ref={heroRef} className="relative h-full w-full">
                 {images.map((img, i) => (
