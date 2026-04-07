@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { RotateCcw, Eye, ArrowLeft, X } from "lucide-react";
+import { RotateCcw, Eye, ArrowLeft, X, Lock } from "lucide-react";
 import jeopardyData from "../../data/jeopardyData";
 import PageSEO from "../PageSEO";
 import jeopardyLogo from "../../assets/jeopardy.png";
@@ -49,6 +49,21 @@ export default function Jeopardy() {
   );
   const [selected, setSelected] = useState(null); // { catIdx, qIdx }
   const [showAnswer, setShowAnswer] = useState(false);
+
+  /* ── password gate ── */
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
+
+  const handlePasswordSubmit = useCallback((e) => {
+    e.preventDefault();
+    if (password === "tashan") {
+      setIsAuthenticated(true);
+      setPasswordError(false);
+    } else {
+      setPasswordError(true);
+    }
+  }, [password]);
 
   /* count of used tiles for progress indicator */
   const totalUsed = board.reduce(
@@ -100,6 +115,122 @@ export default function Jeopardy() {
   return (
     <>
       <PageSEO title="Jeopardy | IEEE CIS MJCET" />
+
+      {/* ── Password Gate ── */}
+      <AnimatePresence>
+        {!isAuthenticated && (
+          <motion.div
+            key="password-gate"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center"
+          >
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(180deg, #1a0000 0%, #3b0000 40%, #0a0000 100%)" }}
+            />
+            {/* Vignette */}
+            <div
+              className="absolute inset-0"
+              style={{ background: "radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.7) 100%)" }}
+            />
+
+            {/* Password Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 10 }}
+              transition={{ type: "spring", damping: 24, stiffness: 280, delay: 0.1 }}
+              className="relative z-10 w-[90%] max-w-md p-8 sm:p-10 rounded-2xl
+                         border border-[#d4af37]/20"
+              style={{
+                background: "linear-gradient(180deg, rgba(42,10,10,0.95) 0%, rgba(10,0,0,0.97) 100%)",
+                boxShadow: "0 0 80px rgba(212,175,55,0.08), inset 0 1px 0 rgba(212,175,55,0.1)",
+              }}
+            >
+              {/* Lock Icon */}
+              <div className="flex justify-center mb-5">
+                <div
+                  className="w-16 h-16 rounded-full flex items-center justify-center
+                             border border-[#d4af37]/30"
+                  style={{ background: "rgba(212,175,55,0.08)" }}
+                >
+                  <Lock size={28} className="text-[#d4af37]" />
+                </div>
+              </div>
+
+              {/* Title */}
+              <h2
+                className="font-sairaStencil text-2xl sm:text-3xl tracking-widest uppercase text-center mb-2"
+                style={goldTextStyle}
+              >
+                ACCESS REQUIRED
+              </h2>
+              <p className="text-[#f5e6c8]/40 font-inter text-sm text-center mb-8 tracking-wide">
+                Enter password to continue
+              </p>
+
+              {/* Form */}
+              <form onSubmit={handlePasswordSubmit} className="space-y-4">
+                <div>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setPasswordError(false);
+                    }}
+                    placeholder="Enter password"
+                    autoFocus
+                    className="w-full px-5 py-3.5 rounded-xl font-inter text-base
+                               text-[#f5e6c8] placeholder-[#f5e6c8]/25
+                               border outline-none transition-all duration-300
+                               focus:border-[#d4af37]/60 focus:shadow-[0_0_15px_rgba(212,175,55,0.1)]"
+                    style={{
+                      background: "rgba(245,230,200,0.04)",
+                      borderColor: passwordError ? "rgba(220,50,50,0.6)" : "rgba(212,175,55,0.2)",
+                    }}
+                  />
+                  {/* Error message */}
+                  <AnimatePresence>
+                    {passwordError && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -5 }}
+                        transition={{ duration: 0.2 }}
+                        className="text-red-400 font-inter text-sm mt-2 pl-1"
+                      >
+                        Incorrect password
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="w-full flex items-center justify-center gap-2
+                             px-6 py-3.5 rounded-xl
+                             font-semibold font-inter text-base
+                             transition-all duration-200"
+                  style={{
+                    background: "linear-gradient(135deg, #d4af37, #b8962e)",
+                    color: "#1a0000",
+                    boxShadow: "0 0 20px rgba(212,175,55,0.2)",
+                  }}
+                >
+                  Unlock Board
+                </motion.button>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="min-h-screen w-full text-white relative overflow-hidden"
         style={{ background: "linear-gradient(180deg, #1a0000 0%, #3b0000 30%, #2a0000 60%, #0a0000 100%)" }}
