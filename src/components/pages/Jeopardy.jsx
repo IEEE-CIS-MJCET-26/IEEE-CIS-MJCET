@@ -12,6 +12,7 @@ const tierColors = {
   300: { bg: "from-[#320e06] to-[#1e0803]", border: "border-[#d4af37]/35", glow: "rgba(212,175,55,0.14)" },
   400: { bg: "from-[#361008] to-[#200a04]", border: "border-[#d4af37]/40", glow: "rgba(212,175,55,0.16)" },
   500: { bg: "from-[#3a1210] to-[#220c06]", border: "border-[#d4af37]/50", glow: "rgba(212,175,55,0.20)" },
+  600: { bg: "from-[#3e1412] to-[#240e08]", border: "border-[#d4af37]/55", glow: "rgba(212,175,55,0.24)" },
 };
 
 /* ─── category accent colours — Bollywood rich tints ─── */
@@ -21,7 +22,6 @@ const categoryColors = [
   { bg: "from-[#2d5a27] to-[#1a3a16]", text: "text-[#f5e6c8]" },  // Comedy — green
   { bg: "from-[#8b2020] to-[#5c1414]", text: "text-[#f5e6c8]" },  // Action — dark red
   { bg: "from-[#4a1a6b] to-[#2e1042]", text: "text-[#f5e6c8]" },  // Horror — dark purple
-  { bg: "from-[#1a3a6b] to-[#102642]", text: "text-[#f5e6c8]" },  // Superhero — deep blue
 ];
 
 /* ─── gold gradient style (reusable inline) ─── */
@@ -320,7 +320,7 @@ export default function Jeopardy() {
         <main className="relative z-10 px-3 sm:px-6 lg:px-8 pb-8">
           <div className="max-w-[1400px] mx-auto">
             {/* Desktop / Tablet Grid */}
-            <div className="hidden sm:grid grid-cols-6 gap-2 lg:gap-3">
+            <div className="hidden sm:grid grid-cols-5 gap-2 lg:gap-3">
               {/* Category Headers */}
               {board.map((cat, catIdx) => (
                 <motion.div
@@ -328,7 +328,7 @@ export default function Jeopardy() {
                   initial={{ opacity: 0, y: -15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: catIdx * 0.08, duration: 0.5 }}
-                  className="relative rounded-xl overflow-hidden p-3 lg:p-4 text-center"
+                  className="relative rounded-xl overflow-hidden p-3 lg:p-4 text-center h-16 lg:h-20 flex items-center justify-center"
                 >
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${categoryColors[catIdx].bg}`}
@@ -345,7 +345,7 @@ export default function Jeopardy() {
               ))}
 
               {/* Question Tiles — row by row */}
-              {[0, 1, 2, 3, 4].map((qIdx) =>
+              {[0, 1, 2, 3, 4, 5].map((qIdx) =>
                 board.map((cat, catIdx) => {
                   const q = cat.questions[qIdx];
                   const colors = tierColors[q.points];
