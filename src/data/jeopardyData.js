@@ -63,8 +63,8 @@ const jeopardyData = [
 },
 {
   points: 400,
-  question: "In Dangal, what are the names of Mahavir Phogat’s two eldest daughters?",
-  answer: "Geeta and Babita",
+  question: "In The Lunchbox, what mistake triggers the entire story?",
+  answer: "The lunchbox gets delivered to the wrong person",
   used: false,
 },
 {
@@ -98,26 +98,26 @@ const jeopardyData = [
 },
 {
   points: 300,
+  question: "In PK, what does the alien call different religions and their confusing rules? ",
+  answer: "Wrong Number",
+  used: false,
+},
+{
+  points: 400,
   question: "In Zindagi Na Milegi Dobara, what is the name of the expensive handbag Arjun is forced to carry?",
   answer: "Bagwati",
   used: false,
 },
 {
-  points: 400,
-  question: "In Fukrey, what does Choocha call his dream-seeing ability?",
-  answer: "Deja-Chu",
-  used: false,
-},
-{
   points: 500,
-  question: "In PK, what does the alien call different religions and their confusing rules?",
-  answer: "Wrong Number",
+  question: "In Fukrey, what does Choocha call his dream-seeing ability?",
+  answer: "Deja-chu",
   used: false,
 },
 {
   points: 600,
-  question: "In Partner, what is Salman Khan’s profession while helping Govinda?",
-  answer: "Love Guru",
+  question: "What movie does this dialogue belong to? :Dare hue log aksar alfazon ke peeche chupte hai",
+  answer: "Ae dil hai mushkil",
   used: false,
 }
     ],
@@ -133,26 +133,26 @@ const jeopardyData = [
 },
 {
   points: 200,
-  question: "In Animal, what is the name of the massive machine gun Ranbir Kapoor uses?",
-  answer: "The War Machine / Sentinel",
-  used: false,
-},
-{
-  points: 300,
-  question: "What is the specific name of the local don's son whose life Hamza (Ranveer Singh) saves to gain trust in Lyari?",
-  answer: "Rahman Dakait",
-  used: false,
-},
-{
-  points: 400,
   question: "In Sholay, Gabbar asks, “Kitne aadmi the?” What was the henchman’s reply?",
   answer: "Do, Sarkaar!",
   used: false,
 },
 {
+  points: 300,
+  question: "In Kaabil, what is the profession of Hrithik Roshan’s character?",
+  answer: "Voice-over artist / dubbing artist",
+  used: false,
+},
+{
+  points: 400,
+  question: "In Ra.One, what does RA.One stand for?",
+  answer: "Random Access – Version One",
+  used: false,
+},
+{
   points: 500,
-  question: "From Pathaan: Party Pathaan ke ghar rakhoge toh, ",
-  answer: "Mehmaan-nawaazi ke liye Pathaan toh aayega",
+  question: "In Tiger Zinda Hai, what operational constraint makes the rescue mission difficult? ",
+  answer: "Hostages in enemy territory under heavy surveillance with time pressure",
   used: false,
 },
 {
@@ -186,8 +186,8 @@ const jeopardyData = [
 },
 {
   points: 400,
-  question: "In Krrish, how does Rohit Mehra get his mental powers in Koi Mil Gaya?",
-  answer: " Jadoo the alien heals him",
+  question: "In Stree, what is written on the walls to ward off the spirit?",
+  answer: "O Stree! Kal aana",
   used: false,
 },
 {
@@ -198,8 +198,8 @@ const jeopardyData = [
 },
 {
   points: 600,
-  question: "In Robot (Enthiran), what is the name of the robot played by Rajinikanth?",
-  answer: "Chitti",
+  question: "Which movie is this from :Deewano ki baatein sirf deewane samajhte hai",
+  answer: "1920",
   used: false,
 }
     ],
