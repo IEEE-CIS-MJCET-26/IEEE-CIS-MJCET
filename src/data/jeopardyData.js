@@ -180,14 +180,14 @@ const jeopardyData = [
 },
 {
   points: 300,
-  question: "In Tumbbad, what is the name of the cursed God of Greed living in the well?",
-  answer: "Hastar",
+  question: "In Stree, what is written on the walls to ward off the spirit?",
+  answer: "O Stree! Kal aana",
   used: false,
 },
 {
   points: 400,
-  question: "In Stree, what is written on the walls to ward off the spirit?",
-  answer: "O Stree! Kal aana",
+  question: "In Tumbbad, what is the name of the cursed God of Greed living in the well?",
+  answer: "Hastar",
   used: false,
 },
 {
