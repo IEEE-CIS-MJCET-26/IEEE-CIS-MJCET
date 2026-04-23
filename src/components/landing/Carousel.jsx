@@ -35,7 +35,7 @@ const activities = [
   {
     title: "INDUSTRIAL TRIPS",
     description: "We organize industry and company visits to explore real-world technologies.",
-    image: "/HSImages/Field Trips.png"
+    image: "/HSImages/Incursion.jpg"
   },
   {
     title: "PRESS SEGMENTS",
