@@ -8,7 +8,8 @@ const desktopImages = [
     'football.jpeg',
     'fwf.jpg',
     'main5.JPG',
-    'oldays.jpg',
+    'Bollywood.jpg',
+    'ICRISAT.jpg',
     'main1.png',
 ]
 
