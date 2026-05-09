@@ -108,71 +108,75 @@ export default function TeamMemberModal({ member, isOpen, onClose }) {
 
                         {/* Inner layout wrapper */}
                         <div className="tmm-inner">
-                            {/* Image Section */}
-                            <div className="tmm-image-wrapper">
-                                {member.image ? (
-                                    <img src={member.image} alt={member.name} />
-                                ) : (
-                                    <div className="tmm-image-placeholder">
-                                        <span>{member.name?.slice(0, 2) || 'TM'}</span>
+                            {/* Top Background Cover */}
+                            <div className="tmm-cover-bg"></div>
+
+                            <div className="tmm-content-pad">
+                                {/* Header Section: Image + Title */}
+                                <div className="tmm-header">
+                                <div className="tmm-image-wrapper">
+                                    {member.image ? (
+                                        <img src={member.image} alt={member.name} />
+                                    ) : (
+                                        <div className="tmm-image-placeholder">
+                                            <span>{member.name?.slice(0, 2) || 'TM'}</span>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="tmm-title-area">
+                                    <h2 className="tmm-name">{member.name}</h2>
+                                    <p className="tmm-designation">{member.position}</p>
+                                </div>
+                            </div>
+
+                            <div className="tmm-body">
+                                {/* Description */}
+                                {hasDescription && (
+                                    <div className="tmm-description-section">
+                                        <p className="tmm-description">{displayDescription}</p>
                                     </div>
                                 )}
-                            </div>
 
-                            {/* Accent line */}
-                            <div className="tmm-accent-line" />
+                                {/* Bottom Section — Skills & Socials */}
+                                {hasBottomSection && (
+                                    <div className="tmm-bottom">
+                                        {/* Skills (Left/Top) */}
+                                        {hasSkills && (
+                                            <div className="tmm-skills-container">
+                                                <span className="tmm-section-title">Core Skills</span>
+                                                <div className="tmm-skills-badges">
+                                                    {displaySkills.map((skill, i) => (
+                                                        <span key={i} className="tmm-skill-badge">{skill}</span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
 
-                            {/* Name & Designation */}
-                            <div className="tmm-content">
-                                <h2 className="tmm-name">{member.name}</h2>
-                                <p className="tmm-designation">{member.position}</p>
-                            </div>
-
-                            {/* Description */}
-                            {hasDescription && (
-                                <div className="tmm-description-section">
-                                    <p className="tmm-description">{displayDescription}</p>
-                                </div>
-                            )}
-
-                            {/* Bottom Section — Socials & Skills */}
-                            {hasBottomSection && (
-                                <div className="tmm-bottom">
-                                    {/* Socials Column (Left) */}
-                                    {socials.length > 0 && (
-                                        <div className="tmm-col">
-                                            <span className="tmm-col-title">Socials</span>
-                                            <ul className="tmm-socials-list">
-                                                {socials.map(({ label, href, Icon }, i) => (
-                                                    <li key={i}>
+                                        {/* Socials (Right/Bottom) */}
+                                        {socials.length > 0 && (
+                                            <div className="tmm-socials-container">
+                                                <span className="tmm-section-title">Connect</span>
+                                                <div className="tmm-socials-row">
+                                                    {socials.map(({ label, href, Icon }, i) => (
                                                         <a
+                                                            key={i}
                                                             href={href}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="tmm-social-link"
+                                                            className="tmm-social-btn"
+                                                            title={label}
                                                         >
                                                             <Icon />
-                                                            <span className="tmm-social-label">{label}</span>
                                                         </a>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
-
-                                    {/* Skills Column (Right) */}
-                                    {hasSkills && (
-                                        <div className="tmm-col">
-                                            <span className="tmm-col-title">Skills</span>
-                                            <ul className="tmm-skills-list">
-                                                {displaySkills.map((skill, i) => (
-                                                    <li key={i}>{skill}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
-                                </div>
-                            )}
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                            </div>
                         </div>
                     </motion.div>
                 </motion.div>
