@@ -13,7 +13,7 @@ const activities = [
     title: "FUN EVENTS",
     description:
       "Large-scale fun events helping students relax.",
-    image: "/HSImages/Mystery Mania.jpg",
+    image: "/HSImages/BT.png",
   },
   {
     title: "INTERNAL WORKSHOPS",
@@ -30,7 +30,7 @@ const activities = [
   {
     title: "INTERNAL TEAM BONDING SESSIONS",
     description: "We build team spirit through football, iftars, lunches, and fun internal games.",
-    image: "/HSImages/Internal.png"
+    image: "/HSImages/Internal.jpeg"
   },
   {
     title: "INDUSTRIAL TRIPS",
