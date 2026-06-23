@@ -50,8 +50,8 @@ const activities = [
   {
     title: "inCISive",
     description: "Our first magazine showcases achievements and key moments of our journey.",
-    image: "/HSImages/incisive.png",
-    link: "https://heyzine.com/flip-book/15d3f672a5.html#page/1"
+    image: "/HSImages/magazine.png",
+    link: "https://heyzine.com/flip-book/0653afaeb2.html"
   },
 ];
 
