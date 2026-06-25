@@ -168,4 +168,27 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+}
+
+/* ── Carousel infinite marquee ───────────────────────────────────────
+   IMPORTANT: @keyframes must live at root level (outside @layer).
+   Tailwind's production build can strip keyframes inside layers if
+   the animation name isn't matched to a known utility, which makes
+   the carousel static on Vercel while still working locally.
+──────────────────────────────────────────────────────────────────── */
+@keyframes cis-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.cis-marquee {
+  animation: cis-marquee 55s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on hover — applied to the outer wrapper so hovering any
+   card (which has pointer-events) pauses the whole track */
+.cis-marquee-wrapper:hover .cis-marquee {
+  animation-play-state: paused;
 }
