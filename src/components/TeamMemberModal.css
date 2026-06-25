@@ -18,7 +18,7 @@
 .tmm-container {
   position: relative;
   width: 100%;
-  max-width: 680px; /* Reduced width for a more compact, readable card */
+  max-width: 860px; /* Larger card for better readability */
   max-height: 90vh;
   overflow: hidden;
   border-radius: 20px;
@@ -62,7 +62,7 @@
 /* ── Top Cover Background ── */
 .tmm-cover-bg {
   width: 100%;
-  height: 100px;
+  height: 130px;
   background: linear-gradient(135deg, rgba(14, 204, 242, 0.1) 0%, rgba(14, 204, 242, 0.02) 100%);
   border-bottom: 1px solid rgba(14, 204, 242, 0.1);
   position: relative;
@@ -86,7 +86,7 @@
 }
 
 .tmm-content-pad {
-  padding: 0 32px 32px;
+  padding: 0 40px 40px;
   display: flex;
   flex-direction: column;
 }
@@ -104,15 +104,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -70px; /* Overlap the cover bg */
+  margin-top: -90px; /* Overlap the cover bg */
   position: relative;
   z-index: 10;
 }
 
 /* ── Image Section ── */
 .tmm-image-wrapper {
-  width: 140px;
-  height: 140px;
+  width: 180px;
+  height: 180px;
   border-radius: 28px;
   overflow: hidden;
   border: 4px solid #ffffff;
@@ -152,7 +152,7 @@
 }
 
 .tmm-name {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
   color: #0f172a;
   margin: 0 0 4px;
@@ -189,7 +189,7 @@
   margin: 0;
   color: #475569;
   line-height: 1.6;
-  font-size: 14.5px;
+  font-size: 15.5px;
   font-weight: 400;
 }
 
