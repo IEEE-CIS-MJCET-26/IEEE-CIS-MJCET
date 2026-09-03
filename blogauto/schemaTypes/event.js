@@ -20,6 +20,7 @@ export default {
             description: 'Which academic year did this event belong to?',
             options: {
                 list: [
+                    { title: '2026–27', value: '2026-27' },
                     { title: '2025–26', value: '2025-26' },
                     { title: '2024–25', value: '2024-25' },
                     { title: '2023–24', value: '2023-24' },
