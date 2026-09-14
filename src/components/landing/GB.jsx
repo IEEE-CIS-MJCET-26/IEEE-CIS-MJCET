@@ -2,27 +2,29 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import hafeez from '../../assets/GB PICS/Abdul Hafeez.png';
-import haifa from '../../assets/GB PICS/Haifa.png';
-import rayyan from '../../assets/GB PICS/Rayyan.png';
-import hareem from '../../assets/GB PICS/Hareem.png';
-import ahad from '../../assets/GB PICS/Abdul Ahad.png';
-import nouman from '../../assets/GB PICS/Nouman.png';
-import psa from '../../assets/GB PICS/PSA Khan.png';
 
+import ozier from '../../assets/GB-27/ozier.png';
+import aman from '../../assets/GB-27/aman.png';
+import muteeb from '../../assets/GB-27/muteeb.png';
+import ishaq from '../../assets/GB-27/ishaq.png';
+import zainab from '../../assets/GB-27/zainab.png';
+import misha from '../../assets/GB-27/misha.png';
+import abdullah from '../../assets/GB-27/abdullah.png';
+import shaista from '../../assets/GB-27/shaista.png';
 gsap.registerPlugin(ScrollTrigger);
 
 const GB_DATA = {
     row1: [
-        { name: "Abdul Hafeez", designation: "Chairman", image: hafeez },
-        { name: "Haifa Nazeer", designation: "Vice-Chair", image: haifa },
-        { name: "Rayyan Siddiqi", designation: "General Secretary", image: rayyan },
-        { name: "Ahamadi Hareem", designation: "Joint Secretary", image: hareem },
+        { name: "Abdullah Quadri", designation: "Chairman", image: abdullah },
+        { name: "Zainab Ahmed", designation: "Vice-Chair", image: zainab },
+        { name: "Shaista Khan", designation: "General Secretary", image: shaista },
+        { name: "Misha Shaik", designation: "Joint Secretary", image: misha },
     ],
     row2: [
-        { name: "Abdul Ahad", designation: "Treasurer", image: ahad },
-        { name: "Mohammed Nouman", designation: "Web Master", image: nouman },
-        { name: "PSA Khan", designation: "Liaison Head", image: psa },
+        { name: "Aman Shaik", designation: "Treasurer", image: aman },
+        { name: "Muteebuddin Mohammed", designation: "Co-Treasurer", image: muteeb },
+        { name: "Ozier Nawaz", designation: "Web Master", image: ozier },
+        { name: "Ishaq Ali", designation: "Liaison Head", image: ishaq },
     ]
 };
 
