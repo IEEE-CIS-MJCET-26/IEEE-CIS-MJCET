@@ -18,15 +18,24 @@ import omer from "../../assets/GB-25/Omer Waheed Vice Chairperson.JPG";
 import samia from "../../assets/GB-25/Samia Rahman Co - Treasurer.jpeg";
 import shabbir from "../../assets/GB-25/Shabbir Ali Razvi Web Master.JPG";
 
-// GB member images (actual photos)
-import hafeez from '../../assets/GB PICS/Abdul Hafeez.png';
-import haifa from '../../assets/GB PICS/Haifa.png';
-import rayyan from '../../assets/GB PICS/Rayyan.png';
-import hareem from '../../assets/GB PICS/Hareem.png';
-import ahad from '../../assets/GB PICS/Abdul Ahad.png';
-import nouman from '../../assets/GB PICS/Nouman.png';
-import psa from '../../assets/GB PICS/PSA Khan.png';
+// GB members 2025-26 (actual photos)
+import hafeez from '../../assets/GB-26/Abdul Hafeez.png';
+import haifa from '../../assets/GB-26/Haifa.png';
+import rayyan from '../../assets/GB-26/Rayyan.png';
+import hareem from '../../assets/GB-26/Hareem.png';
+import ahad from '../../assets/GB-26/Abdul Ahad.png';
+import nouman from '../../assets/GB-26/Nouman.png';
+import psa from '../../assets/GB-26/PSA Khan.png';
 
+// GB members 2026-27
+import ozier from '../../assets/GB-27/ozier.png';
+import aman from '../../assets/GB-27/aman.png';
+import muteeb from '../../assets/GB-27/muteeb.png';
+import ishaq from '../../assets/GB-27/ishaq.png';
+import zainab from '../../assets/GB-27/zainab.png';
+import misha from '../../assets/GB-27/misha.png';
+import abdullah from '../../assets/GB-27/abdullah.png';
+import shaista from '../../assets/GB-27/shaista.png';
 gsap.registerPlugin(ScrollTrigger);
 
 // ─────────────────────────────────────────
@@ -70,7 +79,19 @@ const BATCH_YEARS = [
 // REAL DATA — 2025–2026
 // ─────────────────────────────────────────
 
-const GB_MEMBERS = [
+const GB_2027 = [
+    { name: 'Abdullah Quadri', position: 'Chairman', image: abdullah, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
+    { name: 'Zainab Ahmed', position: 'Vice-Chair',  image: zainab, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
+    { name: 'Shaista Khan', position: 'General Secretary', image: shaista, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
+    { name: 'Misha Shaik', position: 'Joint Secretary', image: misha, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
+    { name: 'Aman Shaik', position: 'Treasurer', image: aman, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
+    { name: 'Muteebuddin Mohammed', position: 'Co-Treasurer', image: muteeb, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
+    { name: 'Ozier Nawaz', position: 'Webmaster', image: ozier, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
+    { name: 'Ishaq Ali', position: 'Liaison Head', image: ishaq, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
+
+];
+
+const GB_2025 = [
     { name: 'Abdul Hafeez', position: 'Chairman', image: hafeez, description: "I’m Abdul Hafeez, a curious developer who loves building things that actually do something cool. From game development to AI and full-stack web apps, I enjoy experimenting with different tech and learning by getting my hands dirty. I believe failure is just part of the process—I don’t mind messing up as long as I’m learning from it, moving forward, and trying again until things work. When I’m not coding, you’ll probably find me at the gym or in the kitchen, cooking food that can generously be described as edible.", linkedin: 'https://www.linkedin.com/in/abdul-hafeez-108b09214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', Instagram: 'https://www.instagram.com/ah.sofiian/', email: null, github: 'https://github.com/sofian229', skills: ["Front End", "AI", "Public Speaking", "Event Organising"] },
     {
         name: 'Haifa Nazeer',
@@ -255,13 +276,12 @@ const CORE_MEMBERS_2026 = [];
 
 // ── GB members by year (2024–2025 and 2026–2027 are empty intentionally) ──
 const GB_MEMBERS_2024 = [];   // Photos TBD — user will supply
-const GB_MEMBERS_2026 = [];   // Upcoming — not yet announced
 
 // ── Lookup by year ──
 const DATA_BY_YEAR = {
     '2024–2025': { gbMembers: GB_2024, execomDepts: EXECOM_DEPARTMENTS_2024, execomMembers: EXECOM_MEMBERS_2024, coreDepts: CORE_DEPARTMENTS_2024, coreMembers: CORE_MEMBERS_2024 },
-    '2025–2026': { gbMembers: GB_MEMBERS, execomDepts: EXECOM_DEPARTMENTS_2025, execomMembers: EXECOM_MEMBERS_2025, coreDepts: CORE_DEPARTMENTS_2025, coreMembers: CORE_MEMBERS_2025 },
-    '2026–2027': { gbMembers: GB_MEMBERS_2026, execomDepts: EXECOM_DEPARTMENTS_2026, execomMembers: EXECOM_MEMBERS_2026, coreDepts: CORE_DEPARTMENTS_2026, coreMembers: CORE_MEMBERS_2026 },
+    '2025–2026': { gbMembers: GB_2025, execomDepts: EXECOM_DEPARTMENTS_2025, execomMembers: EXECOM_MEMBERS_2025, coreDepts: CORE_DEPARTMENTS_2025, coreMembers: CORE_MEMBERS_2025 },
+    '2026–2027': { gbMembers: GB_2027, execomDepts: EXECOM_DEPARTMENTS_2026, execomMembers: EXECOM_MEMBERS_2026, coreDepts: CORE_DEPARTMENTS_2026, coreMembers: CORE_MEMBERS_2026 },
 };
 
 // ─────────────────────────────────────────
@@ -885,7 +905,7 @@ const CoreSection = ({ coreDepts, coreMembers, yearStatus }) => {
 // MAIN EXPORT
 // ─────────────────────────────────────────
 export default function Team() {
-    const [activeYear, setActiveYear] = useState('2025–2026');
+    const [activeYear, setActiveYear] = useState('2026–2027');
     const yearData = DATA_BY_YEAR[activeYear];
     const yearStatus = BATCH_YEARS.find(b => b.label === activeYear)?.status ?? 'current';
 
