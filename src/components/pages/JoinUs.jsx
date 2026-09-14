@@ -195,6 +195,7 @@ export default function JoinUs() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             className="text-5xl font-black uppercase leading-[0.82] tracking-tight text-black sm:text-6xl md:text-8xl"
+            style={{ fontFamily: "'Russo One', sans-serif" }}
           >
 
             {/* JOIN THE */}
@@ -206,7 +207,7 @@ export default function JoinUs() {
 
             {/* ROTATING WORD */}
 
-            <span className="relative mx-auto block h-[0.85em] overflow-hidden text-[42px] text-cyan-400 sm:text-[inherit]">
+            <span className="relative mx-auto block h-[0.85em] w-full max-w-full overflow-hidden text-[clamp(2rem,9.5vw,3rem)] leading-none text-cyan-400 sm:w-auto sm:max-w-none sm:text-[inherit]">
 
               <AnimatePresence mode="wait">
 
@@ -228,7 +229,8 @@ export default function JoinUs() {
                     duration: 0.55,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="absolute inset-0 flex items-center justify-center"
+                  className="absolute inset-0 flex items-center justify-center whitespace-nowrap text-cyan-400"
+                  style={{ fontFamily: "'Russo One', sans-serif" }}
                 >
                   {rotatingWords[wordIndex]}
                 </motion.span>
@@ -344,6 +346,7 @@ export default function JoinUs() {
                   delay: 0.1,
                 }}
                 className="mt-3 text-4xl font-black uppercase leading-none text-black sm:text-5xl md:text-7xl"
+                style={{ fontFamily: "'Russo One', sans-serif" }}
               >
                 WE GOT YOU.
               </motion.h2>
@@ -380,7 +383,7 @@ export default function JoinUs() {
             {/* ===================================================== */}
 
             <div
-              className="relative px-1 sm:px-8 lg:px-12"
+              className="relative px-12 sm:px-8 lg:px-12"
               onMouseEnter={() => setIsPortfolioHovered(true)}
               onMouseLeave={() => setIsPortfolioHovered(false)}
             >
@@ -432,7 +435,8 @@ export default function JoinUs() {
 
                         {/* TITLE */}
 
-                        <h3 className="mt-3 text-2xl font-black uppercase tracking-tight text-black md:text-3xl">
+                        <h3 className="mt-3 text-2xl font-black uppercase tracking-tight text-black md:text-3xl"
+                          style={{ fontFamily: "'Russo One', sans-serif" }}>
                           {portfolio.title}
                         </h3>
 
@@ -478,9 +482,9 @@ export default function JoinUs() {
                 type="button"
                 onClick={goPrevious}
                 aria-label="Previous portfolio"
-                className="absolute left-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white text-lg text-black shadow-md transition-all duration-300 hover:bg-black hover:text-white sm:-left-2 lg:-left-4"
+                className="absolute left-0 top-1/2 z-20 -translate-y-1/2 text-2xl font-light text-black transition-colors duration-300 hover:text-cyan-400 sm:-left-2 lg:-left-4"
               >
-                ←
+                &lt;
               </button>
 
 
@@ -492,9 +496,9 @@ export default function JoinUs() {
                 type="button"
                 onClick={goNext}
                 aria-label="Next portfolio"
-                className="absolute right-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white text-lg text-black shadow-md transition-all duration-300 hover:bg-black hover:text-white sm:-right-2 lg:-right-4"
+                className="absolute right-0 top-1/2 z-20 -translate-y-1/2 text-2xl font-light text-black transition-colors duration-300 hover:text-cyan-400 sm:-right-2 lg:-right-4"
               >
-                →
+                &gt;
               </button>
 
             </div>
@@ -583,6 +587,7 @@ export default function JoinUs() {
                   delay: 0.1,
                 }}
                 className="mt-3 text-4xl font-black uppercase text-black md:text-7xl"
+                style={{ fontFamily: "'Russo One', sans-serif" }}
               >
                 WHY CIS?
               </motion.h2>
@@ -638,7 +643,8 @@ export default function JoinUs() {
                   className="rounded-3xl border border-gray-200 bg-white p-7 transition-all duration-300 hover:border-cyan-300 hover:shadow-lg"
                 >
 
-                  <h3 className="text-xl font-black uppercase text-black">
+                  <h3 className="text-xl font-black uppercase text-black"
+                    style={{ fontFamily: "'Russo One', sans-serif" }}>
                     {item.title}
                   </h3>
 
@@ -686,7 +692,8 @@ export default function JoinUs() {
                   SEE WHAT WE DO
                 </p>
 
-                <h2 className="mt-3 text-3xl font-black uppercase text-black md:text-5xl">
+                <h2 className="mt-3 text-3xl font-black uppercase text-black md:text-5xl"
+                    style={{ fontFamily: "'Russo One', sans-serif" }}>
                   EXPERIENCE CIS
                 </h2>
 
@@ -730,7 +737,8 @@ export default function JoinUs() {
         GOT QUESTIONS?
       </p>
 
-      <h2 className="mt-3 text-4xl font-black uppercase text-black md:text-6xl">
+      <h2 className="mt-3 text-4xl font-black uppercase text-black md:text-6xl"
+        style={{ fontFamily: "'Russo One', sans-serif" }}>
         FAQ
       </h2>
 
@@ -909,7 +917,8 @@ export default function JoinUs() {
                   READY?
                 </p>
 
-                <h2 className="mt-4 text-5xl font-black uppercase leading-none text-white md:text-7xl">
+                <h2 className="mt-4 text-5xl font-black uppercase leading-none text-white md:text-7xl"
+                  style={{ fontFamily: "'Russo One', sans-serif" }}>
                   JOIN CIS.
                 </h2>
 
@@ -947,7 +956,8 @@ export default function JoinUs() {
               STILL HAVING SECOND THOUGHTS?
             </p>
 
-            <h2 className="mt-4 text-4xl font-black uppercase leading-tight text-black md:text-6xl">
+            <h2 className="mt-4 text-4xl font-black uppercase leading-tight text-black md:text-6xl"
+              style={{ fontFamily: "'Russo One', sans-serif" }}>
               STALK OUR SOCIALS
             </h2>
 
