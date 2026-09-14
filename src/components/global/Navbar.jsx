@@ -17,6 +17,7 @@ export default function Navbar() {
         { name: 'TEAM', href: '/team' },
         { name: 'EVENTS', href: '/events' },
         { name: 'BLOGS', href: '/blogs' },
+        { name: 'JOIN US', href: '/join-us' },
         { name: 'CONTACT US', href: '/contact' },
     ]
 

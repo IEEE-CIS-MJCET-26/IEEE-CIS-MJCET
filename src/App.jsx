@@ -12,6 +12,7 @@ import Footer from './components/global/Footer'
 import NotFound from './components/NotFound'
 import Cursor from './components/Cursor'
 import Jeopardy from './components/pages/Jeopardy'
+import JoinUs from './components/pages/JoinUs'
 
 
 // Scroll to top on every route change
@@ -54,6 +55,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/team" element={<Team />} />
               <Route path="/events" element={<Events />} />
+              <Route path="/join-us" element={<JoinUs />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blogs" element={<Blogs />} />
               <Route path="/blogs/:slug" element={<BlogDetail />} />
