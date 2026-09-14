@@ -206,7 +206,7 @@ export default function JoinUs() {
 
             {/* ROTATING WORD */}
 
-            <span className="relative mx-auto block h-[0.85em] overflow-hidden text-cyan-400">
+            <span className="relative mx-auto block h-[0.85em] overflow-hidden text-[42px] text-cyan-400 sm:text-[inherit]">
 
               <AnimatePresence mode="wait">
 
@@ -279,7 +279,7 @@ export default function JoinUs() {
               to="https://docs.google.com/forms/d/e/1FAIpQLSdaROWg0WN2TrsILhT6HrhPrIET3cKl_ju5N43OcrI9VxNV7Q/viewform"
               className="group inline-flex items-center gap-3 rounded-full bg-black px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-cyan-400 hover:text-black"
             >
-              Find Your Place
+              Join Now
 
               <span className="transition-transform duration-300 group-hover:translate-x-1">
                 →
