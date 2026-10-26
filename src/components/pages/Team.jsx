@@ -71,8 +71,8 @@ const CARD_VARIANTS = {
 // ─────────────────────────────────────────
 const BATCH_YEARS = [
     { label: '2024–2025', status: 'past' },
-    { label: '2025–2026', status: 'current' },
-    { label: '2026–2027', status: 'upcoming' },
+    { label: '2025–2026', status: 'past' },
+    { label: '2026–2027', status: 'current' },
 ];
 
 // ─────────────────────────────────────────
@@ -80,14 +80,14 @@ const BATCH_YEARS = [
 // ─────────────────────────────────────────
 
 const GB_2027 = [
-    { name: 'Abdullah Quadri', position: 'Chairman', image: abdullah, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
-    { name: 'Zainab Ahmed', position: 'Vice-Chair',  image: zainab, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
-    { name: 'Shaista Khan', position: 'General Secretary', image: shaista, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
-    { name: 'Misha Shaik', position: 'Joint Secretary', image: misha, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
-    { name: 'Aman Shaik', position: 'Treasurer', image: aman, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
-    { name: 'Muteebuddin Mohammed', position: 'Co-Treasurer', image: muteeb, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
-    { name: 'Ozier Nawaz', position: 'Webmaster', image: ozier, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
-    { name: 'Ishaq Ali', position: 'Liaison Head', image: ishaq, description:null, linkedin:null, Instagram:null, email:null, github:null , skills: null },
+    { name: 'Abdullah Quadri', position: 'Chairman', image: abdullah, description: null, linkedin: null, Instagram: null, email: null, github: null, skills: null },
+    { name: 'Zainab Ahmed', position: 'Vice-Chair', image: zainab, description: null, linkedin: null, Instagram: null, email: null, github: null, skills: null },
+    { name: 'Shaista Khan', position: 'General Secretary', image: shaista, description: null, linkedin: null, Instagram: null, email: null, github: null, skills: null },
+    { name: 'Misha Shaik', position: 'Joint Secretary', image: misha, description: null, linkedin: null, Instagram: null, email: null, github: null, skills: null },
+    { name: 'Aman Shaik', position: 'Treasurer', image: aman, description: null, linkedin: null, Instagram: null, email: null, github: null, skills: null },
+    { name: 'Muteebuddin Mohammed', position: 'Co-Treasurer', image: muteeb, description: null, linkedin: null, Instagram: null, email: null, github: null, skills: null },
+    { name: 'Ozier Nawaz', position: 'Webmaster', image: ozier, description: null, linkedin: null, Instagram: null, email: null, github: null, skills: null },
+    { name: 'Ishaq Ali', position: 'Liaison Head', image: ishaq, description: null, linkedin: null, Instagram: null, email: null, github: null, skills: null },
 
 ];
 

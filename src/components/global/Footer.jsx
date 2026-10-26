@@ -131,8 +131,8 @@ export default function Footer() {
                             />
                             <div>
                                 <h4 className="font-semibold cursor-pointer mb-1">GET IN TOUCH WITH US</h4>
-                                <p className="text-gray-300 text-sm cursor-pointer">Chairman: +91 89787 06886</p>
-                                <p className="text-gray-300 text-sm cursor-pointer">Vice Chairperson: +91 88856 27810</p>
+                                <p className="text-gray-300 text-sm cursor-pointer">Chairperson: +91 99592 98015</p>
+                                <p className="text-gray-300 text-sm cursor-pointer">Vice Chair: +91 93930 59590</p>
                             </div>
                         </div>
 
